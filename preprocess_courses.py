@@ -11,8 +11,8 @@ import logging
 infile_path = os.path.join("data", "raw", "UofO_Courses.html")
 outfile_path = os.path.join("data", "corpus", "UofO_Courses.json")
 
-infile = open(infile_path), "r")
-outfile = open(outfile_path), "w+")
+infile = open(infile_path, "r")
+outfile = open(outfile_path, "w+")
 
 preprocessor = preprocessor.ottawa_university_preprocessor(infile, outfile)
 
