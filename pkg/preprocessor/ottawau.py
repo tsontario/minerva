@@ -32,7 +32,7 @@ class OttawaUniversityPreProcessor:
             self.corpus,
             self.outfile,
             default=self._encode_document,
-            sort_keys=True,
+            sort_keys=False,
             indent=4,
         )
 
