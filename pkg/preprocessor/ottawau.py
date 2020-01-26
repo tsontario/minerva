@@ -2,9 +2,15 @@ import pdb
 import re
 import logging
 from json import JSONEncoder
+from os import path
+import sys
 import json
 
 import bs4
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+logger.addHandler(logging.StreamHandler(sys.stdout))
 
 # OttawaUniversityPreProcessor performs the end-to-end work of performing the ETL
 # work of preparing the corpus of documents to be used by the search engine.
@@ -12,25 +18,30 @@ class OttawaUniversityPreProcessor:
 
     # Constructor takes an infile handle representing the raw, uncleaned, input
     # and an outfile handle to which the cleaned and processed corpus will be written
-    def __init__(self, infile, outfile):
-        self.infile = infile
-        self.outfile = outfile
+    def __init__(self, infile_path, outfile_path):
+        self.infile_path = infile_path
+        self.outfile_path = outfile_path
         self.corpus = []
         self.ignored = 0
 
     def preprocess(self):
+        if path.exists(self.outfile_path):
+            logger.info(
+                f"Target corpus ({self.outfile_path}) already exists, skipping preprocssing."
+            )
+            return
+
         self._generate_corpus()
         print(
             f"Found {len(self.corpus)} entries out of a total of {len(self.corpus) + self.ignored}",
             "(either missing course description or french course)",
         )
-
         self.write_outfile()
 
     def write_outfile(self):
         json.dump(
             self.corpus,
-            self.outfile,
+            self._outfile(),
             default=self._encode_document,
             sort_keys=False,
             indent=4,
@@ -40,7 +51,7 @@ class OttawaUniversityPreProcessor:
         return {"id": doc.id, "course": doc.course.__dict__}
 
     def _generate_corpus(self):
-        doc = bs4.BeautifulSoup(self.infile.read(), "html.parser")
+        doc = bs4.BeautifulSoup(self._infile().read(), "html.parser")
         divs = doc.find_all("div", {"class": "courseblock"})
         for raw in divs:
             faculty, code, title = self._parse_course_code_and_title(raw)
@@ -76,6 +87,12 @@ class OttawaUniversityPreProcessor:
         elif len(descriptions) == 0:
             return None
         return descriptions[0].text
+
+    def _infile(self):
+        return open(self.infile_path, "r")
+
+    def _outfile(self):
+        return open(self.outfile_path, "w")
 
 
 # Document objects represent preprocessed objects, ready to be written to the corpus

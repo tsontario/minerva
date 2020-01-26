@@ -5,16 +5,15 @@
 # this implementation has proven correct
 
 import pkg.preprocessor.preprocessor as preprocessor
-import os
+from os import path
 import logging
 
-infile_path = os.path.join("data", "raw", "UofO_Courses.html")
-outfile_path = os.path.join("data", "corpus", "UofO_Courses.json")
 
-infile = open(infile_path, "r")
-outfile = open(outfile_path, "w+")
+infile_path = path.abspath(path.join("data", "raw", "UofO_Courses.html"))
+outfile_path = path.abspath(path.join("data", "corpus", "UofO_Courses.json"))
 
-preprocessor = preprocessor.ottawa_university_preprocessor(infile, outfile)
+preprocessor = preprocessor.ottawa_university_preprocessor(infile_path, outfile_path)
 
-print(preprocessor)
+print("Before")
 preprocessor.preprocess()
+print("Done")
