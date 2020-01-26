@@ -44,15 +44,11 @@ class OttawaUniversityPreProcessor:
             yaml.dump(
                 corpus,
                 outfile,
-                # default=self._encode_document,
                 explicit_start=True,
                 default_flow_style=False,
                 sort_keys=False,
                 indent=2,
             )
-
-    def _encode_document(self, doc):
-        return {"id": doc.id, "course": doc.course.__dict__}
 
     def _generate_corpus(self):
         doc = bs4.BeautifulSoup(self._infile().read(), "html.parser")
