@@ -4,7 +4,7 @@ import logging
 from json import JSONEncoder
 from os import path
 import sys
-import json
+import yaml
 
 import bs4
 
@@ -39,13 +39,17 @@ class OttawaUniversityPreProcessor:
         self.write_outfile()
 
     def write_outfile(self):
-        json.dump(
-            self.corpus,
-            self._outfile(),
-            default=self._encode_document,
-            sort_keys=False,
-            indent=4,
-        )
+        outfile = self._outfile()
+        for corpus in self.corpus:
+            yaml.dump(
+                corpus,
+                outfile,
+                # default=self._encode_document,
+                explicit_start=True,
+                default_flow_style=False,
+                sort_keys=False,
+                indent=2,
+            )
 
     def _encode_document(self, doc):
         return {"id": doc.id, "course": doc.course.__dict__}

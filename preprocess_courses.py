@@ -10,7 +10,7 @@ import logging
 
 
 infile_path = path.abspath(path.join("data", "raw", "UofO_Courses.html"))
-outfile_path = path.abspath(path.join("data", "corpus", "UofO_Courses.json"))
+outfile_path = path.abspath(path.join("data", "corpus", "UofO_Courses.yaml"))
 
 runner = preprocessor(infile_path, outfile_path)
 
