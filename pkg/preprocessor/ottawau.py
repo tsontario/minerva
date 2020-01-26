@@ -26,8 +26,10 @@ class OttawaUniversityPreProcessor:
 
     def preprocess(self):
         if path.exists(self.outfile_path):
-          logger.info(f"Target corpus ({self.outfile_path}) already exists, skipping preprocssing.")
-          return
+            logger.info(
+                f"Target corpus ({self.outfile_path}) already exists, skipping preprocssing."
+            )
+            return
 
         self._generate_corpus()
         print(
@@ -91,6 +93,7 @@ class OttawaUniversityPreProcessor:
 
     def _outfile(self):
         return open(self.outfile_path, "w")
+
 
 # Document objects represent preprocessed objects, ready to be written to the corpus
 class Document:
