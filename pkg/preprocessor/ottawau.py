@@ -94,6 +94,7 @@ class OttawaUniversityPreProcessor:
     def _outfile(self):
         return open(self.outfile_path, "w")
 
+
 # Document objects represent preprocessed objects, ready to be written to the corpus
 class Document:
     DocID = 0
