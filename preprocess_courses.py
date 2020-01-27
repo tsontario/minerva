@@ -5,6 +5,7 @@
 # this implementation has proven correct
 
 from pkg.preprocessor import ottawa_university_preprocessor as preprocessor
+from pkg.user_interface import user_interface as ui
 from os import path
 import logging
 
@@ -17,3 +18,6 @@ runner = preprocessor(infile_path, outfile_path)
 print("Before")
 runner.preprocess()
 print("Done")
+
+print("Launch User Interface")
+ui.launch()
