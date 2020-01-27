@@ -4,7 +4,8 @@ import nltk
 
 
 class DictBuilder:
-    NLTK_STOPWORDS = nltk.corpus.stopwords.words("english")
+    BASE_STOPWORDS = nltk.corpus.stopwords.words("english")
+
     def __init__(self, corpus_handle, tokenizer=nltk.TweetTokenizer()):
 
         self.tokenizer = tokenizer
@@ -29,9 +30,11 @@ class DictBuilder:
             self.terms = self.terms.union(self.tokenizer.tokenize(doc.course.contents))
 
         out = open(self.outfile_path, "w")
-        for term in sorted(map(lambda x : x.lower(), self.terms)):
+        for term in sorted(map(lambda x: x.lower(), self.terms)):
             term = term
-            if not term in type(self).NLTK_STOPWORDS:
+            if not term in type(self).BASE_STOPWORDS:
                 out.write(term)
                 out.write("\n")
-        print(f"{len(self.terms)} unique terms written to {path.abspath(self.outfile_path)}")
+        print(
+            f"{len(self.terms)} unique terms written to {path.abspath(self.outfile_path)}"
+        )
