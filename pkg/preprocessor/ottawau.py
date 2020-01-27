@@ -26,7 +26,7 @@ class OttawaUniversityPreProcessor:
     def preprocess(self):
         if path.exists(self.outfile_path):
             logger.info(
-                f"Target corpus ({self.outfile_path}) already exists, skipping preprocsesing."
+                f"Target corpus ({self.outfile_path}) already exists, skipping preprocessing."
             )
             return
 
