@@ -26,7 +26,7 @@ class OttawaUniversityPreProcessor:
     def preprocess(self):
         if path.exists(self.outfile_path):
             logger.info(
-                f"Target corpus ({self.outfile_path}) already exists, skipping preprocssing."
+                f"Target corpus ({self.outfile_path}) already exists, skipping preprocessing."
             )
             return
 
@@ -85,7 +85,7 @@ class OttawaUniversityPreProcessor:
             )
         elif len(descriptions) == 0:
             return None
-        return descriptions[0].text
+        return descriptions[0].text.strip()
 
     def _infile(self):
         return open(self.infile_path, "r")
