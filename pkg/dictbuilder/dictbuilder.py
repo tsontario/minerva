@@ -14,13 +14,11 @@ class DictBuilder:
         self,
         corpus_handle,
         tokenizer=nltk.WordPunctTokenizer(),
-        enable_stopwords=False,
         enable_casefolding=True,
-        remove_nonalphanumeric=True,
+        enable_stopwords=False,
         enable_stemming=False,
         enable_normalization=False,
-        normalize_periods=True,
-        normalize_hypens=True,
+        remove_nonalphanumeric=True,
     ):
         self.tokenizer = tokenizer
         self.corpus_handle = corpus_handle
@@ -39,10 +37,10 @@ class DictBuilder:
         # normalizing functions must be called directly on the corpus, not the tokenized terms
         # note that normalizing function change the actual text of the corpus, not a generated token (which happens further downstream)
         self.normalize_funcs = []
-        if normalize_periods:
+        if enable_normalization:
             self.normalize_funcs.append(self._normalize_periods)
-        if normalize_hypens:
             self.normalize_funcs.append(self._normalize_hyphens)
+
         # filter functions should be strictly functional/idempotent and take as parameters only (self, set)
         self.filter_funcs = []
         if enable_casefolding:
