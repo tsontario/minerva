@@ -20,3 +20,4 @@ class OttawaUIndexBuilder(IndexBuilder):
             print("Building inverted index (uOttawa)...")
         for doc in corpus_stream:
             contents = doc.read_queryable()
+            
