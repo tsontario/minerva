@@ -1,10 +1,13 @@
 from os import path
 
-from pkg.indexbuilder import indexbuilder
+from pkg.indexbuilder import OttawaUIndexBuilder
+from pkg.context import Context
 
-corpus_handle = open("data/corpus/UofO_Courses.yaml", "r")
-dictionary_handle = open("data/dictionary/UofOCourses.txt")
-index_path = path.relpath("data/index/UofO_Courses.yaml")
+corpus_path = "data/corpus/UofO_Courses.yaml"
+dictionary_path = "data/dictionary/UofOCourses.txt"
+index_path = path.realpath("data/index/UofO_Courses.yaml")
 
-index_builder = indexbuilder.IndexBuilder(corpus_handle, index_path, dictionary_handle)
+ctx = Context(corpus_path, dictionary_path, index_path)
+
+index_builder = OttawaUIndexBuilder(ctx)
 index_builder.build()
