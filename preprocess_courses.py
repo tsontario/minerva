@@ -4,7 +4,7 @@
 # Preventing overwrites will be done as part of the main component once
 # this implementation has proven correct
 
-from pkg.preprocessor import ottawa_university_preprocessor as preprocessor
+from pkg.preprocessor import OttawaUniversityPreProcessor
 from os import path
 import logging
 
@@ -12,7 +12,7 @@ import logging
 infile_path = path.abspath(path.join("data", "raw", "UofO_Courses.html"))
 outfile_path = path.abspath(path.join("data", "corpus", "UofO_Courses.yaml"))
 
-runner = preprocessor(infile_path, outfile_path)
+runner = OttawaUniversityPreProcessor(infile_path, outfile_path)
 
 print("Before")
 runner.preprocess()
