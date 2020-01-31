@@ -1,13 +1,13 @@
 import os
 import sys
-
-sys.path.append(os.path.dirname(__file__))
-import ottawau
-
-
-def ottawa_university_preprocessor(infile_path, outfile_path):
-    return ottawau.OttawaUniversityPreProcessor(infile_path, outfile_path)
+from abc import ABC
 
 
 def reuters_preprocessor(infile, outfile):
     print("Not implemented")
+
+
+# All preprocessors implemented must expose a `preprocess` method
+class Preprocessor(ABC):
+    def preprocess(self):
+        pass

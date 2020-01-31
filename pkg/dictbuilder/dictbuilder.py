@@ -4,6 +4,7 @@ import os
 from os import path
 import nltk
 from nltk.stem import LancasterStemmer
+from ..wordmodifiers import *
 
 
 class DictBuilder:
@@ -38,19 +39,19 @@ class DictBuilder:
         # note that normalizing function change the actual text of the corpus, not a generated token (which happens further downstream)
         self.normalize_funcs = []
         if enable_normalization:
-            self.normalize_funcs.append(self._normalize_periods)
-            self.normalize_funcs.append(self._normalize_hyphens)
+            self.normalize_funcs.append(Normalizer.normalize_periods)
+            self.normalize_funcs.append(Normalizer.normalize_hyphens)
 
         # filter functions should be strictly functional/idempotent and take as parameters only (self, set)
         self.filter_funcs = []
         if enable_casefolding:
-            self.filter_funcs.append(self._casefold)
+            self.filter_funcs.append(CaseFolder().call)
         if enable_stopwords:
-            self.filter_funcs.append(self._filter_stopwords)
+            self.filter_funcs.append(StopWordFilter(DictBuilder.BASE_STOPWORDS).call)
         if remove_nonalphanumeric:
-            self.filter_funcs.append(self._filter_nonalphanumeric)
+            self.filter_funcs.append(AlphaNumericFilter().call)
         if enable_stemming:
-            self.filter_funcs.append(self._stem_words)
+            self.filter_funcs.append(Stemmer(nltk.LancasterStemmer()).call)
 
     def build(self):
         terms = set()
@@ -71,58 +72,3 @@ class DictBuilder:
             out.write(term)
             out.write("\n")
         print(f"{len(terms)} unique terms written to {path.abspath(self.outfile_path)}")
-
-    def _normalize_periods(self, text):
-        # SOURCE: https://stackoverflow.com/questions/53149396/regex-to-extract-acronyms
-        pattern = r"\b[A-Z](?:[\.&]?[A-Z]){1,7}\b"
-        normalized_text = re.sub(pattern, lambda x: re.sub("\.", "", x.group()), text)
-        return normalized_text
-
-    def _normalize_hyphens(self, text):
-        pattern = r"\b(\w+-)+\w+\b"
-        normalized_text = re.sub(pattern, lambda x: re.sub("-", " ", x.group()), text)
-        return normalized_text
-
-    def _casefold(self, terms):
-        return set(map(lambda x: x.lower(), terms))
-
-    def _filter_stopwords(self, terms):
-        rejected_terms = set()
-        for term in terms:
-            if term in DictBuilder.BASE_STOPWORDS:
-                rejected_terms.add(term)
-        terms = terms - rejected_terms
-        self._pretty_print_debug_filter_summary("STOPWORDS", rejected_terms)
-        return terms
-
-    def _filter_nonalphanumeric(self, terms):
-        rejected_terms = set()
-        pattern = r"^\W+$"  # Matches any non-alphanumeric string
-        for term in terms:
-            if re.match(pattern, term):
-                rejected_terms.add(term)
-        terms = terms - rejected_terms
-        self._pretty_print_debug_filter_summary("NONALPHANUMERIC", rejected_terms)
-        return terms
-
-    def _stem_words(self, terms):
-        stemmed_terms = set()
-        stemmer = LancasterStemmer()
-        for term in terms:
-            stemmed_terms.add(stemmer.stem(term))
-        if os.getenv("DEBUG"):
-            print(
-                f"Stemming procedure reduced number of terms from {len(terms)} to {len(stemmed_terms)} (difference = {len(terms) - len(stemmed_terms)})"
-            )
-        return stemmed_terms
-
-    def _pretty_print_debug_filter_summary(self, filter_kind, rejected_terms):
-        if len(rejected_terms) > 0 and os.getenv("DEBUG"):
-            print(
-                f"***The following terms (N={len(rejected_terms)}) were rejected from the dictionary since they have been identified as {filter_kind}***"
-            )
-            print(
-                "--------------------------------------------------------------------------------------------------------------------------------------"
-            )
-            for term in sorted(set(rejected_terms)):
-                print(term)

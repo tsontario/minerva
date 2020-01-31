@@ -1,1 +1,2 @@
-from pkg.preprocessor import ottawau
+from pkg.preprocessor import Document
+from .dictbuilder import *
