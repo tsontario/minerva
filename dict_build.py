@@ -1,7 +1,12 @@
-from pkg.dictbuilder import dictbuilder
+from os import path
 
-corpus_handle = open("data/corpus/UofO_Courses.yaml", "r")
+from pkg.dictionary import DictBuilder
+from pkg.context import Context
+
+corpus_path = path.realpath("data/corpus/UofO_Courses.yaml")
+dict_path = path.realpath("data/dictionary/UofOCourses.txt")
 # corpus_handle = open("./test.yaml", "r")
 
-dict_builder = dictbuilder.DictBuilder(corpus_handle, enable_stopwords=False, enable_stemming=False)
+ctx = Context(corpus_path, dict_path, "")
+dict_builder = DictBuilder(ctx)
 dict_builder.build()
