@@ -11,7 +11,6 @@ from pkg.preprocessor import Document
 class DictBuilder:
     BASE_STOPWORDS = nltk.corpus.stopwords.words("english")
 
-    # TODO separate options out into Config class (We will need to pass a lot of similar info to the query processor to synchronzie the query vocab with the dictionary vocab)
     def __init__(self, ctx):
         self.ctx = ctx
         self.tokenizer = ctx.tokenizer
