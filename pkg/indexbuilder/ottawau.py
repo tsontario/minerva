@@ -39,9 +39,10 @@ class OttawaUIndexBuilder(IndexBuilder):
                 indent=2,
             )
 
-
     def _build_simple_index(self):
-        simple_index = {}
+        simple_index = defaultdict(
+            lambda: []
+        )  # SOURCE: https://www.accelebrate.com/blog/using-defaultdict-python
         dictionary = Dictionary(self.dict_path)
         with open(self.corpus_path, "r") as corpus_handle:
             corpus = yaml.load_all(corpus_handle, Loader=yaml.Loader)
@@ -49,15 +50,12 @@ class OttawaUIndexBuilder(IndexBuilder):
                 # apply normalizations...
                 contents = document.read_queryable()
                 for normalize_func in self.normalize_funcs:
-                    contents = normalize_func(document.read_queryable())
+                    contents = normalize_func(contents)
                 terms = self.tokenizer.tokenize(contents)
                 # apply filters...
                 for filter_func in self.filter_funcs:
                     terms = filter_func(terms.copy())
                 for term in terms:
                     if dictionary.contains(term):
-                        if simple_index.get(term, None) is None:
-                            simple_index[term] = [document.id]
-                        else:
-                            simple_index[term] = simple_index[term] + [document.id]
+                        simple_index[term].append(document.id)
         return simple_index
