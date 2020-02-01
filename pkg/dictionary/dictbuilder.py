@@ -5,16 +5,14 @@ from os import path
 import nltk
 from nltk.stem import LancasterStemmer
 from ..wordmodifiers import *
+from pkg.preprocessor import Document
 
 
 class DictBuilder:
     BASE_STOPWORDS = nltk.corpus.stopwords.words("english")
 
     # TODO separate options out into Config class (We will need to pass a lot of similar info to the query processor to synchronzie the query vocab with the dictionary vocab)
-    def __init__(
-        self,
-        ctx
-    ):
+    def __init__(self, ctx):
         self.ctx = ctx
         self.tokenizer = ctx.tokenizer
         self.corpus_path = ctx.corpus_path
@@ -40,21 +38,22 @@ class DictBuilder:
 
     def build(self):
         terms = set()
-        corpus_handle = open(self.ctx.corpus_path, 'r')
-        corpus_stream = yaml.load_all(corpus_handle, Loader=yaml.Loader)
-        if os.getenv("DEBUG"):
-            print("Performing configured normalizations and tokenization...")
-        for doc in corpus_stream:
-            # apply normalizations...
-            for normalize_func in self.normalize_funcs:
-                doc.course.contents = normalize_func(doc.course.contents)
-            terms = terms.union(self.tokenizer.tokenize(doc.course.contents))
+        with open(self.ctx.corpus_path, "r") as corpus_handle:
+            corpus_stream = yaml.load_all(corpus_handle, Loader=yaml.Loader)
+            if os.getenv("DEBUG"):
+                print("Performing configured normalizations and tokenization...")
+            for doc in corpus_stream:
+                # apply normalizations...
+                contents = doc.read_queryable()
+                for normalize_func in self.normalize_funcs:
+                    contents = normalize_func(doc.read_queryable())
+                terms = terms.union(self.tokenizer.tokenize(contents))
 
         # apply filters...
         for filter_func in self.filter_funcs:
             terms = filter_func(terms.copy())
-        out = open(self.outfile_path, "w")
-        for term in sorted(terms):
-            out.write(term)
-            out.write("\n")
+        with open(self.outfile_path, "w") as outfile:
+            for term in sorted(terms):
+                outfile.write(term)
+                outfile.write("\n")
         print(f"{len(terms)} unique terms written to {path.abspath(self.outfile_path)}")

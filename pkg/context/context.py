@@ -3,7 +3,7 @@ from .defaults import *
 # Context holds the global config settings for the current search engine session
 class Context:
     def __init__(
-        self, 
+        self,
         corpus_path,
         dict_path,
         inverted_index_path,
@@ -12,7 +12,7 @@ class Context:
         enable_stopwords=default_enable_stopwords(),
         enable_stemming=default_enable_stemming(),
         enable_normalization=default_enable_normalization(),
-        remove_nonalphanumeric=default_remove_nonalphanumeric()
+        remove_nonalphanumeric=default_remove_nonalphanumeric(),
     ):
         self.corpus_path = corpus_path
         self.dict_path = dict_path
