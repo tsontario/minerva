@@ -8,7 +8,7 @@ import nltk
 from .indexbuilder import IndexBuilder
 from .invertedindex import IndexKey
 from ..dictionary import Dictionary, DictBuilder
-from ..wordmodifiers import *
+from ..wordmodifiers import context
 
 
 class OttawaUIndexBuilder(IndexBuilder):
@@ -17,25 +17,8 @@ class OttawaUIndexBuilder(IndexBuilder):
         self.dict_path = ctx.dict_path
         self.inverted_index_path = ctx.inverted_index_path
         self.tokenizer = ctx.tokenizer
-
-        # TODO extract filter func construction to shareable util module that takes as argument a Context object
-        # normalizing functions must be called directly on the corpus, not the tokenized terms
-        # note that normalizing function change the actual text of the corpus, not a generated token (which happens further downstream)
-        self.normalize_funcs = []
-        if ctx.enable_normalization:
-            self.normalize_funcs.append(Normalizer.normalize_periods)
-            self.normalize_funcs.append(Normalizer.normalize_hyphens)
-
-        # filter functions should be strictly functional/idempotent and take as parameters only (self, set)
-        self.filter_funcs = []
-        if ctx.enable_casefolding:
-            self.filter_funcs.append(CaseFolder().call)
-        if ctx.enable_stopwords:
-            self.filter_funcs.append(StopWordFilter(DictBuilder.BASE_STOPWORDS).call)
-        if ctx.remove_nonalphanumeric:
-            self.filter_funcs.append(AlphaNumericFilter().call)
-        if ctx.enable_stemming:
-            self.filter_funcs.append(Stemmer(nltk.LancasterStemmer()).call)
+        self.normalize_funcs = context.normalizer_funcs_for_context(ctx)
+        self.filter_funcs = context.filter_funcs_for_context(ctx)
 
     def build(self):
         term_documents_dict = self._build_simple_index()
@@ -47,16 +30,15 @@ class OttawaUIndexBuilder(IndexBuilder):
             inverted_index[key_with_freq] = doc_ids
 
         with open(self.inverted_index_path, "w") as index_file:
-            (
-                yaml.dump(
-                    inverted_index,
-                    index_file,
-                    explicit_start=True,
-                    default_flow_style=True,
-                    sort_keys=False,
-                    indent=2,
-                )
+            yaml.dump(
+                inverted_index,
+                index_file,
+                explicit_start=True,
+                default_flow_style=True,
+                sort_keys=False,
+                indent=2,
             )
+
 
     def _build_simple_index(self):
         simple_index = {}
