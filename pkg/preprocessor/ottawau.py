@@ -7,9 +7,16 @@ import yaml
 
 import bs4
 
+from .corpus import Queryable
+
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 logger.addHandler(logging.StreamHandler(sys.stdout))
+
+
+def ottawa_university_preprocessor(infile_path, outfile_path):
+    return OttawaUniversityPreProcessor(infile_path, outfile_path)
+
 
 # OttawaUniversityPreProcessor performs the end-to-end work of performing the ETL
 # work of preparing the corpus of documents to be used by the search engine.
@@ -95,7 +102,7 @@ class OttawaUniversityPreProcessor:
 
 
 # Document objects represent preprocessed objects, ready to be written to the corpus
-class Document:
+class Document(Queryable):
     DocID = 0
 
     def __init__(self, course):
@@ -104,6 +111,9 @@ class Document:
 
     def __str__(self):
         return f"ID: {self.id}, Course: {self.course.faculty} {self.course.code} {self.course.title}"
+
+    def read_queryable(self):
+        return self.course.contents
 
     @staticmethod
     def next_id():
