@@ -1,7 +1,0 @@
---- !!python/object:ottawau.Document
-id: 1
-course: !!python/object:ottawau.Course
-  faculty: ADM
-  code: '1100'
-  title: Introduction to Business Management (3 units)
-  contents: "U.S.A. U.S.A is the best! an abstract descent into madness and mathematics. We are best-in-class and-wont be beat-beat-beat-beat-beat"
