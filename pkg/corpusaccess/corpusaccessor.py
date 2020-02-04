@@ -2,7 +2,8 @@ import yaml
 
 
 class CorpusAccessor:
-	# private construction for singleton
+	# private 'constructor' for singleton
+	# design pattern followed from: https://python-3-patterns-idioms-test.readthedocs.io/en/latest/Singleton.html
 	class __CorpusAccessor:
 		def __init__(self, ctx):
 			self.ctx = ctx
