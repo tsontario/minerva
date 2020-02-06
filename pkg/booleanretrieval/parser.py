@@ -1,5 +1,6 @@
 import re
 
+<<<<<<< HEAD
 from ..wordmodifiers import context
 from ..util import Stack
 from .util import *
@@ -7,6 +8,24 @@ from .util import *
 # Parser exposes a single public method, parse, that will convert the provided infix boolean expression
 # into a tokenized postfix expression. Its constructor takes a context.Context object to ensure it is
 # parameterized the same way as upstream entities (e.g. the index)
+=======
+
+class Stack:
+    def __init__(self):
+        self._stack = []
+
+    def push(self, val):
+        self._stack.append(val)
+        return val
+
+    def pop(self):
+        if len(self._stack) == 0:
+            return None
+        return self._stack.pop()
+
+
+# Example: (computer AND thing)
+>>>>>>> start of boolean retrieval: query processing
 class Parser:
     def __init__(self, ctx):
         self.tokenizer = ctx.tokenizer
