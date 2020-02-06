@@ -1,58 +1,54 @@
+import yaml
+
+from ..dictionary import Dictionary
+
 class EditDistance:
-    # each letter and its position on a QWERTY keyboard
+    # each letter/number and its coordinates on a QWERTY keyboard (for 'substitution weight/cost' calculation)
     key_locations = {
-            "q": [0,0],
-            "w": [0,1],
-            "e": [0,2],
-            "r": [0,3],
-            "t": [0,4],
-            "y": [0,5],
-            "u": [0,6],
-            "i": [0,7],
-            "o": [0,8],
-            "p": [0,9],
-            "a": [1,0],
-            "s": [1,1],
-            "d": [1,2],
-            "f": [1,3],
-            "g": [1,4],
-            "h": [1,5],
-            "j": [1,6],
-            "k": [1,7],
-            "l": [1,8],
-            "z": [2,0],
-            "x": [2,1],
-            "c": [2,2],
-            "v": [2,3],
-            "b": [2,4],
-            "n": [2,5],
-            "m": [2,6]
+        "1": [0,0], "2": [0,1], "3": [0,2], "4": [0,3], "5": [0,4], "6": [0,5], "7": [0,6], "8": [0,7], "9": [0,8], "0": [0,9],
+        "q": [1,0], "w": [1,1], "e": [1,2], "r": [1,3], "t": [1,4], "y": [1,5], "u": [1,6], "i": [1,7], "o": [1,8], "p": [1,9],
+        "a": [2,0],"s": [2,1], "d": [2,2], "f": [2,3], "g": [2,4], "h": [2,5], "j": [2,6], "k": [2,7], "l": [2,8],
+        "z": [3,0], "x": [3,1], "c": [3,2], "v": [3,3], "b": [3,4], "n": [3,5], "m": [3,6]
     }
 
-    # distance between two characters on a qwerty keyboard
-    def substitution_cost(self, key1, key2):
-        if not key1 in self.key_locations:
-            print("Character error with " + key1)
-            return 1
-        if not key2 in self.key_locations:
-            print("Character error with " + key2)
-            return 1
+    def __init__(self, ctx):
+        self.ctx = ctx
+        self.dictionary = Dictionary(self.ctx.dict_path)
 
-        x1 = self.key_locations[key1][0]
-        y1 = self.key_locations[key1][1]
-        x2 = self.key_locations[key2][0]
-        y2 = self.key_locations[key2][1]
+    # returns top N suggestions for each misspelled term in query
+    def edit_distance(self, query):
+        query_terms = query.split()
 
-        #return abs(x1-x2) + abs(y1-y2) # manhattan distance
-        return (((x1-x2)**2) + ((y1-y2)**2))**0.5 # euclidean distance 
-        
+        # TODO: are stopwords removed? ensure query is preprocessed? eg. we don't want suggestions for words like 'the' if we're using stopword removal 
+        for keyword in ['AND', 'OR', 'NOT']:
+            if keyword in query_terms:
+                query_terms.remove(keyword)
 
-    #algorithm adapted from: https://www.python-course.eu/levenshtein_distance.php#Iterative-Computation-of-the-Levenshtein-Distance
+        suggestions = {}
+        for term in query_terms:
+            suggestions[term] = self.get_suggestions(term.lower())
+
+        return suggestions
+    
+    def get_suggestions(self, term):
+        n = 5 # top n closest words will be returned
+        suggestions = []
+
+        if term in self.dictionary.terms:
+            return [] # no need to find suggestions for recognized words
+
+        for word in self.dictionary.terms:
+            # ignore words with accents (but allow numerical searches?)
+            if not any(char not in "abcdefghijklmnopqrstuvwxyz1234567890" for char in word.lower()):
+                suggestions.append((word, self.distance(term, word)))
+
+        # Source: https://docs.python.org/3/howto/sorting.html
+        suggestions.sort(key=lambda s: s[1])
+        return suggestions[:n]
+
+    # edit distance algorithm adapted from: 
+    # https://www.python-course.eu/levenshtein_distance.php#Iterative-Computation-of-the-Levenshtein-Distance
     def distance(self, source, target):
-        # query term is source, dictionary word is target
-        source = source.lower()
-        target = target.lower()
-
         rows = len(source) + 1
         cols = len(target) + 1
 
@@ -60,15 +56,15 @@ class EditDistance:
         insertion_cost = 2
         substitution_cost = 0
 
-        dist = [[0 for x in range(cols)] for x in range(rows)]
+        edit_distance = [[0 for x in range(cols)] for x in range(rows)]
 
         # source prefixes:
         for row in range(1, rows):
-            dist[row][0] = dist[row - 1][0] + deletion_cost
+            edit_distance[row][0] = edit_distance[row - 1][0] + deletion_cost
 
         # target prefixes:
         for col in range(1, cols):
-            dist[0][col] = dist[0][col - 1] + insertion_cost
+            edit_distance[0][col] = edit_distance[0][col - 1] + insertion_cost
 
         # filling the dynamic programming matrix
         for col in range(1, cols):
@@ -79,10 +75,20 @@ class EditDistance:
                     substitution_cost = self.substitution_cost(source[row - 1], target[col - 1])
 
                 # get min cost between deletion, insertion, substitution
-                dist[row][col] = min(
-                    dist[row - 1][col] + deletion_cost,
-                    dist[row][col - 1] + insertion_cost,
-                    dist[row - 1][col - 1] + substitution_cost,
+                edit_distance[row][col] = min(
+                    edit_distance[row - 1][col] + deletion_cost,
+                    edit_distance[row][col - 1] + insertion_cost,
+                    edit_distance[row - 1][col - 1] + substitution_cost,
                 )
 
-        return dist[row][col]
+        return edit_distance[row][col]
+
+    # euclidean distance between two characters on a qwerty keyboard
+    def substitution_cost(self, key1, key2):
+        x1 = self.key_locations[key1][0]
+        y1 = self.key_locations[key1][1]
+
+        x2 = self.key_locations[key2][0]
+        y2 = self.key_locations[key2][1]
+
+        return (((x1-x2)**2) + ((y1-y2)**2))**0.5 

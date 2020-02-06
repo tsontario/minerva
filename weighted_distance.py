@@ -1,13 +1,15 @@
-# from os import path
+from os import path
 
-# from pkg.context import Context
+from pkg.context import Context
 from pkg.editdistance import EditDistance
 
-ed = EditDistance()
+corpus_path = "data/corpus/UofO_Courses.yaml"
+dictionary_path = "data/dictionary/UofOCourses.txt"
+inverted_index_path = path.realpath("data/index/UofO_Courses.yaml")
 
-src = "conluter"
-tgt = "computer"
+ctx = Context(corpus_path, dictionary_path, inverted_index_path)
+ed = EditDistance(ctx)
 
-d = ed.distance(src, tgt)
+query = "Example Query operoting system lienar"
 
-print(src + " --> " + tgt + " = " + str(d))
+print(ed.edit_distance(query))

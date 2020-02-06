@@ -1,6 +1,5 @@
 import yaml
 
-
 class CorpusAccessor:
 	# private 'constructor' for singleton
 	# design pattern followed from: https://python-3-patterns-idioms-test.readthedocs.io/en/latest/Singleton.html
@@ -19,7 +18,7 @@ class CorpusAccessor:
 		# if the corpus is not yet in accessor, then load the corpus and put it in corpora
 		if not ctx.corpus_path in self.corpora:
 			CorpusAccessor.corpora[ctx.corpus_path] = CorpusAccessor.__CorpusAccessor(ctx)
-			# is using the corpus_path as a dict key a bad idea?
+			# using the corpus_path as a dict key so that multiple corpora may be loaded
 		else:
 			print("Corpus " + ctx.corpus_path + " already loaded.")
 	
