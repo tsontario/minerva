@@ -1,6 +1,9 @@
 import PySimpleGUI as sg
+from os import path
 
-# code snippets taken from various demos at https://pysimplegui.readthedocs.io/
+from pkg.context import Context
+from pkg.corpusaccess import CorpusAccessor
+from pkg.editdistance import EditDistance
 
 
 def launch():
@@ -38,7 +41,9 @@ def launch():
         [sg.Text("Minerva Search Engine", font=("Arial", 22, "bold"))],
         [
             sg.Text("Query:", key="query", font=("Arial", 14)),
-            sg.InputText("", font=("Arial", 14), focus=True),
+            sg.InputText(
+                "Example Query operoting system lienar", font=("Arial", 14), focus=True
+            ),
             sg.Button("Search", font=("Arial", 14)),
         ],
         [sg.Text("")],
@@ -50,8 +55,8 @@ def launch():
             ),
         ],
         [sg.Text("")],
+        [sg.Text("Results", font=("Arial", 16, "bold"))],
         [
-            sg.Text("Results", font=("Arial", 16, "bold")),
             sg.Text(
                 "",
                 font=("Arial", 14, "italic"),
@@ -97,15 +102,44 @@ def launch():
             window.Close()
 
         elif event is "Search":
-            print("Search for " + str(values[0]))
-            # TODO: create config object and send it to some router (or something), and handle result.
-            data = dummyReturn(values[0])
+            query = values[0]
+            print("Search for " + str(query))
+
+            corpus_path = path.realpath("data/corpus/UofO_Courses.yaml")
+            dictionary_path = path.realpath("data/dictionary/UofOCourses.txt")
+            inverted_index_path = path.realpath("data/index/UofO_Courses.yaml")
+
+            ctx = Context(corpus_path, dictionary_path, inverted_index_path)
+            corpus_accessor = CorpusAccessor(ctx)
+
+            # call some search function w/ query
+
+            results = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]  # temp dummy data
+            documents = corpus_accessor.access(ctx, results)
+
+            data = []
+            for d in documents: # TODO: handle score
+                data.append(
+                    [
+                        d.id,
+                        str(d.course.faculty) + str(d.course.code),
+                        d.course.contents,
+                        "score",
+                    ]
+                )
 
             window.FindElement("_table_").Update(values=data)
 
-            window["suggestion"].Update(
-                "Did you mean: <spelling correction for " + values[0] + ">"
-            )
+            suggestions = EditDistance(ctx).edit_distance(query)
+            print(suggestions)
+
+            window["suggestion"].Update("Did you mean:")
+
+            # for query_term, suggestion in suggestions:
+            #     if suggestion not []:
+            #         sg.Combo([query_term, ])
+
+            layout = [[sg.Combo(['choice 1', 'choice 2'])]]
 
         elif event is "_table_":
             print("Opening document")
@@ -117,18 +151,3 @@ def launch():
             print(event)
 
     window.Close()
-
-
-# temp dummy data
-def dummyReturn(q):
-    return [
-        [200, "Title " + q, "Some excerpt", 0.1],
-        [210, "Title " + q, "Some excerpt", 0.1],
-        [220, "Title " + q, "Some excerpt", 0.1],
-        [
-            230,
-            "Title " + q,
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fermentum et mauris sed dictum. Maecenas sed aliquam nisl. In pharetra eget augue ut tincidunt. Curabitur id ante id nulla sagittis molestie. Nunc vel congue arcu. Aliquam eleifend, purus in lobortis suscipit, justo risus tristique elit, eget dignissim lacus velit volutpat libero. Nullam id cursus nisl, sit amet tincidunt est. Aenean rhoncus ornare rhoncus. Nulla massa erat, dignissim eget lobortis et, consequat ut ipsum. Aenean maximus velit sed sapien tempus, a euismod urna maximus. Proin lectus nunc, euismod vel ultrices in, tempus ut lacus. Cras sed tellus sed libero bibendum fringilla. Nam vel metus odio. Morbi dictum fringilla massa.",
-            0.1,
-        ],
-    ]

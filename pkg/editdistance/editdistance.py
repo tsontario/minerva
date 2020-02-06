@@ -3,7 +3,7 @@ import yaml
 from ..dictionary import Dictionary
 
 class EditDistance:
-    # each letter/number and its coordinates on a QWERTY keyboard (for 'substitution weight/cost' calculation)
+    # each letter/number and its coordinates on a QWERTY keyboard (for substitution weight calculation)
     key_locations = {
         "1": [0,0], "2": [0,1], "3": [0,2], "4": [0,3], "5": [0,4], "6": [0,5], "7": [0,6], "8": [0,7], "9": [0,8], "0": [0,9],
         "q": [1,0], "w": [1,1], "e": [1,2], "r": [1,3], "t": [1,4], "y": [1,5], "u": [1,6], "i": [1,7], "o": [1,8], "p": [1,9],
@@ -42,9 +42,9 @@ class EditDistance:
             if not any(char not in "abcdefghijklmnopqrstuvwxyz1234567890" for char in word.lower()):
                 suggestions.append((word, self.distance(term, word)))
 
-        # Source: https://docs.python.org/3/howto/sorting.html
         suggestions.sort(key=lambda s: s[1])
-        return suggestions[:n]
+        result = map(lambda s: s[0], suggestions[:n])
+        return result
 
     # edit distance algorithm adapted from: 
     # https://www.python-course.eu/levenshtein_distance.php#Iterative-Computation-of-the-Levenshtein-Distance
