@@ -1,3 +1,5 @@
+from .util import *
+
 # Evaluator objects evaluate boolean expressions and return the document IDs associated with the
 # evaluated expression
 class Evaluator:
