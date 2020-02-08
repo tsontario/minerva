@@ -2,11 +2,11 @@ import re
 
 from ..wordmodifiers import context
 from ..util import Stack
-
+from .util import *
 
 # Parser exposes a single public method, parse, that will convert the provided infix boolean expression
 # into a tokenized postfix expression. Its constructor takes a context.Context object to ensure it is
-# parameterized the same way as downstream entities (e.g. the index)
+# parameterized the same way as upstream entities (e.g. the index)
 class Parser:
     def __init__(self, ctx):
         self.tokenizer = ctx.tokenizer
@@ -108,23 +108,3 @@ class Parser:
                 continue
             result.append(popped)
         return result
-
-
-def is_operator(token):
-    return token in ["AND", "OR", "NOT"]
-
-
-def is_operand(token):
-    return token not in ["AND", "OR", "NOT", "(", ")"]
-
-
-def is_left_parens(c):
-    return c == "("
-
-
-def is_right_parens(c):
-    return c == ")"
-
-
-def is_parens(c):
-    return is_right_parens(c) or is_left_parens(c)
