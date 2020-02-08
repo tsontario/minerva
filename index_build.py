@@ -1,6 +1,7 @@
 from os import path
 
 from pkg.indexbuilder import OttawaUIndexBuilder
+from pkg.indexaccess import IndexAccessor
 from pkg.context import Context
 
 corpus_path = "data/corpus/UofO_Courses.yaml"

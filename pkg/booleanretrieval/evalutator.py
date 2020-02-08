@@ -1,5 +1,4 @@
-
-# Evaluator objects evaluate boolean expressions and return the document IDs associated with the 
+# Evaluator objects evaluate boolean expressions and return the document IDs associated with the
 # evaluated expression
 class Evaluator:
     def __init__(self, expr):
@@ -12,4 +11,4 @@ class Evaluator:
     def _convert_to_doc_ids(self):
         for i, token in enumerate(self.expr):
             if is_operand(token):
-                
+                pass
