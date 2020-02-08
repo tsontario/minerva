@@ -42,6 +42,7 @@ class Parser:
         return postfix_expr
 
     # Remove extra whitespace, add enclosing parens if needed
+    # Code not right, need fix
     def _clean(self, expr):
         expr = expr.strip()
         if expr[0] != "(":
@@ -94,32 +95,29 @@ class Parser:
                 result.append(e.pop())
         return result
 
-    # SOURCE: https://www.includehelp.com/c/infix-to-postfix-conversion-using-stack-with-c-program.aspx
+    # SOURCE: https://runestone.academy/runestone/books/published/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html
     def _to_postfix(self, expr):
-        # Code not right, need fix
-        stack = Stack()
         result = []
-        for c in expr:
-            if is_operator(c):
-                while True:
-                    popped = stack.pop()
-                    if popped is "(":
-                        stack.push(popped)
-                        break
-                    if popped is None:
-                        break
-                    result.append(popped)
-                stack.push(c)
-            elif is_left_parens(c):
-                stack.push(c)
-            elif is_right_parens(c):
-                while True:
-                    popped = stack.pop()
-                    if popped == "(":
-                        break
-                    result.append(c)
-            else:  # This must be an operator
-                result.append(c)
+        operator_stack = Stack()
+        for e in expr:
+            if is_operand(e):
+                result.append(e)
+            elif is_left_parens(e):
+                operator_stack.push(e)
+            elif is_right_parens(e):
+                popped = operator_stack.pop()
+                if popped == "(":
+                    continue
+                result.append(popped)
+            elif is_operator(e):
+                operator_stack.push(e)
+        while True:
+            popped = operator_stack.pop()
+            if popped is None:
+                break
+            elif popped == "(":
+                continue
+            result.append(popped)
         return result
 
 
