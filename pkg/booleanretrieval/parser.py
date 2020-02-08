@@ -34,9 +34,10 @@ class Parser:
     def parse(self, expr):
         expr = self._clean(expr)
         expr = self._tokenize(expr)
-        # expr = self._normalize(expr)
+        expr = self._normalize(expr)
         expr = self._filter(expr)
         print(expr)
+        breakpoint()
         postfix_expr = self._to_postfix(expr)
         return postfix_expr
 
@@ -66,7 +67,7 @@ class Parser:
                 result.append(word)
         return result
 
-    def _filter(self, expr):
+    def _normalize(self, expr):
         result = []
         for e in expr:
             if not is_operand(e):
@@ -74,13 +75,20 @@ class Parser:
             else:
                 for normalize_func in self.normalize_funcs:
                     e = normalize_func(e)
+                result.append(e)
+        return result
+
+    def _filter(self, expr):
+        result = []
+        for e in expr:
+            if not is_operand(e):
+                result.append(e)
+            else:
                 e = set([e])  # Filter funcs expect sets of words, not simple Strings
                 for filter_func in self.filter_funcs:
                     e = filter_func(e)
                 if len(e) == 0:
-                    e = set(
-                        [""]
-                    )  # Stopwords are reduced to empty string, which will match nothing or everything depending on approach
+                    e = set([""])  # Stopwords are reduced to empty string
                 elif len(e) > 1:
                     raise "Expected filtered/normalized word to be a single element"
                 result.append(e.pop())
