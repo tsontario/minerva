@@ -1,20 +1,7 @@
 import re
 
 from ..wordmodifiers import context
-
-
-class Stack:
-    def __init__(self):
-        self._stack = []
-
-    def push(self, val):
-        self._stack.append(val)
-        return val
-
-    def pop(self):
-        if len(self._stack) == 0:
-            return None
-        return self._stack.pop()
+from ..util import Stack
 
 
 # Example: (computer AND thing)
@@ -24,20 +11,16 @@ class Parser:
         self.normalize_funcs = context.normalizer_funcs_for_context(ctx)
         self.filter_funcs = context.filter_funcs_for_context(ctx)
 
-    # Parsing requires multiple steps in order to ensure we are ending up with a query that can
-    # be both easily and reliably processed.
-    # Step 1: Strip whitespace, ensure enclosing brackets
+    # Parsing transforms the provided boolean expression in the following ways:
+    # Step 1: Strip whitespace, ensure enclosing brackets are present
     # Step 2: Tokenize into parantheses, operators, and operands
     # Step 3: Apply normalizers/filters from execution context settings
-    # Step 4: Substitute operands with relevant doc ids
-    # Step 5: Evalutate the query (result = array of doc ids)
+    # Step 4: Transform into postfix expression for further evaluation
     def parse(self, expr):
         expr = self._clean(expr)
         expr = self._tokenize(expr)
         expr = self._normalize(expr)
         expr = self._filter(expr)
-        print(expr)
-        breakpoint()
         postfix_expr = self._to_postfix(expr)
         return postfix_expr
 
