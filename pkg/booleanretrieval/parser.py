@@ -4,7 +4,9 @@ from ..wordmodifiers import context
 from ..util import Stack
 
 
-# Example: (computer AND thing)
+# Parser exposes a single public method, parse, that will convert the provided infix boolean expression
+# into a tokenized postfix expression. Its constructor takes a context.Context object to ensure it is
+# parameterized the same way as downstream entities (e.g. the index)
 class Parser:
     def __init__(self, ctx):
         self.tokenizer = ctx.tokenizer
@@ -32,6 +34,7 @@ class Parser:
             expr = f"({expr})"
         return expr
 
+    # Convert an expression into tokens (e.g. (foo AND bar) becomes ["(", "foo", "AND", "bar", ")"])
     def _tokenize(self, expr):
         result = []
         i = 0
@@ -51,6 +54,7 @@ class Parser:
                 result.append(word)
         return result
 
+    # Apply any applicable normalizations. This is done to bring query terms into alignment with index entries
     def _normalize(self, expr):
         result = []
         for e in expr:
@@ -62,6 +66,7 @@ class Parser:
                 result.append(e)
         return result
 
+    # Apply any applicable filters to the input. This is done to bring query terms into alignment with index entries
     def _filter(self, expr):
         result = []
         for e in expr:
@@ -78,6 +83,7 @@ class Parser:
                 result.append(e.pop())
         return result
 
+    # Convert the provided infix expression into postfix. Assumes the provided input is valid
     # SOURCE: https://runestone.academy/runestone/books/published/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html
     def _to_postfix(self, expr):
         result = []
