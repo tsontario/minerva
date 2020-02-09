@@ -1,4 +1,5 @@
 import yaml
+from ..indexbuilder import IndexValue
 
 
 class IndexAccessor:
@@ -24,8 +25,7 @@ class IndexAccessor:
 
     def access(self, ctx, term):
         accessor = IndexAccessor.index[ctx.inverted_index_path]
-        breakpoint()
         try:
             return accessor.index[term]
         except KeyError:
-            return []
+            return IndexValue(0, [])

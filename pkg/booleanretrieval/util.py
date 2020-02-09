@@ -1,9 +1,9 @@
 def is_operator(token):
-    return token in ["AND", "OR", "NOT"]
+    return token in ["AND", "OR", "AND_NOT"]
 
 
 def is_operand(token):
-    return token not in ["AND", "OR", "NOT", "(", ")"]
+    return token not in ["AND", "OR", "AND_NOT", "(", ")"]
 
 
 def is_left_parens(c):

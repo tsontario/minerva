@@ -29,10 +29,7 @@ class Parser:
     # Remove extra whitespace, add enclosing parens if needed
     # Code not right, need fix
     def _clean(self, expr):
-        expr = expr.strip()
-        if expr[0] != "(":
-            expr = f"({expr})"
-        return expr
+        return expr.strip()
 
     # Convert an expression into tokens (e.g. (foo AND bar) becomes ["(", "foo", "AND", "bar", ")"])
     def _tokenize(self, expr):
@@ -94,10 +91,11 @@ class Parser:
             elif is_left_parens(e):
                 operator_stack.push(e)
             elif is_right_parens(e):
-                popped = operator_stack.pop()
-                if popped == "(":
-                    continue
-                result.append(popped)
+                while True:
+                    popped = operator_stack.pop()
+                    if popped == "(":
+                        break
+                    result.append(popped)
             elif is_operator(e):
                 operator_stack.push(e)
         while True:
@@ -108,26 +106,3 @@ class Parser:
                 continue
             result.append(popped)
         return result
-<<<<<<< HEAD
-=======
-
-
-def is_operator(token):
-    return token in ["AND", "OR", "NOT"]
-
-
-def is_operand(token):
-    return token not in ["AND", "OR", "NOT", "(", ")"]
-
-
-def is_left_parens(c):
-    return c == "("
-
-
-def is_right_parens(c):
-    return c == ")"
-
-
-def is_parens(c):
-    return is_right_parens(c) or is_left_parens(c)
->>>>>>> f3c60629d07f572da8646bba5613239106311d34
