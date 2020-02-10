@@ -42,7 +42,7 @@ class EditDistance:
             if keyword in query_terms:
                 query_terms.remove(keyword)
 
-        # remove regex terms (with astericks)
+        # remove regex terms (with asterisks)
         query_terms = list(filter(lambda x: not '*' in x, query_terms))
 
         # maintain dict with original term --> preprocessed term
