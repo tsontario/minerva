@@ -1,5 +1,6 @@
 import re
 
+from ..indexaccess import IndexAccessor
 from ..wordmodifiers import context
 from ..util import Stack
 from .util import *
@@ -9,6 +10,8 @@ from .util import *
 # parameterized the same way as upstream entities (e.g. the index)
 class Parser:
     def __init__(self, ctx):
+        self.ctx = ctx
+        self.index_accessor = IndexAccessor(ctx)
         self.tokenizer = ctx.tokenizer
         self.normalize_funcs = context.normalizer_funcs_for_context(ctx)
         self.filter_funcs = context.filter_funcs_for_context(ctx)
@@ -23,6 +26,7 @@ class Parser:
         expr = self._tokenize(expr)
         expr = self._normalize(expr)
         expr = self._filter(expr)
+        expr = self._expand_wildcards(expr)
         postfix_expr = self._to_postfix(expr)
         return postfix_expr
 
@@ -79,6 +83,37 @@ class Parser:
                     raise "Expected filtered/normalized word to be a single element"
                 result.append(e.pop())
         return result
+
+    # expand_wildcards iterates over every token in expr and, if a wildcard is present,
+    # expands it using a secondary bigram index on the primary index of dictionary terms.
+    # We take the following approach:
+    # If the token contains no wildcard, do nothing
+    # If the token contains wildcard(s), partition the string, separating along "*"s
+    # Find all bigram matches and return the set of dictionary terms
+    # Postfilter using a naive regex against the returned set
+    def _expand_wildcards(self, expr):
+        result = []
+        for token in expr:
+            if "*" not in token:
+                result.append(token)
+                continue
+            with_boundary = f"${token}$"
+            partitioned = with_boundary.split("*")
+            for partition in partitioned:
+                terms = set()
+                for first, second in zip(partition, partition[1:]):
+                    pair = first + second
+                    terms |= set(self.index_accessor.access_secondary(self.ctx, pair))
+                # We expect no special chars in the input so we can take the naive regex from the wildcarded token directly
+                # e.g `foo*bar` becomes `^foo.*bar$`. Note that escape characters inside the search query may negatively impact this unless
+                # we explicitly escape them (TODO:)
+                regex_formatted_wildcard = re.sub(r"\*", ".*", token)
+                postfilter_pattern = re.compile(f"^{regex_formatted_wildcard}$")
+                for term in terms:
+                    if re.match(postfilter_pattern, term):
+                        result.append(term)
+
+        return " OR ".join(result).split(" ")
 
     # Convert the provided infix expression into postfix. Assumes the provided input is valid
     # SOURCE: https://runestone.academy/runestone/books/published/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html

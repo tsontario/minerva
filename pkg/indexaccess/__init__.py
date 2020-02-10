@@ -1,1 +1,1 @@
-from .indexaccess import IndexAccessor
+from .indexaccessor import IndexAccessor

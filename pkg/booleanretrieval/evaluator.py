@@ -16,14 +16,14 @@ class Evaluator:
     # It then evaluates the expression using set-based semantics (eg. AND = intersection, OR = union, etc.).
     # The return value is an array of matching document ids that satisfy the search expression.
     def evaluate(self):
-        converted_expr = self._convert_to_doc_ids()
+        converted_expr = self._convert_to_doc_ids(self.expr)
         result = self._evaluate(converted_expr)
         return result
 
     # converts the operands of self.expr into arrays of doc ids
-    def _convert_to_doc_ids(self):
+    def _convert_to_doc_ids(self, expr):
         result = []
-        for token in self.expr:
+        for token in expr:
             if is_operator(token):
                 result.append(token)
             else:
