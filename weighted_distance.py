@@ -10,6 +10,6 @@ inverted_index_path = path.realpath("data/index/UofO_Courses.yaml")
 ctx = Context(corpus_path, dictionary_path, inverted_index_path)
 ed = EditDistance(ctx)
 
-query = "Example Query operoting system lienar"
+query = "(Exam* AND SyStEm) OR (operoting AND_NOT lienar)"
 
 print(ed.edit_distance(query))
