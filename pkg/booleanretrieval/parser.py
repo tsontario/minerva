@@ -111,7 +111,6 @@ class Parser:
                 for term in terms:
                     if re.match(postfilter_pattern, term):
                         result.append(term)
-                breakpoint()
 
         return " OR ".join(result).split(" ")
 
