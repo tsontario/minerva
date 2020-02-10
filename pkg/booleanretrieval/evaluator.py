@@ -1,5 +1,3 @@
-import re
-
 from .util import *
 from ..indexaccess import IndexAccessor
 from ..indexbuilder import IndexValue
