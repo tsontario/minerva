@@ -1,7 +1,4 @@
-class IndexKey:
-    def __init__(self, term, frequency):
-        self.term = term
+class IndexValue:
+    def __init__(self, frequency, doc_ids):
         self.frequency = frequency
-
-    def __repr__(self):
-        return f"{self.term} ({self.frequency})"
+        self.doc_ids = doc_ids

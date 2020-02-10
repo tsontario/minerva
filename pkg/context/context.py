@@ -23,3 +23,7 @@ class Context:
         self.enable_stemming = enable_stemming
         self.enable_normalization = enable_normalization
         self.remove_nonalphanumeric = remove_nonalphanumeric
+
+    # hacky but works
+    def bigram_index_path(self):
+        return self.inverted_index_path.strip(".yaml") + "_bigram_index.yaml"
