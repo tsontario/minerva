@@ -105,7 +105,8 @@ class Parser:
                     pair = first + second
                     terms |= set(self.index_accessor.access_secondary(self.ctx, pair))
                 # We expect no special chars in the input so we can take the naive regex from the wildcarded token directly
-
+                # e.g `foo*bar` becomes `^foo.*bar$`. Note that escape characters inside the search query may negatively impact this unless
+                # we explicitly escape them (TODO:)
                 regex_formatted_wildcard = re.sub(r"\*", ".*", token)
                 postfilter_pattern = re.compile(f"^{regex_formatted_wildcard}$")
                 for term in terms:
