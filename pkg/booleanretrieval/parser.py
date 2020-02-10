@@ -1,0 +1,108 @@
+import re
+
+from ..wordmodifiers import context
+from ..util import Stack
+from .util import *
+
+# Parser exposes a single public method, parse, that will convert the provided infix boolean expression
+# into a tokenized postfix expression. Its constructor takes a context.Context object to ensure it is
+# parameterized the same way as upstream entities (e.g. the index)
+class Parser:
+    def __init__(self, ctx):
+        self.tokenizer = ctx.tokenizer
+        self.normalize_funcs = context.normalizer_funcs_for_context(ctx)
+        self.filter_funcs = context.filter_funcs_for_context(ctx)
+
+    # Parsing transforms the provided boolean expression in the following ways:
+    # Step 1: Strip whitespace, ensure enclosing brackets are present
+    # Step 2: Tokenize into parantheses, operators, and operands
+    # Step 3: Apply normalizers/filters from execution context settings
+    # Step 4: Transform into postfix expression for further evaluation
+    def parse(self, expr):
+        expr = self._clean(expr)
+        expr = self._tokenize(expr)
+        expr = self._normalize(expr)
+        expr = self._filter(expr)
+        postfix_expr = self._to_postfix(expr)
+        return postfix_expr
+
+    # Remove extra whitespace, add enclosing parens if needed
+    # Code not right, need fix
+    def _clean(self, expr):
+        return expr.strip()
+
+    # Convert an expression into tokens (e.g. (foo AND bar) becomes ["(", "foo", "AND", "bar", ")"])
+    def _tokenize(self, expr):
+        result = []
+        i = 0
+        while i < len(expr):
+            if is_parens(expr[i]):
+                result.append(expr[i])
+                i += 1
+            elif re.match(r"\s", expr[i]):  # whitespace
+                i += 1
+            else:  # an operator or operand
+                word = ""
+                while (
+                    i < len(expr) and re.match(r"\s|\(|\)", expr[i]) is None
+                ):  # Not whitespace and not a parens
+                    word += expr[i]
+                    i += 1
+                result.append(word)
+        return result
+
+    # Apply any applicable normalizations. This is done to bring query terms into alignment with index entries
+    def _normalize(self, expr):
+        result = []
+        for e in expr:
+            if not is_operand(e):
+                result.append(e)
+            else:
+                for normalize_func in self.normalize_funcs:
+                    e = normalize_func(e)
+                result.append(e)
+        return result
+
+    # Apply any applicable filters to the input. This is done to bring query terms into alignment with index entries
+    def _filter(self, expr):
+        result = []
+        for e in expr:
+            if not is_operand(e):
+                result.append(e)
+            else:
+                e = set([e])  # Filter funcs expect sets of words, not simple Strings
+                for filter_func in self.filter_funcs:
+                    e = filter_func(e)
+                if len(e) == 0:
+                    e = set([""])  # Stopwords are reduced to empty string
+                elif len(e) > 1:
+                    raise "Expected filtered/normalized word to be a single element"
+                result.append(e.pop())
+        return result
+
+    # Convert the provided infix expression into postfix. Assumes the provided input is valid
+    # SOURCE: https://runestone.academy/runestone/books/published/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html
+    def _to_postfix(self, expr):
+        result = []
+        operator_stack = Stack()
+        for e in expr:
+            if is_operand(e):
+                result.append(e)
+            elif is_left_parens(e):
+                operator_stack.push(e)
+            elif is_right_parens(e):
+                while True:
+                    popped = operator_stack.pop()
+                    if popped == "(":
+                        break
+                    result.append(popped)
+            elif is_operator(e):
+                operator_stack.push(e)
+        while True:
+            popped = operator_stack.pop()
+            if popped is None:
+                break
+            elif popped == "(":
+                continue
+            result.append(popped)
+        return result

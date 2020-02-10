@@ -6,7 +6,7 @@ from collections import defaultdict
 
 import nltk
 from .indexbuilder import IndexBuilder
-from .invertedindex import IndexKey
+from .invertedindex import IndexValue
 from ..dictionary import Dictionary, DictBuilder
 from ..wordmodifiers import context
 
@@ -26,8 +26,7 @@ class OttawaUIndexBuilder(IndexBuilder):
         inverted_index = {}
         for key in term_documents_dict:
             doc_ids = term_documents_dict[key]
-            key_with_freq = IndexKey(key, len(doc_ids))
-            inverted_index[key_with_freq] = doc_ids
+            inverted_index[key] = IndexValue(len(doc_ids), doc_ids)
 
         with open(self.inverted_index_path, "w") as index_file:
             yaml.dump(
