@@ -1,65 +1,129 @@
 import PySimpleGUI as sg
+from os import path
+
+from pkg.context import Context
+from pkg.corpusaccess import CorpusAccessor
+from pkg.editdistance import EditDistance
+from pkg.dictionary import DictBuilder
 
 # code snippets taken from various demos at https://pysimplegui.readthedocs.io/
-
-
 def launch():
+    # results table info
+    headings = ["DocID", "Title", "Excerpt", "Score"]
+    data = []
+
+    # query data for edit distance and 'resending' query
+    original_query = ""
+    updated_query = ""
+    suggestions = []
+
     # built in colour scheme
     sg.theme("Reddit")
 
     # settings layouts
     model_layout = [
-        [sg.Radio("Boolean", "model", default=True, font=("Arial", 14))],
-        [sg.Radio("Vector Space", "model", font=("Arial", 14))],
+        [
+            sg.Radio(
+                "Boolean", "model", default=True, font=("Arial", 14), key="_boolean_"
+            )
+        ],
+        [sg.Radio("Vector Space", "model", font=("Arial", 14), key="_vsm_")],
     ]
 
     corpus_layout = [
-        [sg.Radio("uOttawa Catalogue", "corpus", default=True, font=("Arial", 14))],
-        [sg.Radio("Reuters", "corpus", disabled=True, font=("Arial", 14))],
+        [
+            sg.Radio(
+                "uOttawa Catalogue",
+                "corpus",
+                default=True,
+                font=("Arial", 14),
+                key="_uottawa_",
+            )
+        ],
+        [
+            sg.Radio(
+                "Reuters", "corpus", disabled=True, font=("Arial", 14), key="_reuters_"
+            )
+        ],
     ]
 
     dictionary_layout = [
-        [sg.Checkbox("Stopword Removal", default=True, font=("Arial", 14))],
-        [sg.Checkbox("Stemming", default=True, font=("Arial", 14))],
-        [sg.Checkbox("Normalization", default=True, font=("Arial", 14))],
+        [
+            sg.Checkbox(
+                "Stopword Removal", default=True, font=("Arial", 14), key="_stopword_"
+            )
+        ],
+        [sg.Checkbox("Stemming", default=False, font=("Arial", 14), key="_stemming_")],
+        [
+            sg.Checkbox(
+                "Normalization", default=True, font=("Arial", 14), key="_normalization_"
+            )
+        ],
     ]
 
-    # results table info
-    headings = ["DocID", "Title", "Excerpt", "Score"]
-    data = []
-
-    # popup that shows full text of document on click
+    # popup that shows full text of document
     def DocPopup(doc):
         text = str(doc[0]) + ": " + str(doc[1]) + "\n" + str(doc[2])
-        return sg.PopupScrolled(text, title=doc[1], font=("Arial", 12), size=(64, None))
+        return sg.PopupScrolled(text, title=doc[1], font=("Arial", 12), size=(64, None), keep_on_top=True)
+
+    # popup that shows top N suggestions per query term
+    def SuggestionPopup(suggestions):
+        text = ""
+
+        for term in suggestions:
+            if suggestions[term] != []:
+                text += term + " : "
+                for s in suggestions[term]:
+                    text += s + ", "
+                text += "\n"
+
+        return sg.PopupScrolled(text, title="Suggestions for " + original_query, font=("Arial", 12), size=(64, None), keep_on_top=True)
 
     # window layout
     layout = [
         [sg.Text("Minerva Search Engine", font=("Arial", 22, "bold"))],
         [
-            sg.Text("Query:", key="query", font=("Arial", 14)),
-            sg.InputText("", font=("Arial", 14), focus=True),
-            sg.Button("Search", font=("Arial", 14)),
+            sg.Text("Query:", font=("Arial", 14)),
+            sg.InputText(
+                "",
+                font=("Arial", 14),
+                focus=True,
+                key="_query_",
+            ),
+            sg.Button("Search", font=("Arial", 14), bind_return_key=True),
         ],
         [sg.Text("")],
         [
             sg.Frame("Corpus", corpus_layout, font=("Arial", 16, "bold")),
-            sg.Frame("Models", model_layout, font=("Arial", 16, "bold")),
+            sg.Frame("Model", model_layout, font=("Arial", 16, "bold")),
             sg.Frame(
                 "Dictionary Building", dictionary_layout, font=("Arial", 16, "bold")
             ),
         ],
         [sg.Text("")],
+        [sg.Text("Results", font=("Arial", 16, "bold"))],
+
         [
-            sg.Text("Results", font=("Arial", 16, "bold")),
-            sg.Text(
-                "",
-                font=("Arial", 14, "italic"),
-                key="suggestion",
-                text_color="red",
-                size=(50, 1),
-            ),
+            sg.Button(
+                "Showing results for <updated_query>. Click here to search for <original_query>.",
+                font=("Arial", 12),
+                size=(64,1),
+                visible=False,
+                disabled_button_color=("white", None),
+                key="_resend_",
+            )
         ],
+        [sg.Text("",font=("Arial", 5))],
+        [
+            sg.Button(
+                "Click here to see more suggestions.",
+                font=("Arial", 12),
+                visible=False,
+                pad=((0,50)),
+                key='_suggestions_'
+            )
+        ],
+        [sg.Text("",font=("Arial", 5))],
         [
             sg.Table(
                 values=data,
@@ -86,6 +150,7 @@ def launch():
 
     # creating window
     window = sg.Window("Minerva Search Engine", layout)
+    window.Finalize
 
     # event loop
     while True:
@@ -97,15 +162,67 @@ def launch():
             window.Close()
 
         elif event is "Search":
-            print("Search for " + str(values[0]))
-            # TODO: create config object and send it to some router (or something), and handle result.
-            data = dummyReturn(values[0])
+            original_query = values["_query_"]
+            print("Original query: " + str(original_query))
 
-            window.FindElement("_table_").Update(values=data)
+            # create context object
+            ctx = construct_context(values)
 
-            window["suggestion"].Update(
-                "Did you mean: <spelling correction for " + values[0] + ">"
-            )
+            # build dictionary according to ctx (stemming, stopword, normalization)
+            dict_builder = DictBuilder(ctx)
+            dict_builder.build()
+
+            # get weighted edit distance suggestions for query
+            suggestions = EditDistance(ctx).edit_distance(original_query)
+            print(suggestions)
+
+            # update edit distance related UI elements
+            if not suggestions:
+                # if theres no suggestions (all query terms were in dictionary or regex terms), don't display suggestion related UI elements
+                window["_resend_"].set_size((len(original_query) + 25, None))
+                window["_resend_"].Update(text=("Showing results for '" + original_query + "'."), disabled=True, visible=True)
+                window["_suggestions_"].Update(visible=False)
+                updated_query = original_query
+            else:
+                # if theres suggestions (one or more query term was not in dictionary) 
+                # construct the new query
+                updated_query = ""
+                for term in original_query.split():
+                    if not (term in suggestions):
+                        updated_query += term + " " 
+                    else:
+                        updated_query += suggestions[term][0] + " "
+
+                # display suggestion related UI elements
+                window["_resend_"].set_size((len(original_query) + len(updated_query) + 40, None))
+                window["_resend_"].Update(text=("Showing results for '" + updated_query + "'. Click here to search for '" + original_query+ "'."), disabled=False, visible=True)
+                window["_suggestions_"].Update(visible=True)  
+
+            # TODO: Call chosen search model to get results.
+            if values["_boolean_"]:
+                print("Calling Boolean with query: " + updated_query)
+                results = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] # temp dummy data
+            elif values["_vsm_"]:
+                print("Calling VSM with query: " + updated_query)
+                results = [510, 520, 530, 540, 550, 560, 570, 580, 590, 600] # temp dummy data
+
+            # get returned documents from corpus accessor
+            corpus_accessor = CorpusAccessor(ctx)
+            documents = corpus_accessor.access(ctx, results)
+
+            # format documents for table UI element and update table
+            data = []
+            for d in documents:  # TODO: handle score from VSM / no score from Bool
+                data.append(
+                    [
+                        d.id,
+                        str(d.course.faculty) + " " + str(d.course.code),
+                        d.course.contents,
+                        "score",
+                    ]
+                )
+
+            window["_table_"].Update(values=data)
 
         elif event is "_table_":
             print("Opening document")
@@ -113,22 +230,31 @@ def launch():
             doc = data[values[event][0]]
             DocPopup(doc)
 
+        elif event is "_suggestions_":
+            print("Displaying top N suggestions")
+            SuggestionPopup(suggestions)
+
+        elif event is "_resend_":
+            print("Resending query: " + original_query)
+            # TODO: handle 'resending' a query
+
         else:
             print(event)
 
     window.Close()
 
+# returns a Context object with the user's selections
+def construct_context(values):
+    # once we have multiple corpora, these variables will be defined based on user selection: values["_uottawa_"] or values["_reuters_"]
+    corpus_path = path.realpath("data/corpus/UofO_Courses.yaml")
+    dictionary_path = path.realpath("data/dictionary/UofOCourses.txt")
+    inverted_index_path = path.realpath("data/index/UofO_Courses.yaml")
 
-# temp dummy data
-def dummyReturn(q):
-    return [
-        [200, "Title " + q, "Some excerpt", 0.1],
-        [210, "Title " + q, "Some excerpt", 0.1],
-        [220, "Title " + q, "Some excerpt", 0.1],
-        [
-            230,
-            "Title " + q,
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fermentum et mauris sed dictum. Maecenas sed aliquam nisl. In pharetra eget augue ut tincidunt. Curabitur id ante id nulla sagittis molestie. Nunc vel congue arcu. Aliquam eleifend, purus in lobortis suscipit, justo risus tristique elit, eget dignissim lacus velit volutpat libero. Nullam id cursus nisl, sit amet tincidunt est. Aenean rhoncus ornare rhoncus. Nulla massa erat, dignissim eget lobortis et, consequat ut ipsum. Aenean maximus velit sed sapien tempus, a euismod urna maximus. Proin lectus nunc, euismod vel ultrices in, tempus ut lacus. Cras sed tellus sed libero bibendum fringilla. Nam vel metus odio. Morbi dictum fringilla massa.",
-            0.1,
-        ],
-    ]
+    return Context(
+        corpus_path,
+        dictionary_path,
+        inverted_index_path,
+        enable_stopwords=values["_stopword_"],
+        enable_stemming=values["_stemming_"],
+        enable_normalization=values["_normalization_"],
+    )

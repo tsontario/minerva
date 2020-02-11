@@ -22,7 +22,7 @@ class CorpusAccessor:
             CorpusAccessor.corpora[ctx.corpus_path] = CorpusAccessor.__CorpusAccessor(
                 ctx
             )
-            # is using the corpus_path as a dict key a bad idea?
+            # using the corpus_path as a dict key so that multiple corpora may be loaded
         else:
             print("Corpus " + ctx.corpus_path + " already loaded.")
 
