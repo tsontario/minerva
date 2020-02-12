@@ -1,5 +1,7 @@
 import yaml
+from os import path
 from .invertedindex import IndexValue
+import pkg.index.ottawau as ottawau
 
 
 class BigramIndexAccessor:
@@ -9,7 +11,8 @@ class BigramIndexAccessor:
     class __BigramIndexAccessor:
         def __init__(self, ctx):
             self.ctx = ctx
-
+            if not path.exists(ctx.bigram_index_path()):
+                ottawau.OttawaUIndexBuilder(ctx).build_bigram_index()
             with open(self.ctx.bigram_index_path(), "r") as bigram_index_handle:
                 self.index = yaml.load(bigram_index_handle, Loader=yaml.Loader)
 
@@ -37,6 +40,8 @@ class IndexAccessor:
     class __IndexAccessor:
         def __init__(self, ctx):
             self.ctx = ctx
+            if not path.exists(ctx.inverted_index_path()):
+                ottawau.OttawaUIndexBuilder(ctx).build()
             with open(self.ctx.inverted_index_path(), "r") as index_handle:
                 self.index = yaml.load(index_handle, Loader=yaml.Loader)
 

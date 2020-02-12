@@ -1,4 +1,5 @@
 import hashlib
+from os import path
 from .defaults import *
 
 
@@ -16,9 +17,9 @@ class Context:
         enable_normalization=default_enable_normalization(),
         remove_nonalphanumeric=default_remove_nonalphanumeric(),
     ):
-        self._corpus_path = corpus_path
-        self._dict_path = dict_path
-        self._inverted_index_path = inverted_index_path
+        self._corpus_path = path.abspath(corpus_path)
+        self._dict_path = path.abspath(dict_path)
+        self._inverted_index_path = path.abspath(inverted_index_path)
         self.tokenizer = tokenizer
         self.enable_casefolding = enable_casefolding
         self.enable_stopwords = enable_stopwords
@@ -34,7 +35,9 @@ class Context:
         return self._dict_path.strip(".yaml") + f"_{self._digest()}.yaml"
 
     def inverted_index_path(self):
-        return self._inverted_index_path.strip(".yaml") + f"index_{self._digest()}.yaml"
+        return (
+            self._inverted_index_path.strip(".yaml") + f"_index_{self._digest()}.yaml"
+        )
 
     def bigram_index_path(self):
         return (
