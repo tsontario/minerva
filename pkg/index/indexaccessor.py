@@ -3,7 +3,7 @@ from .invertedindex import IndexValue
 
 
 class BigramIndexAccessor:
-    bigram_index = {}
+    index = {}
 
     # private singleton class
     class __BigramIndexAccessor:
@@ -11,16 +11,16 @@ class BigramIndexAccessor:
             self.ctx = ctx
 
             with open(self.ctx.bigram_index_path(), "r") as bigram_index_handle:
-                self.bigram_index = yaml.load(bigram_index_handle, Loader=yaml.Loader)
+                self.index = yaml.load(bigram_index_handle, Loader=yaml.Loader)
 
     def __init__(self, ctx):
-        if ctx.bigram_index_path() not in self.bigram_index:
-            BigramIndexAccessor.bigram_index[
+        if ctx.bigram_index_path() not in self.index:
+            BigramIndexAccessor.index[
                 ctx.bigram_index_path()
             ] = BigramIndexAccessor.__BigramIndexAccessor(ctx)
 
     def access(self, ctx, term):
-        accessor = IndexAccessor.index[ctx.bigram_index_path()].bigram_index
+        accessor = BigramIndexAccessor.index[ctx.bigram_index_path()].index
         try:
             return accessor[term]
         except KeyError:
