@@ -9,7 +9,7 @@ class CorpusAccessor:
             self.ctx = ctx
             self.documents = {}
 
-            with open(self.ctx.corpus_path, "r") as corpus_handle:
+            with open(self.ctx.corpus_path(), "r") as corpus_handle:
                 corpus_stream = yaml.load_all(corpus_handle, Loader=yaml.Loader)
                 for doc in corpus_stream:
                     self.documents[doc.id] = doc
@@ -18,23 +18,21 @@ class CorpusAccessor:
 
     def __init__(self, ctx):
         # if the corpus is not yet in accessor, then load the corpus and put it in corpora
-        if not ctx.corpus_path in self.corpora:
-            CorpusAccessor.corpora[ctx.corpus_path] = CorpusAccessor.__CorpusAccessor(
+        if not ctx.corpus_path() in self.corpora:
+            CorpusAccessor.corpora[ctx.corpus_path()] = CorpusAccessor.__CorpusAccessor(
                 ctx
             )
-            # using the corpus_path as a dict key so that multiple corpora may be loaded
-        else:
-            print("Corpus " + ctx.corpus_path + " already loaded.")
+
 
     def access(self, ctx, doc_ids):
         if not doc_ids:
             print("No document IDs given.")
             return []
-        elif not ctx.corpus_path in self.corpora:
+        elif not ctx.corpus_path() in self.corpora:
             print("Corpus not loaded into memory.")
             return []
 
-        accessor = self.corpora[ctx.corpus_path]
+        accessor = self.corpora[ctx.corpus_path()]
         results = []
 
         for i in doc_ids:

@@ -18,7 +18,7 @@ def default_enable_stemming():
 
 
 def default_enable_normalization():
-    return False
+    return True
 
 
 def default_remove_nonalphanumeric():

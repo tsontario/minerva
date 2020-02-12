@@ -9,7 +9,7 @@ index_path = path.realpath("data/index/UofO_Courses.yaml")
 ctx = Context(corpus_path, dictionary_path, index_path)
 
 parser = Parser(ctx)
-parsed = parser.parse("a*bi*")
+parsed = parser.parse("human")
 doc_ids = Evaluator(ctx, parsed).evaluate()
 
 print(doc_ids)

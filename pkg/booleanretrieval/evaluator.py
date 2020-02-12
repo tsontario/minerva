@@ -1,6 +1,5 @@
 from .util import *
-from ..indexaccess import IndexAccessor
-from ..indexbuilder import IndexValue
+from ..index import IndexAccessor, IndexValue
 from ..util import Stack
 
 # Evaluator objects evaluate postfix boolean expressions and return the document IDs associated with the

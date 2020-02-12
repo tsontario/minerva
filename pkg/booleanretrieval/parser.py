@@ -1,6 +1,6 @@
 import re
 
-from ..indexaccess import IndexAccessor
+from ..index import BigramIndexAccessor
 from ..wordmodifiers import context
 from ..util import Stack
 from .util import *
@@ -11,7 +11,7 @@ from .util import *
 class Parser:
     def __init__(self, ctx):
         self.ctx = ctx
-        self.index_accessor = IndexAccessor(ctx)
+        self.index_accessor = BigramIndexAccessor(ctx)
         self.tokenizer = ctx.tokenizer
         self.normalize_funcs = context.normalizer_funcs_for_context(ctx)
         self.filter_funcs = context.filter_funcs_for_context(ctx)
@@ -103,7 +103,7 @@ class Parser:
                 terms = set()
                 for first, second in zip(partition, partition[1:]):
                     pair = first + second
-                    terms |= set(self.index_accessor.access_secondary(self.ctx, pair))
+                    terms |= set(self.index_accessor.access(self.ctx, pair))
                 # We expect no special chars in the input so we can take the naive regex from the wildcarded token directly
                 # e.g `foo*bar` becomes `^foo.*bar$`. Note that escape characters inside the search query may negatively impact this unless
                 # we explicitly escape them (TODO:)

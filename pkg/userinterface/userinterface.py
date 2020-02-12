@@ -4,7 +4,9 @@ from os import path
 from pkg.context import Context
 from pkg.corpusaccess import CorpusAccessor
 from pkg.editdistance import EditDistance
-from pkg.dictionary import DictBuilder
+from pkg.dictionary import Dictionary
+from pkg.index import IndexAccessor, BigramIndexAccessor
+
 
 # code snippets taken from various demos at https://pysimplegui.readthedocs.io/
 def launch():
@@ -64,7 +66,9 @@ def launch():
     # popup that shows full text of document
     def DocPopup(doc):
         text = str(doc[0]) + ": " + str(doc[1]) + "\n" + str(doc[2])
-        return sg.PopupScrolled(text, title=doc[1], font=("Arial", 12), size=(64, None), keep_on_top=True)
+        return sg.PopupScrolled(
+            text, title=doc[1], font=("Arial", 12), size=(64, None), keep_on_top=True
+        )
 
     # popup that shows top N suggestions per query term
     def SuggestionPopup(suggestions):
@@ -77,19 +81,20 @@ def launch():
                     text += s + ", "
                 text += "\n"
 
-        return sg.PopupScrolled(text, title="Suggestions for " + original_query, font=("Arial", 12), size=(64, None), keep_on_top=True)
+        return sg.PopupScrolled(
+            text,
+            title="Suggestions for " + original_query,
+            font=("Arial", 12),
+            size=(64, None),
+            keep_on_top=True,
+        )
 
     # window layout
     layout = [
         [sg.Text("Minerva Search Engine", font=("Arial", 22, "bold"))],
         [
             sg.Text("Query:", font=("Arial", 14)),
-            sg.InputText(
-                "",
-                font=("Arial", 14),
-                focus=True,
-                key="_query_",
-            ),
+            sg.InputText("", font=("Arial", 14), focus=True, key="_query_",),
             sg.Button("Search", font=("Arial", 14), bind_return_key=True),
         ],
         [sg.Text("")],
@@ -102,28 +107,27 @@ def launch():
         ],
         [sg.Text("")],
         [sg.Text("Results", font=("Arial", 16, "bold"))],
-
         [
             sg.Button(
                 "Showing results for <updated_query>. Click here to search for <original_query>.",
                 font=("Arial", 12),
-                size=(64,1),
+                size=(64, 1),
                 visible=False,
                 disabled_button_color=("white", None),
                 key="_resend_",
             )
         ],
-        [sg.Text("",font=("Arial", 5))],
+        [sg.Text("", font=("Arial", 5))],
         [
             sg.Button(
                 "Click here to see more suggestions.",
                 font=("Arial", 12),
                 visible=False,
-                pad=((0,50)),
-                key='_suggestions_'
+                pad=((0, 50)),
+                key="_suggestions_",
             )
         ],
-        [sg.Text("",font=("Arial", 5))],
+        [sg.Text("", font=("Arial", 5))],
         [
             sg.Table(
                 values=data,
@@ -168,10 +172,6 @@ def launch():
             # create context object
             ctx = construct_context(values)
 
-            # build dictionary according to ctx (stemming, stopword, normalization)
-            dict_builder = DictBuilder(ctx)
-            dict_builder.build()
-
             # get weighted edit distance suggestions for query
             suggestions = EditDistance(ctx).edit_distance(original_query)
             print(suggestions)
@@ -180,31 +180,58 @@ def launch():
             if not suggestions:
                 # if theres no suggestions (all query terms were in dictionary or regex terms), don't display suggestion related UI elements
                 window["_resend_"].set_size((len(original_query) + 25, None))
-                window["_resend_"].Update(text=("Showing results for '" + original_query + "'."), disabled=True, visible=True)
+                window["_resend_"].Update(
+                    text=("Showing results for '" + original_query + "'."),
+                    disabled=True,
+                    visible=True,
+                )
                 window["_suggestions_"].Update(visible=False)
                 updated_query = original_query
             else:
-                # if theres suggestions (one or more query term was not in dictionary) 
+                # if theres suggestions (one or more query term was not in dictionary)
                 # construct the new query
                 updated_query = ""
                 for term in original_query.split():
                     if not (term in suggestions):
-                        updated_query += term + " " 
+                        updated_query += term + " "
                     else:
                         updated_query += suggestions[term][0] + " "
 
                 # display suggestion related UI elements
-                window["_resend_"].set_size((len(original_query) + len(updated_query) + 40, None))
-                window["_resend_"].Update(text=("Showing results for '" + updated_query + "'. Click here to search for '" + original_query+ "'."), disabled=False, visible=True)
-                window["_suggestions_"].Update(visible=True)  
+                window["_resend_"].set_size(
+                    (len(original_query) + len(updated_query) + 40, None)
+                )
+                window["_resend_"].Update(
+                    text=(
+                        "Showing results for '"
+                        + updated_query
+                        + "'. Click here to search for '"
+                        + original_query
+                        + "'."
+                    ),
+                    disabled=False,
+                    visible=True,
+                )
+                window["_suggestions_"].Update(visible=True)
 
             # TODO: Call chosen search model to get results.
             if values["_boolean_"]:
                 print("Calling Boolean with query: " + updated_query)
-                results = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] # temp dummy data
+                results = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]  # temp dummy data
             elif values["_vsm_"]:
                 print("Calling VSM with query: " + updated_query)
-                results = [510, 520, 530, 540, 550, 560, 570, 580, 590, 600] # temp dummy data
+                results = [
+                    510,
+                    520,
+                    530,
+                    540,
+                    550,
+                    560,
+                    570,
+                    580,
+                    590,
+                    600,
+                ]  # temp dummy data
 
             # get returned documents from corpus accessor
             corpus_accessor = CorpusAccessor(ctx)
@@ -243,14 +270,15 @@ def launch():
 
     window.Close()
 
+
 # returns a Context object with the user's selections
 def construct_context(values):
     # once we have multiple corpora, these variables will be defined based on user selection: values["_uottawa_"] or values["_reuters_"]
-    corpus_path = path.realpath("data/corpus/UofO_Courses.yaml")
-    dictionary_path = path.realpath("data/dictionary/UofOCourses.txt")
-    inverted_index_path = path.realpath("data/index/UofO_Courses.yaml")
+    corpus_path = path.abspath("data/corpus/UofO_Courses.yaml")
+    dictionary_path = path.abspath("data/dictionary/UofOCourses.txt")
+    inverted_index_path = path.abspath("data/index/UofO_Courses.yaml")
 
-    return Context(
+    ctx = Context(
         corpus_path,
         dictionary_path,
         inverted_index_path,
@@ -258,3 +286,8 @@ def construct_context(values):
         enable_stemming=values["_stemming_"],
         enable_normalization=values["_normalization_"],
     )
+    # eager load if not already in memory
+    Dictionary(ctx)
+    IndexAccessor(ctx)
+    BigramIndexAccessor(ctx)
+    return ctx
