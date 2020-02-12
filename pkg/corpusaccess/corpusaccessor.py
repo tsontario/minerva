@@ -22,9 +22,7 @@ class CorpusAccessor:
             CorpusAccessor.corpora[ctx.corpus_path()] = CorpusAccessor.__CorpusAccessor(
                 ctx
             )
-            # using the corpus_path as a dict key so that multiple corpora may be loaded
-        else:
-            print("Corpus " + ctx.corpus_path() + " already loaded.")
+
 
     def access(self, ctx, doc_ids):
         if not doc_ids:
