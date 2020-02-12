@@ -66,7 +66,7 @@ class OttawaUIndexBuilder(IndexBuilder):
         simple_index = defaultdict(
             lambda: []
         )  # SOURCE: https://www.accelebrate.com/blog/using-defaultdict-python
-        dictionary = Dictionary(self.ctx.dict_path())
+        dictionary = Dictionary(self.ctx)
         with open(self.ctx.corpus_path(), "r") as corpus_handle:
             corpus = yaml.load_all(corpus_handle, Loader=yaml.Loader)
             for document in corpus:

@@ -2,9 +2,10 @@
 # Internally, we represent the volume as a set, since that gives us O(1) access, which makes
 # constructing an index much faster.
 class Dictionary:
-    def __init__(self, path):
+    def __init__(self, ctx):
+        self.ctx = ctx
         self.terms = set()
-        with open(path) as terms:
+        with open(ctx.dict_path()) as terms:
             for term in terms:
                 self.terms.add(term.rstrip())  # remove trailing newline
 
