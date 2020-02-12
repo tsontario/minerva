@@ -286,7 +286,6 @@ def construct_context(values):
         enable_stemming=values["_stemming_"],
         enable_normalization=values["_normalization_"],
     )
-
     # eager load if not already in memory
     Dictionary(ctx)
     IndexAccessor(ctx)
