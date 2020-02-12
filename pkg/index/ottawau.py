@@ -7,7 +7,7 @@ from collections import defaultdict
 import nltk
 from .indexbuilder import IndexBuilder
 from .invertedindex import IndexValue
-from ..indexaccess import IndexAccessor
+from .indexaccessor import IndexAccessor
 from ..dictionary import Dictionary, DictBuilder
 from ..wordmodifiers import context
 
@@ -15,9 +15,6 @@ from ..wordmodifiers import context
 class OttawaUIndexBuilder(IndexBuilder):
     def __init__(self, ctx):
         self.ctx = ctx
-        self.corpus_path = ctx.corpus_path
-        self.dict_path = ctx.dict_path
-        self.inverted_index_path = ctx.inverted_index_path
         self.tokenizer = ctx.tokenizer
         self.normalize_funcs = context.normalizer_funcs_for_context(ctx)
         self.filter_funcs = context.filter_funcs_for_context(ctx)
@@ -30,7 +27,7 @@ class OttawaUIndexBuilder(IndexBuilder):
             doc_ids = term_documents_dict[key]
             inverted_index[key] = IndexValue(len(doc_ids), doc_ids)
 
-        with open(self.inverted_index_path, "w") as index_file:
+        with open(self.ctx.inverted_index_path(), "w") as index_file:
             yaml.dump(
                 inverted_index,
                 index_file,
@@ -48,7 +45,7 @@ class OttawaUIndexBuilder(IndexBuilder):
         # If we have time, we can refactor into something nicer but at the end of the day
         # it's just going to be doing this so I'm not too worried.
         index_accessor = IndexAccessor(self.ctx)
-        keys = index_accessor.index[self.ctx.inverted_index_path].index.keys()
+        keys = index_accessor.index[self.ctx.inverted_index_path()].index.keys()
 
         for key in keys:
             k = f"${key}$"  # add begin/end indicators
@@ -69,8 +66,8 @@ class OttawaUIndexBuilder(IndexBuilder):
         simple_index = defaultdict(
             lambda: []
         )  # SOURCE: https://www.accelebrate.com/blog/using-defaultdict-python
-        dictionary = Dictionary(self.dict_path)
-        with open(self.corpus_path, "r") as corpus_handle:
+        dictionary = Dictionary(self.ctx.dict_path())
+        with open(self.ctx.corpus_path(), "r") as corpus_handle:
             corpus = yaml.load_all(corpus_handle, Loader=yaml.Loader)
             for document in corpus:
                 # apply normalizations...

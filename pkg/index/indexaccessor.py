@@ -1,5 +1,5 @@
 import yaml
-from ..indexbuilder import IndexValue
+from .invertedindex import IndexValue
 
 
 class BigramIndexAccessor:

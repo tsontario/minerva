@@ -32,4 +32,6 @@ class DictBuilder:
             for term in sorted(terms):
                 outfile.write(term)
                 outfile.write("\n")
-        print(f"{len(terms)} unique terms written to {path.abspath(self.ctx.dict_path())}")
+        print(
+            f"{len(terms)} unique terms written to {path.abspath(self.ctx.dict_path())}"
+        )
