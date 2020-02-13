@@ -18,6 +18,7 @@ def launch():
 
     # query data for edit distance and 'resending' query
     original_query = ""
+    original_values = []
     updated_query = ""
     suggestions = []
     ctx = Context("", "", "")
@@ -139,7 +140,7 @@ def launch():
                 header_font=("Arial", 14, "bold"),
                 bind_return_key=True,
                 num_rows=8,
-                alternating_row_color="grey",
+                alternating_row_color="#d3d3d3",
                 auto_size_columns=False,
                 col_widths=[8, 12, 32, 8],
                 justification="center",
@@ -158,6 +159,35 @@ def launch():
     # creating window
     window = sg.Window("Minerva Search Engine", layout)
 
+    # turns edit distance UI elements on or off
+    def toggle_resend(toggle):
+        if toggle:
+            # turn resend on
+            window["_resend_"].set_size(
+                (len(original_query) + len(updated_query) + 40, None)
+            )
+            window["_resend_"].Update(
+                text=(
+                    "Showing results for '"
+                    + updated_query
+                    + "'. Click here to search for '"
+                    + original_query
+                    + "'."
+                ),
+                disabled=False,
+                visible=True,
+            )
+            window["_suggestions_"].Update(visible=True)
+        else:
+            # turn resend off
+            window["_resend_"].set_size((len(original_query) + 25, None))
+            window["_resend_"].Update(
+                text=("Showing results for '" + original_query + "'."),
+                disabled=True,
+                visible=True,
+            )
+            window["_suggestions_"].Update(visible=False)
+
     # event loop
     while True:
         event, values = window.Read()
@@ -169,6 +199,7 @@ def launch():
 
         elif event is "Search":
             original_query = values["_query_"]
+            original_values = values
             print("Search for query: " + str(original_query))
 
             # create context object
@@ -180,13 +211,7 @@ def launch():
             # update edit distance related UI elements
             if not suggestions:
                 # if theres no suggestions (all query terms were in dictionary or regex terms), don't display suggestion related UI elements
-                window["_resend_"].set_size((len(original_query) + 25, None))
-                window["_resend_"].Update(
-                    text=("Showing results for '" + original_query + "'."),
-                    disabled=True,
-                    visible=True,
-                )
-                window["_suggestions_"].Update(visible=False)
+                toggle_resend(False)
                 updated_query = original_query
             else:
                 # if theres suggestions (one or more query term was not in dictionary)
@@ -197,42 +222,16 @@ def launch():
                         updated_query += term + " "
                     else:
                         updated_query += suggestions[term][0] + " "
+                toggle_resend(True)
+                print("Corrected query: " + updated_query)
 
-                # display suggestion related UI elements
-                window["_resend_"].set_size(
-                    (len(original_query) + len(updated_query) + 40, None)
-                )
-                window["_resend_"].Update(
-                    text=(
-                        "Showing results for '"
-                        + updated_query
-                        + "'. Click here to search for '"
-                        + original_query
-                        + "'."
-                    ),
-                    disabled=False,
-                    visible=True,
-                )
-                window["_suggestions_"].Update(visible=True)
-
-            corpus_accessor = CorpusAccessor(ctx)
-
+            # use chosen model to search corpus
             if values["_boolean_"]:
-                print("Calling Boolean with query: " + updated_query)
-                parser = Parser(ctx)
-                parsed = parser.parse(updated_query)
-                data = Evaluator(ctx, parsed).evaluate()
-                documents = corpus_accessor.access(ctx, data)
-                scores = [1]*len(data) 
-            
+                data = search("Boolean", updated_query, ctx)
             elif values["_vsm_"]:
-                print("Calling VSM with query: " + updated_query)
-                vector_model = VectorSpaceModel(ctx)
-                results = vector_model.search(ctx, updated_query)
-                documents = corpus_accessor.access(ctx, [r[0] for r in results])
-                scores = ["{:.4f}".format(r[1]) for r in results]
-            
-            data = format_results(documents, scores)
+                data = search("VSM", updated_query, ctx)
+            else:
+                data = []
 
             window["_table_"].Update(values=data)
 
@@ -243,42 +242,22 @@ def launch():
             DocPopup(doc)
 
         elif event is "_suggestions_":
-            print("Displaying top N suggestions")
+            print("Displaying edit distance suggestions")
             SuggestionPopup(suggestions)
 
         elif event is "_resend_":
             print("Resending query: " + original_query)
 
             # don't display suggestion related UI elements
-            window["_resend_"].set_size((len(original_query) + 25, None))
-            window["_resend_"].Update(
-                text=("Showing results for '" + original_query + "'."),
-                disabled=True,
-                visible=True,
-            )
-            window["_suggestions_"].Update(visible=False)
-            updated_query = original_query
-
-            # redo search:
-            # don't recreate ctx object, incase user played with settings before pressing resend
-            corpus_accessor = CorpusAccessor(ctx)
-
-            if values["_boolean_"]:
-                print("Calling Boolean with query: " + updated_query)
-                parser = Parser(ctx)
-                parsed = parser.parse(updated_query)
-                data = Evaluator(ctx, parsed).evaluate()
-                documents = corpus_accessor.access(ctx, data)
-                scores = [1]*len(data) 
+            toggle_resend(False)
             
-            elif values["_vsm_"]:
-                print("Calling VSM with query: " + updated_query)
-                vector_model = VectorSpaceModel(ctx)
-                results = vector_model.search(ctx, updated_query)
-                documents = corpus_accessor.access(ctx, [r[0] for r in results])
-                scores = ["{:.4f}".format(r[1]) for r in results]
-            
-            data = format_results(documents, scores)
+            # redo search using chosen model to search corpus
+            if original_values["_boolean_"]:
+                data = search("Boolean", original_query, ctx)
+            elif original_values["_vsm_"]:
+                data = search("VSM", original_query, ctx)
+            else:
+                data = []
 
             window["_table_"].Update(values=data)
 
@@ -287,6 +266,24 @@ def launch():
 
     window.Close()
 
+def search(model, query, ctx):
+    corpus_accessor = CorpusAccessor(ctx)
+    if model == "VSM":
+        print("Calling VSM with query: " + query)
+        vector_model = VectorSpaceModel(ctx)
+        results = vector_model.search(ctx, query)
+        documents = corpus_accessor.access(ctx, [r[0] for r in results])
+        scores = ["{:.4f}".format(r[1]) for r in results]
+
+    elif model == "Boolean":
+        print("Calling Boolean with query: " + query)
+        parser = Parser(ctx)
+        parsed = parser.parse(query)
+        data = Evaluator(ctx, parsed).evaluate()
+        documents = corpus_accessor.access(ctx, data)
+        scores = [1]*len(data) 
+
+    return format_results(documents, scores)
 
 # returns a Context object with the user's selections
 def construct_context(values):
