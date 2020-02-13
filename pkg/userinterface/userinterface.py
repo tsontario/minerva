@@ -6,6 +6,8 @@ from pkg.corpusaccess import CorpusAccessor
 from pkg.editdistance import EditDistance
 from pkg.dictionary import Dictionary
 from pkg.index import IndexAccessor, BigramIndexAccessor, WeightedIndexAccessor
+from pkg.vsm import VectorSpaceModel
+from pkg.booleanretrieval import Parser, Evaluator
 
 
 # code snippets taken from various demos at https://pysimplegui.readthedocs.io/
@@ -18,6 +20,7 @@ def launch():
     original_query = ""
     updated_query = ""
     suggestions = []
+    ctx = Context("", "", "")
 
     # built in colour scheme
     sg.theme("Reddit")
@@ -138,7 +141,7 @@ def launch():
                 num_rows=8,
                 alternating_row_color="grey",
                 auto_size_columns=False,
-                col_widths=[8, 16, 32, 8],
+                col_widths=[8, 12, 32, 8],
                 justification="center",
                 key="_table_",
             )
@@ -166,14 +169,13 @@ def launch():
 
         elif event is "Search":
             original_query = values["_query_"]
-            print("Original query: " + str(original_query))
+            print("Search for query: " + str(original_query))
 
             # create context object
             ctx = construct_context(values)
 
             # get weighted edit distance suggestions for query
             suggestions = EditDistance(ctx).edit_distance(original_query)
-            print(suggestions)
 
             # update edit distance related UI elements
             if not suggestions:
@@ -213,40 +215,24 @@ def launch():
                 )
                 window["_suggestions_"].Update(visible=True)
 
-            # TODO: Call chosen search model to get results.
+            corpus_accessor = CorpusAccessor(ctx)
+
             if values["_boolean_"]:
                 print("Calling Boolean with query: " + updated_query)
-                results = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]  # temp dummy data
+                parser = Parser(ctx)
+                parsed = parser.parse(updated_query)
+                data = Evaluator(ctx, parsed).evaluate()
+                documents = corpus_accessor.access(ctx, data)
+                scores = [1]*len(data) 
+            
             elif values["_vsm_"]:
                 print("Calling VSM with query: " + updated_query)
-                results = [
-                    510,
-                    520,
-                    530,
-                    540,
-                    550,
-                    560,
-                    570,
-                    580,
-                    590,
-                    600,
-                ]  # temp dummy data
-
-            # get returned documents from corpus accessor
-            corpus_accessor = CorpusAccessor(ctx)
-            documents = corpus_accessor.access(ctx, results)
-
-            # format documents for table UI element and update table
-            data = []
-            for d in documents:  # TODO: handle score from VSM / no score from Bool
-                data.append(
-                    [
-                        d.id,
-                        str(d.course.faculty) + " " + str(d.course.code),
-                        d.course.contents,
-                        "score",
-                    ]
-                )
+                vector_model = VectorSpaceModel(ctx)
+                results = vector_model.search(ctx, updated_query)
+                documents = corpus_accessor.access(ctx, [r[0] for r in results])
+                scores = ["{:.4f}".format(r[1]) for r in results]
+            
+            data = format_results(documents, scores)
 
             window["_table_"].Update(values=data)
 
@@ -262,7 +248,39 @@ def launch():
 
         elif event is "_resend_":
             print("Resending query: " + original_query)
-            # TODO: handle 'resending' a query
+
+            # don't display suggestion related UI elements
+            window["_resend_"].set_size((len(original_query) + 25, None))
+            window["_resend_"].Update(
+                text=("Showing results for '" + original_query + "'."),
+                disabled=True,
+                visible=True,
+            )
+            window["_suggestions_"].Update(visible=False)
+            updated_query = original_query
+
+            # redo search:
+            # don't recreate ctx object, incase user played with settings before pressing resend
+            corpus_accessor = CorpusAccessor(ctx)
+
+            if values["_boolean_"]:
+                print("Calling Boolean with query: " + updated_query)
+                parser = Parser(ctx)
+                parsed = parser.parse(updated_query)
+                data = Evaluator(ctx, parsed).evaluate()
+                documents = corpus_accessor.access(ctx, data)
+                scores = [1]*len(data) 
+            
+            elif values["_vsm_"]:
+                print("Calling VSM with query: " + updated_query)
+                vector_model = VectorSpaceModel(ctx)
+                results = vector_model.search(ctx, updated_query)
+                documents = corpus_accessor.access(ctx, [r[0] for r in results])
+                scores = ["{:.4f}".format(r[1]) for r in results]
+            
+            data = format_results(documents, scores)
+
+            window["_table_"].Update(values=data)
 
         else:
             print(event)
@@ -292,3 +310,19 @@ def construct_context(values):
     BigramIndexAccessor(ctx)
     WeightedIndexAccessor(ctx)
     return ctx
+
+def format_results(documents, scores):
+    data = []
+    # format documents for table UI element
+    for i in range(len(documents)): 
+        d = documents[i]
+        data.append(
+            [
+                d.id,
+                str(d.course.faculty) + " " + str(d.course.code),
+                d.course.contents,
+                scores[i],
+            ]
+        )
+
+    return data
