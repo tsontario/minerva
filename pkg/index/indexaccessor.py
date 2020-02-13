@@ -35,6 +35,7 @@ class BigramIndexAccessor:
         except KeyError:
             return []
 
+
 class WeightedIndexAccessor:
     index = {}
 
@@ -59,6 +60,7 @@ class WeightedIndexAccessor:
             return accessor[term]
         except KeyError:
             return []
+
 
 class IndexAccessor:
     index = {}
