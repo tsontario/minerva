@@ -45,7 +45,7 @@ class WeightedIndexAccessor:
             if not path.exists(ctx.weighted_index_path()):
                 ottawau.OttawaUIndexBuilder(ctx).build_weighted_index()
             with open(self.ctx.weighted_index_path(), "r") as weighted_index_handle:
-                self.index = yaml.load(weighted_index_handle, Loader=yaml.Loader)
+                self.index = load(weighted_index_handle, Loader=Loader)
 
     def __init__(self, ctx):
         if ctx.weighted_index_path() not in self.index:

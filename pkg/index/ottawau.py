@@ -147,13 +147,14 @@ class OttawaUIndexBuilder(IndexBuilder):
                 weighted_index[term][docID] = tf*idf
 
         with open(self.ctx.weighted_index_path(), "w") as weighted_handle:
-            yaml.dump(
+            dump(
                 weighted_index,
                 weighted_handle,
                 explicit_start=True,
                 default_flow_style=True,
                 sort_keys=False,
                 indent=2,
+                Dumper=Dumper,
             )
 
 
