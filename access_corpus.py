@@ -10,23 +10,19 @@ ctx = Context(corpus_path, "", "")
 print("Initializing CorpusAccessor")
 corpus_accessor = CorpusAccessor(ctx)
 
-print("Getting size??")
-print(corpus_accessor.get_size())
+print("Accessing docs:")
 
+docs = corpus_accessor.access(ctx, [587, 588, 589])
 
-# print("Accessing docs:")
+for d in docs:
+    print(d)
 
-# docs = corpus_accessor.access(ctx, [587, 588, 589])
+print("\nTry initializing again with same corpus (doesn't re-load)")
+corpus_accessor = CorpusAccessor(ctx)
 
-# for d in docs:
-#     print(d)
+print("Accessing docs:")
 
-# print("\nTry initializing again with same corpus (doesn't re-load)")
-# corpus_accessor = CorpusAccessor(ctx)
+docs = corpus_accessor.access(ctx, [590, 591, 592])
 
-# print("Accessing docs:")
-
-# docs = corpus_accessor.access(ctx, [590, 591, 592])
-
-# for d in docs:
-#     print(d)
+for d in docs:
+    print(d)

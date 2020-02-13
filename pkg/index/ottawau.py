@@ -8,7 +8,6 @@ from math import log10
 import nltk
 from .indexbuilder import IndexBuilder
 from .invertedindex import IndexValue
-# from .weightedindex import WeightedIndexValue
 from .indexaccessor import IndexAccessor
 from ..dictionary import Dictionary, DictBuilder
 from ..wordmodifiers import context
