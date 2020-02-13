@@ -1,4 +1,3 @@
-import yaml
 from os import path
 
 from .dictbuilder import DictBuilder

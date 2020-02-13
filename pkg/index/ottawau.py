@@ -1,4 +1,10 @@
-import yaml
+from yaml import load_all, dump
+
+try:
+    from yaml import CLoader as Loader, CDumper as Dumper
+except ImportError:
+    from yaml import Loader, Dumper
+
 import re
 import os
 from os import path
@@ -28,13 +34,14 @@ class OttawaUIndexBuilder(IndexBuilder):
             inverted_index[key] = IndexValue(len(doc_ids), doc_ids)
 
         with open(self.ctx.inverted_index_path(), "w") as index_file:
-            yaml.dump(
+            dump(
                 inverted_index,
                 index_file,
                 explicit_start=True,
                 default_flow_style=True,
                 sort_keys=False,
                 indent=2,
+                Dumper=Dumper,
             )
 
     def build_bigram_index(self):
@@ -53,13 +60,14 @@ class OttawaUIndexBuilder(IndexBuilder):
             for first, second in zip(k, k[1:]):
                 index[first + second].append(key)
         with open(self.ctx.bigram_index_path(), "w") as bigram_handle:
-            yaml.dump(
+            dump(
                 index,
                 bigram_handle,
                 explicit_start=True,
                 default_flow_style=True,
                 sort_keys=False,
                 indent=2,
+                Dumper=Dumper,
             )
 
     def _build_simple_index(self):
@@ -68,7 +76,7 @@ class OttawaUIndexBuilder(IndexBuilder):
         )  # SOURCE: https://www.accelebrate.com/blog/using-defaultdict-python
         dictionary = Dictionary(self.ctx).dictionary[self.ctx.dict_path()]
         with open(self.ctx.corpus_path(), "r") as corpus_handle:
-            corpus = yaml.load_all(corpus_handle, Loader=yaml.Loader)
+            corpus = load_all(corpus_handle, Loader=Loader)
             for document in corpus:
                 # apply normalizations...
                 contents = document.read_queryable()
