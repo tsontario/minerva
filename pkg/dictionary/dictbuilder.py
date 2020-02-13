@@ -1,4 +1,10 @@
-import yaml
+from yaml import load_all
+
+try:
+    from yaml import CLoader as Loader
+except ImportError:
+    from yaml import Loader
+
 import re
 import os
 from os import path
@@ -18,7 +24,7 @@ class DictBuilder:
     def build(self):
         terms = set()
         with open(self.ctx.corpus_path(), "r") as corpus_handle:
-            corpus_stream = yaml.load_all(corpus_handle, Loader=yaml.Loader)
+            corpus_stream = load_all(corpus_handle, Loader=Loader)
             if os.getenv("DEBUG"):
                 print("Performing configured normalizations and tokenization...")
             for doc in corpus_stream:
