@@ -9,6 +9,7 @@ import re
 import os
 from os import path
 from collections import defaultdict
+from math import log10
 
 import nltk
 from .indexbuilder import IndexBuilder
@@ -16,6 +17,7 @@ from .invertedindex import IndexValue
 from .indexaccessor import IndexAccessor
 from ..dictionary import Dictionary, DictBuilder
 from ..wordmodifiers import context
+from ..corpusaccess import CorpusAccessor
 
 
 class OttawaUIndexBuilder(IndexBuilder):
@@ -91,6 +93,73 @@ class OttawaUIndexBuilder(IndexBuilder):
                         simple_index[term].append(document.id)
         return simple_index
 
+    # Module 8a - VSM (Weight Calculation)
+    def build_weighted_index(self):
+        # A default dict within a default dict
+        # Purpose: able to call weighted_index[term][docID] to get tf*idf weight for any term-document pair
+        # (and get 0 if the term is not in that doc!)
+        weighted_index = defaultdict(default_weighted_index_value)
+        # SOURCE: https://www.accelebrate.com/blog/using-defaultdict-python
+
+        # hacky access...
+        corpus_accessor = CorpusAccessor(self.ctx)
+        corpus = corpus_accessor.corpora[self.ctx.corpus_path()].documents
+
+        index_accessor = IndexAccessor(self.ctx)
+        index = index_accessor.index[self.ctx.inverted_index_path()].index
+
+        # getting idf values for indices
+        idfs = {}
+        n = corpus_accessor.get_size()
+        for term in index.keys():
+            # equation: idf = log(N / df)
+            idfs[term] = log10(n / index[term].frequency)
+
+        # iterate thru docs
+        for docID, document in corpus.items():
+            term_counter = defaultdict(int)  # default count is 0
+
+            # apply normalizations...
+            contents = document.read_queryable()
+            for normalize_func in self.normalize_funcs:
+                contents = normalize_func(contents)
+
+            original_terms = self.tokenizer.tokenize(contents)
+
+            # run filters on each word separately to preserve duplicates
+            terms = []
+            for term in original_terms:
+                # apply filters...
+                term = set([term])
+                for filter_func in self.filter_funcs:
+                    term = filter_func(term)
+
+                if list(term) != []:
+                    terms.append(list(term)[0])
+
+            for term in terms:
+                term_counter[term] += 1  # increment term count for document
+
+            for term, freq in term_counter.items():
+                tf = (log10(freq) + 1) if freq > 0 else 0
+                idf = idfs[term]
+                weighted_index[term][docID] = tf * idf
+
+        with open(self.ctx.weighted_index_path(), "w") as weighted_handle:
+            dump(
+                weighted_index,
+                weighted_handle,
+                explicit_start=True,
+                default_flow_style=True,
+                sort_keys=False,
+                indent=2,
+                Dumper=Dumper,
+            )
+
 
 def default_index_value():
     return []
+
+
+def default_weighted_index_value():
+    return defaultdict(int)

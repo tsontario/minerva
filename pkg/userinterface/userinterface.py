@@ -5,7 +5,7 @@ from pkg.context import Context
 from pkg.corpusaccess import CorpusAccessor
 from pkg.editdistance import EditDistance
 from pkg.dictionary import Dictionary
-from pkg.index import IndexAccessor, BigramIndexAccessor
+from pkg.index import IndexAccessor, BigramIndexAccessor, WeightedIndexAccessor
 
 
 # code snippets taken from various demos at https://pysimplegui.readthedocs.io/
@@ -154,7 +154,6 @@ def launch():
 
     # creating window
     window = sg.Window("Minerva Search Engine", layout)
-    window.Finalize
 
     # event loop
     while True:
@@ -287,7 +286,9 @@ def construct_context(values):
         enable_normalization=values["_normalization_"],
     )
     # eager load if not already in memory
+    CorpusAccessor(ctx)
     Dictionary(ctx)
     IndexAccessor(ctx)
     BigramIndexAccessor(ctx)
+    WeightedIndexAccessor(ctx)
     return ctx

@@ -4,7 +4,7 @@ from pkg.userinterface import userinterface as ui
 from pkg.context import Context
 from pkg.corpusaccess import CorpusAccessor
 from pkg.dictionary import Dictionary
-from pkg.index import IndexAccessor, BigramIndexAccessor
+from pkg.index import IndexAccessor, BigramIndexAccessor, WeightedIndexAccessor
 
 
 print("Ensuring nltk libraries exist...")
@@ -25,6 +25,7 @@ dictionary = Dictionary(ctx)
 print("Loading indices...")
 index = IndexAccessor(ctx)
 bigram_index = BigramIndexAccessor(ctx)
+weighted_index = WeightedIndexAccessor(ctx)
 print("Done!")
 print("Launch User Interface")
 ui.launch()
