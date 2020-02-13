@@ -1,4 +1,9 @@
-import yaml
+from yaml import load_all
+
+try:
+    from yaml import CLoader as Loader
+except ImportError:
+    from yaml import Loader
 
 
 class CorpusAccessor:
@@ -10,7 +15,7 @@ class CorpusAccessor:
             self.documents = {}
 
             with open(self.ctx.corpus_path(), "r") as corpus_handle:
-                corpus_stream = yaml.load_all(corpus_handle, Loader=yaml.Loader)
+                corpus_stream = load_all(corpus_handle, Loader=Loader)
                 for doc in corpus_stream:
                     self.documents[doc.id] = doc
 

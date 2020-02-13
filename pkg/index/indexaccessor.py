@@ -1,4 +1,10 @@
-import yaml
+from yaml import load
+
+try:
+    from yaml import CLoader as Loader
+except ImportError:
+    from yaml import Loader
+
 from os import path
 from .invertedindex import IndexValue
 import pkg.index.ottawau as ottawau
@@ -14,7 +20,7 @@ class BigramIndexAccessor:
             if not path.exists(ctx.bigram_index_path()):
                 ottawau.OttawaUIndexBuilder(ctx).build_bigram_index()
             with open(self.ctx.bigram_index_path(), "r") as bigram_index_handle:
-                self.index = yaml.load(bigram_index_handle, Loader=yaml.Loader)
+                self.index = load(bigram_index_handle, Loader=Loader)
 
     def __init__(self, ctx):
         if ctx.bigram_index_path() not in self.index:
@@ -67,7 +73,7 @@ class IndexAccessor:
             if not path.exists(ctx.inverted_index_path()):
                 ottawau.OttawaUIndexBuilder(ctx).build()
             with open(self.ctx.inverted_index_path(), "r") as index_handle:
-                self.index = yaml.load(index_handle, Loader=yaml.Loader)
+                self.index = load(index_handle, Loader=Loader)
 
     def __init__(self, ctx):
         # if the index is not yet in accessor, then opportunistically load the index

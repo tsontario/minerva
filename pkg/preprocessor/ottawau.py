@@ -1,9 +1,15 @@
+from yaml import dump
+
+try:
+    from yaml import CDumper as Dumper
+except ImportError:
+    from yaml import Dumper
+
 import pdb
 import re
 import logging
 from os import path
 import sys
-import yaml
 
 import bs4
 
@@ -47,13 +53,14 @@ class OttawaUniversityPreProcessor:
     def write_outfile(self):
         outfile = self._outfile()
         for corpus in self.corpus:
-            yaml.dump(
+            dump(
                 corpus,
                 outfile,
                 explicit_start=True,
                 default_flow_style=False,
                 sort_keys=False,
                 indent=2,
+                Dumper=Dumper,
             )
 
     def _generate_corpus(self):
