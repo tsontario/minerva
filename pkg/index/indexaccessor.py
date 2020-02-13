@@ -29,6 +29,30 @@ class BigramIndexAccessor:
         except KeyError:
             return []
 
+class WeightedIndexAccessor:
+    index = {}
+
+    # private singleton class
+    class __WeightedIndexAccessor:
+        def __init__(self, ctx):
+            self.ctx = ctx
+            if not path.exists(ctx.weighted_index_path()):
+                ottawau.OttawaUIndexBuilder(ctx).build_weighted_index()
+            with open(self.ctx.weighted_index_path(), "r") as weighted_index_handle:
+                self.index = yaml.load(weighted_index_handle, Loader=yaml.Loader)
+
+    def __init__(self, ctx):
+        if ctx.weighted_index_path() not in self.index:
+            WeightedIndexAccessor.index[
+                ctx.weighted_index_path()
+            ] = WeightedIndexAccessor.__WeightedIndexAccessor(ctx)
+
+    def access(self, ctx, term):
+        accessor = WeightedIndexAccessor.index[ctx.weighted_index_path()].index
+        try:
+            return accessor[term]
+        except KeyError:
+            return []
 
 class IndexAccessor:
     index = {}

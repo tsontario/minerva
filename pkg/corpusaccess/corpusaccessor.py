@@ -17,12 +17,12 @@ class CorpusAccessor:
     corpora = {}
 
     def __init__(self, ctx):
+        self.ctx = ctx
         # if the corpus is not yet in accessor, then load the corpus and put it in corpora
         if not ctx.corpus_path() in self.corpora:
             CorpusAccessor.corpora[ctx.corpus_path()] = CorpusAccessor.__CorpusAccessor(
                 ctx
             )
-
 
     def access(self, ctx, doc_ids):
         if not doc_ids:
@@ -42,3 +42,9 @@ class CorpusAccessor:
                 print("Invalid document id given: " + str(i))
 
         return results
+
+    def get_size(self):
+        if not self.ctx.corpus_path() in self.corpora:
+            return 0
+
+        return len(self.corpora[self.ctx.corpus_path()].documents)

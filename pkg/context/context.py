@@ -45,6 +45,12 @@ class Context:
             + f"_bigram_index_{self._digest()}.yaml"
         )
 
+    def weighted_index_path(self):
+        return (
+            self._inverted_index_path.strip(".yaml")
+            + f"_weighted_index_{self._digest()}.yaml"
+        )
+
     # digest returns the hex digest of the current context object in regards to those elements
     # configurable by the user. This digest can be (indeed, is) appended to the end of generated files
     # such as dictionaries and indices, so that we can maintain persistent records without having
