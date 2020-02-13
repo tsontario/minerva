@@ -250,7 +250,7 @@ def launch():
 
             # don't display suggestion related UI elements
             toggle_resend(False)
-            
+
             # redo search using chosen model to search corpus
             if original_values["_boolean_"]:
                 data = search("Boolean", original_query, ctx)
@@ -265,6 +265,7 @@ def launch():
             print(event)
 
     window.Close()
+
 
 def search(model, query, ctx):
     corpus_accessor = CorpusAccessor(ctx)
@@ -281,9 +282,10 @@ def search(model, query, ctx):
         parsed = parser.parse(query)
         data = Evaluator(ctx, parsed).evaluate()
         documents = corpus_accessor.access(ctx, data)
-        scores = [1]*len(data) 
+        scores = [1] * len(data)
 
     return format_results(documents, scores)
+
 
 # returns a Context object with the user's selections
 def construct_context(values):
@@ -308,10 +310,11 @@ def construct_context(values):
     WeightedIndexAccessor(ctx)
     return ctx
 
+
 def format_results(documents, scores):
     data = []
     # format documents for table UI element
-    for i in range(len(documents)): 
+    for i in range(len(documents)):
         d = documents[i]
         data.append(
             [
