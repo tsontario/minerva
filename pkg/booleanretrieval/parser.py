@@ -99,6 +99,8 @@ class Parser:
                 continue
             with_boundary = f"${token}$"
             partitioned = with_boundary.split("*")
+            partial_result = []
+            prepend_or = False
             for partition in partitioned:
                 terms = set()
                 for first, second in zip(partition, partition[1:]):
@@ -111,9 +113,18 @@ class Parser:
                 postfilter_pattern = re.compile(f"^{regex_formatted_wildcard}$")
                 for term in terms:
                     if re.match(postfilter_pattern, term):
-                        result.append(term)
-
-        return " OR ".join(result).split(" ")
+                        partial_result.append(term)
+                # For every partition except the first, ensure we have an appended OR to the expression
+                if not prepend_or:
+                  # Convert [term1, term2, tern3, ...] to "term1 OR term2 OR term3... OR termX"
+                  result.extend("(")
+                  result.extend(" OR ".join(partial_result).split(" "))
+                  prepend_or = True
+                else:
+                  result.extend(["OR"])
+                  result.extend(" OR ".join(partial_result).split(" "))
+            result.extend(")")
+        return result
 
     # Convert the provided infix expression into postfix. Assumes the provided input is valid
     # SOURCE: https://runestone.academy/runestone/books/published/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html
