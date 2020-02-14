@@ -67,32 +67,6 @@ def launch():
         ],
     ]
 
-    # popup that shows full text of document
-    def DocPopup(doc):
-        text = str(doc[0]) + ": " + str(doc[1]) + "\n" + str(doc[2])
-        return sg.PopupScrolled(
-            text, title=doc[1], font=("Arial", 12), size=(64, None), keep_on_top=True
-        )
-
-    # popup that shows top N suggestions per query term
-    def SuggestionPopup(suggestions):
-        text = ""
-
-        for term in suggestions:
-            if suggestions[term] != []:
-                text += term + " : "
-                for s in suggestions[term]:
-                    text += s + ", "
-                text += "\n"
-
-        return sg.PopupScrolled(
-            text,
-            title="Suggestions for " + original_query,
-            font=("Arial", 12),
-            size=(64, None),
-            keep_on_top=True,
-        )
-
     # window layout
     layout = [
         [sg.Text("Minerva Search Engine", font=("Arial", 22, "bold"))],
@@ -158,6 +132,32 @@ def launch():
 
     # creating window
     window = sg.Window("Minerva Search Engine", layout)
+
+    # popup that shows full text of document
+    def DocPopup(doc):
+        text = str(doc[0]) + ": " + str(doc[1]) + "\n" + str(doc[2])
+        return sg.PopupScrolled(
+            text, title=doc[1], font=("Arial", 12), size=(64, None), keep_on_top=True
+        )
+
+    # popup that shows top N suggestions per query term
+    def SuggestionPopup(suggestions):
+        text = ""
+
+        for term in suggestions:
+            if suggestions[term] != []:
+                text += term + " : "
+                for s in suggestions[term]:
+                    text += s + ", "
+                text += "\n"
+
+        return sg.PopupScrolled(
+            text,
+            title="Suggestions for " + original_query,
+            font=("Arial", 12),
+            size=(64, None),
+            keep_on_top=True,
+        )
 
     # turns edit distance UI elements on or off
     def toggle_resend(toggle):
@@ -235,16 +235,6 @@ def launch():
 
             window["_table_"].Update(values=data)
 
-        elif event is "_table_":
-            print("Opening document")
-
-            doc = data[values[event][0]]
-            DocPopup(doc)
-
-        elif event is "_suggestions_":
-            print("Displaying edit distance suggestions")
-            SuggestionPopup(suggestions)
-
         elif event is "_resend_":
             print("Resending query: " + original_query)
 
@@ -261,12 +251,23 @@ def launch():
 
             window["_table_"].Update(values=data)
 
+        elif event is "_table_":
+            print("Opening document")
+
+            doc = data[values[event][0]]
+            DocPopup(doc)
+
+        elif event is "_suggestions_":
+            print("Displaying edit distance suggestions")
+            SuggestionPopup(suggestions)
+
         else:
             print(event)
 
     window.Close()
 
 
+# perform search with query / model selected by user
 def search(model, query, ctx):
     corpus_accessor = CorpusAccessor(ctx)
     if model == "VSM":
@@ -287,7 +288,25 @@ def search(model, query, ctx):
     return format_results(documents, scores)
 
 
-# returns a Context object with the user's selections
+# format documents for table UI element
+def format_results(documents, scores):
+    data = []
+
+    for i in range(len(documents)):
+        d = documents[i]
+        data.append(
+            [
+                d.id,
+                str(d.course.faculty) + " " + str(d.course.code),
+                d.course.contents,
+                scores[i],
+            ]
+        )
+
+    return data
+
+
+# return a Context object with the user's selections
 def construct_context(values):
     # once we have multiple corpora, these variables will be defined based on user selection: values["_uottawa_"] or values["_reuters_"]
     corpus_path = path.abspath("data/corpus/UofO_Courses.yaml")
@@ -309,20 +328,3 @@ def construct_context(values):
     BigramIndexAccessor(ctx)
     WeightedIndexAccessor(ctx)
     return ctx
-
-
-def format_results(documents, scores):
-    data = []
-    # format documents for table UI element
-    for i in range(len(documents)):
-        d = documents[i]
-        data.append(
-            [
-                d.id,
-                str(d.course.faculty) + " " + str(d.course.code),
-                d.course.contents,
-                scores[i],
-            ]
-        )
-
-    return data
