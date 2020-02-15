@@ -1,5 +1,7 @@
 from os import path
 import nltk
+print("Ensuring nltk libraries exist...")
+nltk.download("stopwords")
 from pkg.userinterface import userinterface as ui
 from pkg.context import Context
 from pkg.corpusaccess import CorpusAccessor
@@ -7,8 +9,6 @@ from pkg.dictionary import Dictionary
 from pkg.index import IndexAccessor, BigramIndexAccessor, WeightedIndexAccessor
 
 
-print("Ensuring nltk libraries exist...")
-nltk.download("stopwords")
 
 print("Loading default context...")
 corpus_path = "data/corpus/UofO_Courses.yaml"
