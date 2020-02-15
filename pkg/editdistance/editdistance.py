@@ -56,7 +56,6 @@ class EditDistance:
     # returns top N suggestions for each misspelled term in query
     def edit_distance(self, query):
         query_terms = self.__clean_query(query)
-        print(query_terms)
 
         suggestions = {}
         for term in query_terms.items():

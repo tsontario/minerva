@@ -6,6 +6,8 @@ from pkg.corpusaccess import CorpusAccessor
 from pkg.editdistance import EditDistance
 from pkg.dictionary import Dictionary
 from pkg.index import IndexAccessor, BigramIndexAccessor, WeightedIndexAccessor
+from pkg.vsm import VectorSpaceModel
+from pkg.booleanretrieval import Parser, Evaluator
 
 
 # code snippets taken from various demos at https://pysimplegui.readthedocs.io/
@@ -16,8 +18,10 @@ def launch():
 
     # query data for edit distance and 'resending' query
     original_query = ""
+    original_values = []
     updated_query = ""
     suggestions = []
+    ctx = Context("", "", "")
 
     # built in colour scheme
     sg.theme("Reddit")
@@ -62,32 +66,6 @@ def launch():
             )
         ],
     ]
-
-    # popup that shows full text of document
-    def DocPopup(doc):
-        text = str(doc[0]) + ": " + str(doc[1]) + "\n" + str(doc[2])
-        return sg.PopupScrolled(
-            text, title=doc[1], font=("Arial", 12), size=(64, None), keep_on_top=True
-        )
-
-    # popup that shows top N suggestions per query term
-    def SuggestionPopup(suggestions):
-        text = ""
-
-        for term in suggestions:
-            if suggestions[term] != []:
-                text += term + " : "
-                for s in suggestions[term]:
-                    text += s + ", "
-                text += "\n"
-
-        return sg.PopupScrolled(
-            text,
-            title="Suggestions for " + original_query,
-            font=("Arial", 12),
-            size=(64, None),
-            keep_on_top=True,
-        )
 
     # window layout
     layout = [
@@ -136,9 +114,9 @@ def launch():
                 header_font=("Arial", 14, "bold"),
                 bind_return_key=True,
                 num_rows=8,
-                alternating_row_color="grey",
+                alternating_row_color="#d3d3d3",
                 auto_size_columns=False,
-                col_widths=[8, 16, 32, 8],
+                col_widths=[8, 12, 32, 8],
                 justification="center",
                 key="_table_",
             )
@@ -155,6 +133,61 @@ def launch():
     # creating window
     window = sg.Window("Minerva Search Engine", layout)
 
+    # popup that shows full text of document
+    def DocPopup(doc):
+        text = str(doc[0]) + ": " + str(doc[1]) + "\n" + str(doc[2])
+        return sg.PopupScrolled(
+            text, title=doc[1], font=("Arial", 12), size=(64, None), keep_on_top=True
+        )
+
+    # popup that shows top N suggestions per query term
+    def SuggestionPopup(suggestions):
+        text = ""
+
+        for term in suggestions:
+            if suggestions[term] != []:
+                text += term + " : "
+                for s in suggestions[term]:
+                    text += s + ", "
+                text += "\n"
+
+        return sg.PopupScrolled(
+            text,
+            title="Suggestions for " + original_query,
+            font=("Arial", 12),
+            size=(64, None),
+            keep_on_top=True,
+        )
+
+    # turns edit distance UI elements on or off
+    def toggle_resend(toggle):
+        if toggle:
+            # turn resend on
+            window["_resend_"].set_size(
+                (len(original_query) + len(updated_query) + 40, None)
+            )
+            window["_resend_"].Update(
+                text=(
+                    "Showing results for '"
+                    + updated_query
+                    + "'. Click here to search for '"
+                    + original_query
+                    + "'."
+                ),
+                disabled=False,
+                visible=True,
+            )
+            window["_suggestions_"].Update(visible=True)
+        else:
+            # turn resend off
+            window["_resend_"].set_size((len(original_query) + 25, None))
+            window["_resend_"].Update(
+                text=("Showing results for '" + original_query + "'."),
+                disabled=True,
+                visible=True,
+            )
+            window["_suggestions_"].Update(visible=False)
+
     # event loop
     while True:
         event, values = window.Read()
@@ -166,25 +199,19 @@ def launch():
 
         elif event is "Search":
             original_query = values["_query_"]
-            print("Original query: " + str(original_query))
+            original_values = values
+            print("Search for query: " + str(original_query))
 
             # create context object
             ctx = construct_context(values)
 
             # get weighted edit distance suggestions for query
             suggestions = EditDistance(ctx).edit_distance(original_query)
-            print(suggestions)
 
             # update edit distance related UI elements
             if not suggestions:
                 # if theres no suggestions (all query terms were in dictionary or regex terms), don't display suggestion related UI elements
-                window["_resend_"].set_size((len(original_query) + 25, None))
-                window["_resend_"].Update(
-                    text=("Showing results for '" + original_query + "'."),
-                    disabled=True,
-                    visible=True,
-                )
-                window["_suggestions_"].Update(visible=False)
+                toggle_resend(False)
                 updated_query = original_query
             else:
                 # if theres suggestions (one or more query term was not in dictionary)
@@ -195,58 +222,32 @@ def launch():
                         updated_query += term + " "
                     else:
                         updated_query += suggestions[term][0] + " "
+                toggle_resend(True)
+                print("Corrected query: " + updated_query)
 
-                # display suggestion related UI elements
-                window["_resend_"].set_size(
-                    (len(original_query) + len(updated_query) + 40, None)
-                )
-                window["_resend_"].Update(
-                    text=(
-                        "Showing results for '"
-                        + updated_query
-                        + "'. Click here to search for '"
-                        + original_query
-                        + "'."
-                    ),
-                    disabled=False,
-                    visible=True,
-                )
-                window["_suggestions_"].Update(visible=True)
-
-            # TODO: Call chosen search model to get results.
+            # use chosen model to search corpus
             if values["_boolean_"]:
-                print("Calling Boolean with query: " + updated_query)
-                results = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]  # temp dummy data
+                data = search("Boolean", updated_query, ctx)
             elif values["_vsm_"]:
-                print("Calling VSM with query: " + updated_query)
-                results = [
-                    510,
-                    520,
-                    530,
-                    540,
-                    550,
-                    560,
-                    570,
-                    580,
-                    590,
-                    600,
-                ]  # temp dummy data
+                data = search("VSM", updated_query, ctx)
+            else:
+                data = []
 
-            # get returned documents from corpus accessor
-            corpus_accessor = CorpusAccessor(ctx)
-            documents = corpus_accessor.access(ctx, results)
+            window["_table_"].Update(values=data)
 
-            # format documents for table UI element and update table
-            data = []
-            for d in documents:  # TODO: handle score from VSM / no score from Bool
-                data.append(
-                    [
-                        d.id,
-                        str(d.course.faculty) + " " + str(d.course.code),
-                        d.course.contents,
-                        "score",
-                    ]
-                )
+        elif event is "_resend_":
+            print("Resending query: " + original_query)
+
+            # don't display suggestion related UI elements
+            toggle_resend(False)
+
+            # redo search using chosen model to search corpus
+            if original_values["_boolean_"]:
+                data = search("Boolean", original_query, ctx)
+            elif original_values["_vsm_"]:
+                data = search("VSM", original_query, ctx)
+            else:
+                data = []
 
             window["_table_"].Update(values=data)
 
@@ -257,12 +258,8 @@ def launch():
             DocPopup(doc)
 
         elif event is "_suggestions_":
-            print("Displaying top N suggestions")
+            print("Displaying edit distance suggestions")
             SuggestionPopup(suggestions)
-
-        elif event is "_resend_":
-            print("Resending query: " + original_query)
-            # TODO: handle 'resending' a query
 
         else:
             print(event)
@@ -270,7 +267,46 @@ def launch():
     window.Close()
 
 
-# returns a Context object with the user's selections
+# perform search with query / model selected by user
+def search(model, query, ctx):
+    corpus_accessor = CorpusAccessor(ctx)
+    if model == "VSM":
+        print("Calling VSM with query: " + query)
+        vector_model = VectorSpaceModel(ctx)
+        results = vector_model.search(ctx, query)
+        documents = corpus_accessor.access(ctx, [r[0] for r in results])
+        scores = ["{:.4f}".format(r[1]) for r in results]
+
+    elif model == "Boolean":
+        print("Calling Boolean with query: " + query)
+        parser = Parser(ctx)
+        parsed = parser.parse(query)
+        data = Evaluator(ctx, parsed).evaluate()
+        documents = corpus_accessor.access(ctx, data)
+        scores = [1] * len(data)
+
+    return format_results(documents, scores)
+
+
+# format documents for table UI element
+def format_results(documents, scores):
+    data = []
+
+    for i in range(len(documents)):
+        d = documents[i]
+        data.append(
+            [
+                d.id,
+                str(d.course.faculty) + " " + str(d.course.code),
+                d.course.contents,
+                scores[i],
+            ]
+        )
+
+    return data
+
+
+# return a Context object with the user's selections
 def construct_context(values):
     # once we have multiple corpora, these variables will be defined based on user selection: values["_uottawa_"] or values["_reuters_"]
     corpus_path = path.abspath("data/corpus/UofO_Courses.yaml")
