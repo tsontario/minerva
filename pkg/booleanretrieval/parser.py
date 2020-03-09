@@ -116,13 +116,13 @@ class Parser:
                         partial_result.append(term)
                 # For every partition except the first, ensure we have an appended OR to the expression
                 if not prepend_or:
-                  # Convert [term1, term2, tern3, ...] to "term1 OR term2 OR term3... OR termX"
-                  result.extend("(")
-                  result.extend(" OR ".join(partial_result).split(" "))
-                  prepend_or = True
+                    # Convert [term1, term2, tern3, ...] to "term1 OR term2 OR term3... OR termX"
+                    result.extend("(")
+                    result.extend(" OR ".join(partial_result).split(" "))
+                    prepend_or = True
                 else:
-                  result.extend(["OR"])
-                  result.extend(" OR ".join(partial_result).split(" "))
+                    result.extend(["OR"])
+                    result.extend(" OR ".join(partial_result).split(" "))
             result.extend(")")
         return result
 

@@ -23,6 +23,31 @@ def launch():
     suggestions = []
     ctx = Context("", "", "")
 
+    # Reuters topics
+    # TODO: get topics dynamically
+    # temp partial list of topics taken from "all-topics-strings.lc.txt"
+    topics = [
+        "[TEMP!!]",
+        "acq",
+        "alum",
+        "austdlr",
+        "austral",
+        "barley",
+        "bfr",
+        "bop",
+        "can",
+        "carcass",
+        "castor-meal",
+        "castor-oil",
+        "castorseed",
+        "citruspulp",
+        "cocoa",
+        "coconut",
+        "coconut-oil"
+    ]
+
+    next_terms = []
+
     # built in colour scheme
     sg.theme("Reddit")
 
@@ -44,11 +69,16 @@ def launch():
                 default=True,
                 font=("Arial", 14),
                 key="_uottawa_",
+                enable_events=True,
             )
         ],
         [
             sg.Radio(
-                "Reuters", "corpus", disabled=True, font=("Arial", 14), key="_reuters_"
+                "Reuters",
+                "corpus",
+                font=("Arial", 14),
+                key="_reuters_",
+                enable_events=True,
             )
         ],
     ]
@@ -72,8 +102,25 @@ def launch():
         [sg.Text("Minerva Search Engine", font=("Arial", 22, "bold"))],
         [
             sg.Text("Query:", font=("Arial", 14)),
-            sg.InputText("", font=("Arial", 14), focus=True, key="_query_",),
+            sg.InputText(
+                "", font=("Arial", 14), focus=True, enable_events=True, key="_query_",
+            ),
             sg.Button("Search", font=("Arial", 14), bind_return_key=True),
+        ],
+        [
+            sg.Text("Next: ", font=("Arial", 14)),
+            sg.Listbox(
+                values=next_terms,
+                size=(30, 3),
+                font=("Arial", 14),
+                key="_next_"
+            ),
+        ],
+        [
+            sg.Text("Topic:", font=("Arial", 14)),
+            sg.Combo(
+                topics, font=("Arial", 14), readonly=True, disabled=True, key="_topics_"
+            ),
         ],
         [sg.Text("")],
         [
@@ -202,6 +249,9 @@ def launch():
             original_values = values
             print("Search for query: " + str(original_query))
 
+            topic = values["_topics_"]
+            print("Chosen topic: " + topic)
+
             # create context object
             ctx = construct_context(values)
 
@@ -261,6 +311,24 @@ def launch():
             print("Displaying edit distance suggestions")
             SuggestionPopup(suggestions)
 
+        elif event is "_uottawa_":
+            # no topics for uOttawa corpus
+            window["_topics_"].Update(disabled=True)
+
+        elif event is "_reuters_":
+            # enable topics for Reuters
+            window["_topics_"].Update(disabled=False)
+            window["_topics_"].Update(
+                readonly=True
+            )  # must be done in separate Update calls
+
+        elif event in "_query_":
+            # TODO: call query next term suggestion module here
+            # Temp to make sure I can update the UI with suggestions as the user types
+            curr = window["_query_"].Get()
+            next_terms = [curr + " suggestion 1", curr + " suggestion 2", curr + " suggestion 3"]
+            window["_next_"].Update(values=next_terms)
+
         else:
             print(event)
 
@@ -308,10 +376,16 @@ def format_results(documents, scores):
 
 # return a Context object with the user's selections
 def construct_context(values):
-    # once we have multiple corpora, these variables will be defined based on user selection: values["_uottawa_"] or values["_reuters_"]
-    corpus_path = path.abspath("data/corpus/UofO_Courses.yaml")
-    dictionary_path = path.abspath("data/dictionary/UofOCourses.txt")
-    inverted_index_path = path.abspath("data/index/UofO_Courses.yaml")
+    if values["_uottawa_"]:
+        corpus_path = path.abspath("data/corpus/UofO_Courses.yaml")
+        dictionary_path = path.abspath("data/dictionary/UofOCourses.txt")
+        inverted_index_path = path.abspath("data/index/UofO_Courses.yaml")
+    elif values["_reuters_"]:
+        # TODO: implement Reuters
+        print("*** Reuters not yet implemented; using uOttawa corpus for now! ***")
+        corpus_path = path.abspath("data/corpus/UofO_Courses.yaml")
+        dictionary_path = path.abspath("data/dictionary/UofOCourses.txt")
+        inverted_index_path = path.abspath("data/index/UofO_Courses.yaml")
 
     ctx = Context(
         corpus_path,
@@ -321,6 +395,7 @@ def construct_context(values):
         enable_stemming=values["_stemming_"],
         enable_normalization=values["_normalization_"],
     )
+
     # eager load if not already in memory
     CorpusAccessor(ctx)
     Dictionary(ctx)
