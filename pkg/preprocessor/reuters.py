@@ -1,8 +1,4 @@
 from yaml import dump_all
-<<<<<<< HEAD
-
-=======
->>>>>>> preprocess reuters collection
 try:
     from yaml import CDumper as Dumper
 except ImportError:
@@ -21,29 +17,16 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 logger.addHandler(logging.StreamHandler(sys.stdout))
 
-<<<<<<< HEAD
-
-def reuters_preprocessor(infile_path, outfile_path):
-    return ReutersPreProcessor(infile_path, outfile_path)
-
-
-class ReutersPreProcessor:
-=======
 def reuters_preprocessor(infile_path, outfile_path):
     return ReutersPreProcessor(infile_path, outfile_path)
 
 class ReutersPreProcessor:
 
->>>>>>> preprocess reuters collection
     def __init__(self, infile_path, outfile_path):
         self.infile_path = infile_path
         self.outfile_path = outfile_path
         self.corpus = []
-<<<<<<< HEAD
-        self.ignored = 0  # Might not need this
-=======
         self.ignored = 0 # Might not need this
->>>>>>> preprocess reuters collection
 
     def preprocess(self):
         # if path.exists(self.outfile_path):
@@ -108,10 +91,6 @@ class ReutersPreProcessor:
         return raw.string
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> preprocess reuters collection
 class Article(Queryable):
     ArticleID = 0
 
@@ -121,20 +100,10 @@ class Article(Queryable):
         self.title = title
         self.body = body
 
-<<<<<<< HEAD
-    def read_queryable(self):
-        return f"{self.title} {str.join(' ', self.topics)} {self.body}"
-
-=======
->>>>>>> preprocess reuters collection
     def __str__(self):
         return f"ID: {self.id}, Topics: {self.topics}, Title: {self.title}, Body: {self.body}"
 
     @staticmethod
     def next_id():
         Article.ArticleID += 1
-<<<<<<< HEAD
         return Article.ArticleID
-=======
-        return Article.ArticleID
->>>>>>> preprocess reuters collection
