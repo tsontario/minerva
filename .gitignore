@@ -1,6 +1,3 @@
-# Ignore the raw reuters collection (too big)
-data/raw/reuters
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
