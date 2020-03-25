@@ -801,7 +801,7 @@ bigrams:
   tokens: !!python/tuple
   - LORD
   - ABBETT
-  freq: 6
+  freq: 7
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - May
@@ -1398,11 +1398,6 @@ doc_id: 1695
 bigrams:
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
-  - ''
-  - Stocks
-  freq: 6
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
   - 1985/86
   - at
   freq: 6
@@ -1688,26 +1683,6 @@ doc_id: 1716
 bigrams:
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
-  - ''
-  - 1986/87
-  freq: 15
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - Average
-  freq: 7
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - Planted
-  freq: 6
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - Start
-  freq: 8
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
   - 03/09/87
   - 04/09/87
   freq: 25
@@ -1744,8 +1719,8 @@ bigrams:
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - Note
-  - ''
-  freq: 15
+  - Average
+  freq: 7
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - Start
@@ -1764,23 +1739,13 @@ bigrams:
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - acres
-  - ''
-  freq: 6
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - bu
-  - ''
-  freq: 6
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - cont
-  - ''
+  - Planted
   freq: 6
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - cont
   - 1986/87
-  freq: 6
+  freq: 12
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - dlrs
@@ -1877,11 +1842,6 @@ bigrams:
   freq: 8
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
-  - Note
-  - ''
-  freq: 7
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
   - balance
   - due
   freq: 7
@@ -1963,11 +1923,6 @@ bigrams:
   - mln
   - tonnes
   freq: 6
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - tonnes
-  - ''
-  freq: 6
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 1749
 bigrams:
@@ -1979,11 +1934,6 @@ bigrams:
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 1752
 bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - 1986/87
-  freq: 6
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - 03/09/87
@@ -2013,7 +1963,7 @@ bigrams:
   tokens: !!python/tuple
   - COARSE
   - GRAIN
-  freq: 6
+  freq: 7
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - End
@@ -2047,8 +1997,8 @@ bigrams:
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - tonnes
-  - ''
-  freq: 7
+  - 1986/87
+  freq: 6
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 1759
 bigrams:
@@ -3517,22 +3467,6 @@ bigrams:
   - The
   freq: 8
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
-doc_id: 3072
-bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - ''
-  freq: 6
---- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
-doc_id: 3081
-bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - ''
-  freq: 12
---- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 3092
 bigrams:
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
@@ -3604,14 +3538,6 @@ bigrams:
   - stg
   freq: 7
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
-doc_id: 3154
-bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - ''
-  freq: 10
---- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 3159
 bigrams:
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
@@ -3665,14 +3591,6 @@ bigrams:
   - the
   freq: 6
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
-doc_id: 3232
-bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - ''
-  freq: 33
---- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 3262
 bigrams:
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
@@ -3694,21 +3612,8 @@ bigrams:
   - stg
   freq: 7
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
-doc_id: 3270
-bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - ''
-  freq: 16
---- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 3300
 bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - in
-  freq: 6
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - Acquired
@@ -3759,14 +3664,6 @@ bigrams:
   tokens: !!python/tuple
   - '5.00'
   - pct
-  freq: 6
---- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
-doc_id: 3325
-bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - ''
   freq: 6
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 3330
@@ -5795,14 +5692,6 @@ bigrams:
   - the
   - buffer
   freq: 7
---- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
-doc_id: 4881
-bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - acres
-  - ''
-  freq: 10
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 4883
 bigrams:
@@ -8919,6 +8808,11 @@ doc_id: 7835
 bigrams:
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
+  - EIU
+  - said
+  freq: 6
+- !!python/object:pkg.bigram_lang_model.reuters.Bigram
+  tokens: !!python/tuple
   - It
   - said
   freq: 7
@@ -9040,7 +8934,7 @@ bigrams:
   tokens: !!python/tuple
   - EIU
   - said
-  freq: 6
+  freq: 7
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - It
@@ -9706,7 +9600,7 @@ bigrams:
   tokens: !!python/tuple
   - LORD
   - ABBETT
-  freq: 6
+  freq: 7
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - Pay
@@ -9880,11 +9774,6 @@ bigrams:
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 8691
 bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - Offering
-  freq: 6
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - Offering
@@ -13442,11 +13331,6 @@ bigrams:
   freq: 12
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
-  - Gulf
-  - ''
-  freq: 9
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
   - dlrs
   - FOB
   freq: 11
@@ -16359,11 +16243,6 @@ bigrams:
   freq: 6
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
-  - LONDON
-  - ''
-  freq: 7
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
   - Ltd
   - said
   freq: 6
@@ -16448,14 +16327,6 @@ bigrams:
   - case
   freq: 7
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
-doc_id: 14860
-bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - ''
-  freq: 10
---- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 14865
 bigrams:
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
@@ -16463,14 +16334,6 @@ bigrams:
   - billion
   - lire
   freq: 7
---- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
-doc_id: 14918
-bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - ''
-  freq: 33
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 14937
 bigrams:
@@ -16508,14 +16371,9 @@ doc_id: 14977
 bigrams:
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
-  - ''
-  - UNC
-  freq: 18
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
   - MAY
-  - ''
-  freq: 17
+  - UNC
+  freq: 13
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - OVER
@@ -16627,14 +16485,6 @@ bigrams:
   - Exchange
   freq: 6
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
-doc_id: 15073
-bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - ''
-  freq: 45
---- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 15088
 bigrams:
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
@@ -16645,11 +16495,6 @@ bigrams:
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 15092
 bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - 'No'
-  freq: 7
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - 'No'
@@ -16728,18 +16573,8 @@ doc_id: 15127
 bigrams:
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
-  - ''
-  - NEW
-  freq: 7
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
   - NEW
   - YORK
-  freq: 7
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - YORK
-  - ''
   freq: 7
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 15128
@@ -16979,14 +16814,6 @@ bigrams:
   - in
   freq: 6
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
-doc_id: 15391
-bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - offered
-  - ''
-  freq: 7
---- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 15394
 bigrams:
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
@@ -17012,14 +16839,6 @@ bigrams:
   - in
   - the
   freq: 8
---- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
-doc_id: 15423
-bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - ''
-  - ''
-  freq: 45
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 15427
 bigrams:
@@ -19277,11 +19096,6 @@ bigrams:
 --- !!python/object:pkg.bigram_lang_model.reuters.ReutersBigramLangModel
 doc_id: 17106
 bigrams:
-- !!python/object:pkg.bigram_lang_model.reuters.Bigram
-  tokens: !!python/tuple
-  - mln
-  - ''
-  freq: 7
 - !!python/object:pkg.bigram_lang_model.reuters.Bigram
   tokens: !!python/tuple
   - mln

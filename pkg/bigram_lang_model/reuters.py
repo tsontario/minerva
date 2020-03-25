@@ -37,14 +37,20 @@ class ReutersBigramLangModel:
     def _bigram_lang_model_for_doc(doc):
         model_for_doc = ReutersBigramLangModel(doc.id)
         body_tokens = doc.body.split()
+        title_tokens = doc.title.split()
+        print(title_tokens)
+        for i, v in enumerate(title_tokens):
+            title_tokens[i] = v.strip(string.punctuation)  # Remove trailing punctuation
         for i, v in enumerate(body_tokens):
             body_tokens[i] = v.strip(string.punctuation)  # Remove trailing punctuation
-        zipped = zip(
+        body_tokens = [t for t in body_tokens if t]
+        zipped_body = zip(
             body_tokens[:], body_tokens[1:]
         )  # sorting is necessary for groupby to work, below
-        sorted_bigrams = list(
-            zipped
-        )  # No clue why we need to break this apart so many lines :(
+        zipped_title = zip(
+            title_tokens[:], title_tokens[1:]
+        )
+        sorted_bigrams = list(zipped_body) + list(zipped_title) # No clue why we need to break this apart so many lines :(
         sorted_bigrams.sort()
         # Get all bigrams, group same bigrams together and count.
         bigram_groups_filtered = filter(
