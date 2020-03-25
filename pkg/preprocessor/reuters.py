@@ -99,6 +99,9 @@ class Article(Queryable):
         self.title = title
         self.body = body
 
+    def read_queryable(self):
+        return f"{self.title} {str.join(' ', self.topics)} {self.body}"
+
     def __str__(self):
         return f"ID: {self.id}, Topics: {self.topics}, Title: {self.title}, Body: {self.body}"
 
