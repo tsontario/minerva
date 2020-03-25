@@ -10,6 +10,7 @@ import string
 from itertools import groupby
 from ..wordmodifiers import context
 
+
 class ReutersBigramLangModel:
     @staticmethod
     def generate(ctx):
@@ -36,11 +37,8 @@ class ReutersBigramLangModel:
     def _bigram_lang_model_for_doc(doc):
         model_for_doc = ReutersBigramLangModel(doc.id)
         body_tokens = doc.body.split()
-        translator = str.maketrans(
-            "", "", string.punctuation
-        )  # https://stackoverflow.com/questions/34293875/how-to-remove-punctuation-marks-from-a-string-in-python-3-x-using-translate
         for i, v in enumerate(body_tokens):
-            body_tokens[i] = v.translate(translator)
+            body_tokens[i] = v.strip(string.punctuation)  # Remove trailing punctuation
         zipped = zip(
             body_tokens[:], body_tokens[1:]
         )  # sorting is necessary for groupby to work, below

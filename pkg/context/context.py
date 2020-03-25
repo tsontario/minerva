@@ -51,10 +51,11 @@ class Context:
         # and using that to name our language model file, eliminating the need for us to pass it in explicitly.
         filename = path.basename(self.corpus_path())
         (base, _) = path.splitext(filename)
+        # We choose not to apply any normalizers/filters on the bigram (though we do remove trailing punctuation)
         return path.join(
             path.dirname(path.dirname(self.corpus_path())),
             "lang_model",
-            f"{base}_{self._digest()}.yaml",
+            f"{base}.yaml",
         )
 
     def weighted_index_path(self):

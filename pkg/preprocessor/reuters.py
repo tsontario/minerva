@@ -1,4 +1,5 @@
 from yaml import dump_all
+
 try:
     from yaml import CDumper as Dumper
 except ImportError:
@@ -17,16 +18,17 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 logger.addHandler(logging.StreamHandler(sys.stdout))
 
+
 def reuters_preprocessor(infile_path, outfile_path):
     return ReutersPreProcessor(infile_path, outfile_path)
 
-class ReutersPreProcessor:
 
+class ReutersPreProcessor:
     def __init__(self, infile_path, outfile_path):
         self.infile_path = infile_path
         self.outfile_path = outfile_path
         self.corpus = []
-        self.ignored = 0 # Might not need this
+        self.ignored = 0  # Might not need this
 
     def preprocess(self):
         # if path.exists(self.outfile_path):
@@ -51,17 +53,14 @@ class ReutersPreProcessor:
                     topics = []
                     for tagged_topic in article.topics.find_all("d"):
                         topics.append(str(tagged_topic.string))
-                    title = self._parse_attribute(article, "title") 
+                    title = self._parse_attribute(article, "title")
                     print(f"{infile}: {title}")
                     body = self._parse_attribute(article, "body")
                     if body is None or title is None:
                         continue
-                    self.corpus.append(Article(
-                        topics,
-                        str(title.string),
-                        str(body.string)
-                    ))
-
+                    self.corpus.append(
+                        Article(topics, str(title.string), str(body.string))
+                    )
 
     def write_outfile(self):
         outfile = self._outfile()
