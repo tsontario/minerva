@@ -45,6 +45,19 @@ class Context:
             + f"_bigram_index_{self._digest()}.yaml"
         )
 
+    def bigram_lang_model_path(self):
+        # A bit ugly, but we need to do this to accommodate creating OttawaU and Reuters bigram language models
+        # with minimal changes to the Context initializer. In essence, we're grabbing the basename of the source corpus
+        # and using that to name our language model file, eliminating the need for us to pass it in explicitly.
+        filename = path.basename(self.corpus_path())
+        (base, _) = path.splitext(filename)
+        # We choose not to apply any normalizers/filters on the bigram (though we do remove trailing punctuation)
+        return path.join(
+            path.dirname(path.dirname(self.corpus_path())),
+            "lang_model",
+            f"{base}.yaml",
+        )
+
     def weighted_index_path(self):
         return (
             self._inverted_index_path.strip(".yaml")
