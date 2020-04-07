@@ -1,4 +1,9 @@
-from pkg.index import OttawaUIndexBuilder, WeightedIndexAccessor, IndexAccessor
+from pkg.index import (
+    OttawaUIndexBuilder,
+    ReutersIndexBuilder,
+    WeightedIndexAccessor,
+    IndexAccessor,
+)
 from pkg.corpusaccess import CorpusAccessor
 from pkg.wordmodifiers import context
 

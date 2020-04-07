@@ -8,6 +8,7 @@ except ImportError:
 from os import path
 from .invertedindex import IndexValue
 import pkg.index.ottawau as ottawau
+import pkg.index.reuters as reuters
 
 
 class BigramIndexAccessor:
@@ -18,7 +19,8 @@ class BigramIndexAccessor:
         def __init__(self, ctx):
             self.ctx = ctx
             if not path.exists(ctx.bigram_index_path()):
-                ottawau.OttawaUIndexBuilder(ctx).build_bigram_index()
+                reuters.ReutersIndexBuilder(ctx).build_bigram_index()
+                # ottawau.OttawaUIndexBuilder(ctx).build_bigram_index()
             with open(self.ctx.bigram_index_path(), "r") as bigram_index_handle:
                 self.index = load(bigram_index_handle, Loader=Loader)
 
@@ -44,7 +46,9 @@ class WeightedIndexAccessor:
         def __init__(self, ctx):
             self.ctx = ctx
             if not path.exists(ctx.weighted_index_path()):
-                ottawau.OttawaUIndexBuilder(ctx).build_weighted_index()
+                # TODO match context path (regexp) for reuters or ottawau
+                reuters.ReutersIndexBuilder(ctx).build_weighted_index()
+                # ottawau.OttawaUIndexBuilder(ctx).build_weighted_index()
             with open(self.ctx.weighted_index_path(), "r") as weighted_index_handle:
                 self.index = load(weighted_index_handle, Loader=Loader)
 
@@ -73,7 +77,8 @@ class IndexAccessor:
         def __init__(self, ctx):
             self.ctx = ctx
             if not path.exists(ctx.inverted_index_path()):
-                ottawau.OttawaUIndexBuilder(ctx).build()
+                # ottawau.OttawaUIndexBuilder(ctx).build()
+                reuters.ReutersIndexBuilder(ctx).build()
             with open(self.ctx.inverted_index_path(), "r") as index_handle:
                 self.index = load(index_handle, Loader=Loader)
 

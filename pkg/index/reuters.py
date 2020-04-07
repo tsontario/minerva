@@ -14,7 +14,7 @@ from math import log10
 import nltk
 from .indexbuilder import IndexBuilder
 from .invertedindex import IndexValue
-from .indexaccessor import IndexAccessor
+import pkg.index.indexaccessor as indexaccessor
 from ..dictionary import Dictionary, DictBuilder
 from ..wordmodifiers import context
 from ..corpusaccess import CorpusAccessor
@@ -49,7 +49,7 @@ class ReutersIndexBuilder(IndexBuilder):
     def build_bigram_index(self):
         index = defaultdict(default_index_value)
 
-        index_accessor = IndexAccessor(self.ctx)
+        index_accessor = indexaccessor.IndexAccessor(self.ctx)
         keys = index_accessor.index[self.ctx.inverted_index_path()].index.keys()
 
         for key in keys:
@@ -96,7 +96,7 @@ class ReutersIndexBuilder(IndexBuilder):
         corpus_accessor = CorpusAccessor(self.ctx)
         corpus = corpus_accessor.corpora[self.ctx.corpus_path()].documents
 
-        index_accessor = IndexAccessor(self.ctx)
+        index_accessor = indexaccessor.IndexAccessor(self.ctx)
         index = index_accessor.index[self.ctx.inverted_index_path()].index
 
         # getting idf values for indices
@@ -132,9 +132,10 @@ class ReutersIndexBuilder(IndexBuilder):
                 term_counter[term] += 1  # increment term count for document
 
             for term, freq in term_counter.items():
-                tf = (log10(freq) + 1) if freq > 0 else 0
-                idf = idfs[term]
-                weighted_index[term][docID] = tf * idf
+                if term in idfs:
+                    tf = (log10(freq) + 1) if freq > 0 else 0
+                    idf = idfs[term]
+                    weighted_index[term][docID] = tf * idf
 
         with open(self.ctx.weighted_index_path(), "w") as weighted_handle:
             dump(
