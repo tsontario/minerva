@@ -5,7 +5,12 @@ try:
 except ImportError:
     from yaml import Loader, Dumper
 
+import time
+from itertools import chain
+from collections import Counter
+
 from ..vsm import VectorSpaceModel
+from pkg.corpusaccess import CorpusAccessor
 
 
 class TopicLearner:
@@ -18,6 +23,7 @@ class TopicLearner:
     # So... one static method: learn(ctx)
     def __init__(self, ctx, k=5):
         self.ctx = ctx
+        self.corpus_accessor = CorpusAccessor(ctx)
         self.training_set = []
         self.unclassified_set = []
         self.k = k
@@ -40,11 +46,35 @@ class TopicLearner:
             f"Size of training set: {len(self.training_set)}\nSize of articles to categorize: {len(self.unclassified_set)}"
         )
 
+    # Using the training set, classify documents with missing topics
     def _classify(self):
         print("loading VSM")
+        start = time.time()
         vsm = VectorSpaceModel(self.ctx)
-        # for article in self.unclassified_set:
-        print(vsm.search(self.ctx, self.unclassified_set[0].read_queryable()))
+        end = time.time()
+        print(f"loading VSM took {end - start} seconds")
+        for article in self.unclassified_set:
+            start = time.time()
+            results = vsm.search(self.ctx, self.unclassified_set[0].read_queryable())
+            documents = self.corpus_accessor.access(self.ctx, [r[0] for r in results])
+            documents = [d for d in documents if len(d.topics) > 0]
+            self._assign_topics(article, documents)
+            print(f"New topics for {article.title}: {article.topics}")
+            end = time.time()
+            print(f"Time elapsed for {article.title}: {end - start} seconds")
 
     def _write(self):
         print("STUB")
+
+    # Given a set of documents that are the nearest neightbours of article, extract the relevant topics
+    # Strategy: from N nearest negihbours, assign topics that appear in the majority
+    def _assign_topics(self, article, documents):
+        topics = chain.from_iterable([list(d.topics) for d in documents])
+        topics_with_occurrences = Counter(topics)
+        cur_max = 0
+        article.topics = [topics_with_occurrences.most_common(1)[0][0]]
+
+
+def filter_empty(l):
+    if len(l) == 0:
+        return False
