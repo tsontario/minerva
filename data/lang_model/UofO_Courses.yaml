@@ -1,0 +1,4421 @@
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 5
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - financial
+  - statements
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - financial
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 6
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Introduction
+  - to
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - an
+  - organization
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - decision
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - decision
+  - making
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - to
+  - support
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 7
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - problem
+  - solving
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 8
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Introduction
+  - to
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - in
+  - business
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 14
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 3
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 15
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - accounting
+  - practices
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 18
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - information
+  - systems
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 21
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Introduction
+  - to
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - strategy
+  - and
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - supply
+  - chain
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 22
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - materials
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - management
+  - and
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - organizations
+  - The
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - supply
+  - chain
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 24
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Big
+  - Data
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Introduction
+  - to
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - data
+  - mining
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - to
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 25
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - a
+  - business
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 26
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - competitive
+  - intelligence
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - competitive
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 27
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - to
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 29
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - in
+  - international
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - various
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 30
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 4
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - consumer
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 35
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - industrial
+  - relations
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 36
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - comparisons
+  - pay
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 39
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - cost
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - cost
+  - analysis
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 4
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - such
+  - as
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - different
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - to
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 41
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - introduction
+  - to
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 44
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - '3'
+  - credits
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - portfolio
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - credits
+  - in
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 4
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - portfolio
+  - management
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - program
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - year
+  - program
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 46
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 49
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - business
+  - process
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - business
+  - requirements
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 53
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - cas
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - for
+  - case
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 54
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - case
+  - competition
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - cas
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - case
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 55
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - "donn\xE9es"
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - gestion
+  - et
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - la
+  - recherche
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - que
+  - la
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 56
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - a
+  - minor
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - minor
+  - in
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 58
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - with
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 59
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - new
+  - economy
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 60
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Strategic
+  - entrepreneurship
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - behaviours
+  - supported
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - supported
+  - by
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 62
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - CSR
+  - and
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - sustainability
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 63
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - multinational
+  - corporations
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 64
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - institutional
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 66
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - group
+  - will
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - strategic
+  - promotional
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 67
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - analysis
+  - customer
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 68
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - international
+  - marketing
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 69
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - 'on'
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 71
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - change
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 72
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - how
+  - to
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - learn
+  - how
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - need
+  - to
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 73
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - human
+  - resource
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - human
+  - resources
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - human
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 74
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - acquired
+  - in
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - knowledge
+  - acquired
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - knowledge
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 75
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - concepts
+  - are
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 77
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - implications
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - corporate
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - tax
+  - implications
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 78
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - control
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - performance
+  - measurement
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 86
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - impact
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 87
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - risks
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - risk
+  - management
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 88
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - '3'
+  - credits
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - portfolio
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - credits
+  - in
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 4
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - portfolio
+  - management
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - program
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - year
+  - program
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 90
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - applications
+  - and
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - for
+  - web
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - web
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 92
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - in
+  - organizations
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - web
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - web
+  - technologies
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 96
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - au
+  - moins
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - au
+  - sein
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - cours
+  - ADM
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - travailler
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - in
+  - an
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - la
+  - mineure
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - les
+  - "\xE9tudiants"
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - mineure
+  - en
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - pour
+  - une
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - stage
+  - les
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - une
+  - "soci\xE9t\xE9"
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - working
+  - with
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "\xE0"
+  - la
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 97
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - NS
+  - non
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - travail
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - secteur
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - will
+  - be
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 98
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - NS
+  - non
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - travail
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - secteur
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - will
+  - be
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 99
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - conduct
+  - a
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "d\xE9sirent"
+  - poursuivre
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - interested
+  - in
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - pourront
+  - travailler
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - qui
+  - "d\xE9sirent"
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - sur
+  - un
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - travailler
+  - sur
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - un
+  - projet
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - will
+  - conduct
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 100
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - case
+  - competition
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - cas
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 101
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - area
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - interest
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - sous
+  - la
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - student
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 102
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - area
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - interest
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - sous
+  - la
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - student
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 108
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - accounting
+  - for
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - financial
+  - statements
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - financial
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 114
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - organizational
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - implementation
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 115
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - for
+  - information
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - information
+  - systems
+  freq: 4
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - information
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 116
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - control
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 117
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Project
+  - Management
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 118
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - project
+  - management
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 121
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Big
+  - Data
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - review
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - types
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 122
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - ERP
+  - systems
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - management
+  - issues
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 123
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Reduction
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - power
+  - requirements
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 124
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - social
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 125
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - chain
+  - management
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - managing
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - supply
+  - chain
+  freq: 6
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 127
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Big
+  - Data
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - review
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - types
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 130
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - public
+  - sector
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - sector
+  - management
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 133
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - 'on'
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 137
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - advertising
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 141
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - organization's
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 143
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - industrial
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - union-management
+  - relations
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 144
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - performance
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 145
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Equity
+  - and
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - human
+  - resources
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 146
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - control
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 147
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - financial
+  - statement
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - financial
+  - statements
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - financial
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 148
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - taxes
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - income
+  - and
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - payable
+  - corporate
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - taxable
+  - income
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - taxes
+  - payable
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 149
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 155
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - real
+  - estate
+  freq: 4
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 157
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - business
+  - enterprises
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - business
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 158
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - R
+  - and
+  freq: 4
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - D
+  freq: 4
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - support
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 159
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 161
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - decision
+  - support
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 162
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - tools
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - for
+  - systems
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - information
+  - systems
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - methods
+  - and
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - tools
+  - for
+  freq: 3
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 166
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - student
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 170
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Electronic
+  - Commerce
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Internet
+  - for
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - Internet
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 171
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Project
+  - Management
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - d'un
+  - projet
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - projet
+  freq: 4
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - gestion
+  - de
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - projet
+  - et
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 172
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - la
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - projet
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - des
+  - besoins
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - des
+  - projets
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - gestion
+  - de
+  freq: 5
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - projets
+  - en
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 173
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "R\xE9duction"
+  - des
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - affaires
+  - "\xE9lectroniques"
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - besoins
+  - en
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - des
+  - besoins
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - en
+  - "\xE9nergie"
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - par
+  - exemple
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - pour
+  - les
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 174
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - la
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 185
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - psychology
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 186
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - interpersonal
+  - relationships
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 187
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - learning
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 188
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - development
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - in
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 189
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - perception
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 192
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - human
+  - sexual
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - human
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - sexual
+  - behaviour
+  freq: 3
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 195
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - culture
+  freq: 3
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 198
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - development
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 199
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - language
+  - development
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 203
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - postsecondary
+  - education
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 205
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - in
+  - personality
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - each
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 208
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - cognitive
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 209
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Development
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - cognitive
+  - development
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 211
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - psychological
+  - disorders
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 212
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - approved
+  - by
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - by
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - a
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 213
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 217
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - examination
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - theoretical
+  - problems
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 219
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - major
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 220
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - in
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 221
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - by
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - a
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 222
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - by
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - a
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 223
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - by
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - a
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 225
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - approved
+  - by
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - by
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - a
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 238
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - theory
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - evaluation
+  - practice
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - program
+  - evaluation
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 240
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - social
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 241
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - social
+  - psychology
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 245
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - syndromes
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 246
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - to
+  - research
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 263
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "comp\xE9tences"
+  - professionnelles
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - et
+  - des
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - sur
+  - les
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 264
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "comp\xE9tences"
+  - professionnelles
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - et
+  - des
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - sur
+  - les
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 265
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "comp\xE9tences"
+  - professionnelles
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - et
+  - des
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - sur
+  - les
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 266
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - social
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 267
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - la
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - syndromes
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 269
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Ce
+  - practicum
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - aux
+  - "\xE9tudiants"
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - dans
+  - un
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - leurs
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - recherche
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - et
+  - de
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - practicum
+  - is
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 276
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - la
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - a
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 3
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 277
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - la
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - a
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 3
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 278
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - la
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - a
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 3
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 281
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - to
+  - both
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 282
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Evaluation
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - behaviour
+  - change
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - change
+  - research
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - in
+  - behaviour
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - research
+  - Evaluation
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 283
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - major
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - to
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 286
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - evoked
+  - potentials
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 287
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - evolution
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - evolution
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 288
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - community
+  - psychology
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - community
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 293
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - evaluation
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 295
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - pertain
+  - to
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - that
+  - pertain
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 296
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - assessment
+  - devices
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 298
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - video
+  - display
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 299
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - language
+  - behaviour
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 300
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - study
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 302
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - study
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 304
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - child
+  - psychotherapy
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - child
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 308
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - sleep
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - study
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 309
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - sleep
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - study
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 310
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - sleep
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - study
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 312
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - to
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 317
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - aspects
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 320
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - la
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - comportement
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - la
+  - neuroscience
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 322
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - des
+  - "\xE9v\xE9nements"
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - EEG
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - evoked
+  - potentials
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - potentiels
+  - "\xE9voqu\xE9s"
+  freq: 3
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 323
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - evolution
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - ex
+  - la
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - evolution
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 325
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - la
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - et
+  - de
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 327
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - la
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - la
+  - "sant\xE9"
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 328
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - stress
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - et
+  - des
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 329
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - evaluation
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 330
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - la
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - pertain
+  - to
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - that
+  - pertain
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 331
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - assessment
+  - devices
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - mesure
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - les
+  - questions
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - questions
+  - "\xE0"
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "\xE0"
+  - la
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "\xE0"
+  - "r\xE9ponse"
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 332
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - l'enfant
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 333
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - les
+  - techniques
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - video
+  - display
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "vid\xE9ographique"
+  - les
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 334
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - comportement
+  - langagier
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - cours
+  - est
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - langage
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - langage
+  - et
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - language
+  - behaviour
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 335
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - study
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 336
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "difficult\xE9s"
+  - d'apprentissage
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 337
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - study
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 339
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - grandes
+  - "soci\xE9t\xE9s"
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 340
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "diff\xE9rentes"
+  - "m\xE9thodes"
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "m\xE9thodes"
+  - de
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 342
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - sommeil
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - sleep
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - study
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "\xE0"
+  - "l'\xE9tude"
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 343
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - la
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - simulation
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 351
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Evaluation
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - health
+  - service
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 356
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - multicultural
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 365
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - les
+  - adolescents
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - les
+  - enfants
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 367
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - la
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 368
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - multicultural
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 369
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - et
+  - les
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - stress
+  - disorder
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 371
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - PSY
+  - '7916'
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 375
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Introduction
+  - to
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Students
+  - who
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - who
+  - have
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 376
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - instantaneous
+  - rate
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - change
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - rate
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 377
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - trigonometric
+  - functions
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 378
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - differential
+  - equations
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 379
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 380
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Applications
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - life
+  - sciences
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - to
+  - life
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 381
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Introduction
+  - to
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - differential
+  - equations
+  freq: 5
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - differential
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 382
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Applications
+  - to
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Ontario
+  - 4U
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - planes
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - three
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - derivatives
+  - of
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - in
+  - two
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - lines
+  - and
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - lines
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - three
+  - dimensions
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - two
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 383
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Review
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 384
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Introduction
+  - to
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 385
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 388
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - a
+  - statistical
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - statistical
+  - package
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 393
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - linear
+  - maps
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 396
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - differential
+  - equations
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 400
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Introduction
+  - to
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - mathematics
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - set
+  - theory
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - theory
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 405
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - differential
+  - equations
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - differential
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 406
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 408
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - function
+  - theorem
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 411
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - modules
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 412
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - in
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - plane
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 416
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - differential
+  - equations
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 425
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - domain
+  - methods
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 426
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - fixed
+  - point
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - methods
+  - for
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - point
+  - Newton
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 428
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Hilbert
+  - spaces
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Introduction
+  - to
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - 'on'
+  - Hilbert
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 429
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - measure
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 431
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - PDEs
+  - and
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - method
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 432
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - modules
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - ideals
+  - Hilbert
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - modules
+  - and
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - rings
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 434
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - field
+  - extensions
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - fundamental
+  - theorem
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - theorem
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 437
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - varieties
+  - over
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 442
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - number
+  - theory
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 443
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - random
+  - variables
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 451
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Markov
+  - processes
+  freq: 3
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 452
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Review
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - introduction
+  - to
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 458
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - models
+  - for
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 461
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - The
+  - student
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - student
+  - will
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 467
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - generating
+  - functions
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 470
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - measure
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 476
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - modules
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - ideals
+  - Hilbert
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - modules
+  - and
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - rings
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 477
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - field
+  - extensions
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - fundamental
+  - theorem
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - theorem
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 479
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - finitely
+  - generated
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - for
+  - finitely
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - generated
+  - algebras
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - a
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - rings
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 484
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - varieties
+  - over
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 492
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - denotational
+  - semantics
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - lambda
+  - calculi
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - models
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 499
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - random
+  - variables
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 507
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - differential
+  - equations
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - partial
+  - differential
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 509
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 510
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - differential
+  - equations
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 512
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - point
+  - estimation
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 542
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - compression
+  - methods
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 545
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Carleton
+  - University
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MATH
+  - '5900'
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 546
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Carleton
+  - University
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MATH
+  - '5901'
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 548
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - to
+  - be
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - upon
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 549
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Carleton
+  - University
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MATH
+  - '6900'
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 550
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Carleton
+  - University
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MATH
+  - '6901'
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 551
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - 30-40
+  - pages
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Carleton
+  - University
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MATH
+  - '5910'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - statistics
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - by
+  - the
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - des
+  - "\xE9tudes"
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - directeur
+  - des
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - director
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - en
+  - "math\xE9matiques"
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - et
+  - statistique
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - graduate
+  - studies
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - in
+  - mathematics
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - le
+  - directeur
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - mathematics
+  - and
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "math\xE9matiques"
+  - et
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - graduate
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - par
+  - le
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - director
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "\xE0"
+  - la
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "\xE9tudes"
+  - "sup\xE9rieures"
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 552
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Cet
+  - examen
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5125'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5525'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - exam
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - cours
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 553
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Cet
+  - examen
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5126'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5526'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - exam
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - cours
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 554
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Cet
+  - examen
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5141'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5541'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - exam
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - cours
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 555
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Cet
+  - examen
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5142'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5542'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - exam
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 556
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5151'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5551'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - exam
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - cours
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 557
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Cet
+  - examen
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5152'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5552'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - exam
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - cours
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 558
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Cet
+  - examen
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5131'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5531'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - exam
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - cours
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 559
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Cet
+  - examen
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5133'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - exam
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - cours
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 560
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Cet
+  - examen
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5105'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - exam
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 561
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Cet
+  - examen
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5107'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - exam
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - cours
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 562
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Cet
+  - examen
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5170'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - exam
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - cours
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 563
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Cet
+  - examen
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5171'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - exam
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 564
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5190'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - exam
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - cours
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 565
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Cet
+  - examen
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - MAT
+  - '5191'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - exam
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - du
+  - cours
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - course
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 566
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Le
+  - syllabus
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - NS
+  - non
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - The
+  - syllabus
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - advanced
+  - comprehensive
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - comprehensive
+  - examination
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - de
+  - "synth\xE8se"
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - examination
+  - The
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - l'examen
+  - de
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - the
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - pour
+  - l'examen
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "synth\xE8se"
+  - "avanc\xE9"
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - the
+  - advanced
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 567
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Basics
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - business
+  - problems
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 572
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - imperative
+  - logic
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - programming
+  - paradigms
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 574
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - in
+  - C
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 578
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Basics
+  - of
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - programming
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - programming
+  - languages
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 580
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - operating
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - operating
+  - systems
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 586
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Artificial
+  - Intelligence
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 587
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Information
+  - Retrieval
+  freq: 5
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - Information
+  freq: 3
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 589
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - distributed
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 590
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - compilers
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 592
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - simulation
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - modelling
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 598
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Security
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 599
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - parallel
+  freq: 4
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 600
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - in
+  - real-time
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - real-time
+  freq: 4
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - real-time
+  - systems
+  freq: 5
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 601
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - data
+  - analytics
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 613
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - may
+  - include
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 615
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - digital
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - software
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 617
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - data
+  - structures
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 618
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - usability
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 625
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - fault
+  - tolerance
+  freq: 3
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - techniques
+  - for
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 627
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - privacy
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - security
+  - and
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - usable
+  - security
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 632
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - COMP
+  - '5402'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - wireless
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - wireless
+  - networks
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 635
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - ad
+  - hoc
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - hoc
+  - networks
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 636
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - COMP
+  - '5007'
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 637
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - COMP
+  - '5205'
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 639
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - This
+  - course
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - elements
+  - of
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 640
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Algorithmic
+  - techniques
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 641
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - machine
+  - learning
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 642
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - simulation
+  - Distributed
+  freq: 3
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 645
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - combinatorial
+  - objects
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - exhaustive
+  - generation
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - for
+  - solving
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 648
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - other
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 653
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - could
+  - include
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - topics
+  - in
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 656
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - distributed
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 657
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - distributed
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - distributed
+  - databases
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 659
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - modeling
+  - and
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 661
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - statistical
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 662
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - data
+  - mining
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - of
+  - data
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 665
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - COMP
+  - '5902'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Carleton
+  - University
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 666
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - COMP
+  - '5901'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Carleton
+  - University
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 667
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - 'on'
+  - the
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 668
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - '5904'
+  - CSI
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - CSI
+  - '5903'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - CSI
+  - '5904'
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 669
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - '6900'
+  - CSI
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - COMP
+  - '5903'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - CSI
+  - '5900'
+  freq: 4
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - CSI
+  - '6900'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Carleton
+  - University
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - cours
+  - est
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - "\xE0"
+  - la
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 676
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - and
+  - testing
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 677
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - COMP
+  - '6902'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Carleton
+  - University
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 678
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - COMP
+  - '6901'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Carleton
+  - University
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 679
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - COMP
+  - '6908'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Carleton
+  - University
+  freq: 2
+--- !!python/object:pkg.bigram_lang_model.ottawau.OttawaUBigramLangModel
+doc_id: 680
+bigrams:
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - COMP
+  - '6907'
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - Carleton
+  - University
+  freq: 2
+- !!python/object:pkg.bigram_lang_model.bigram.Bigram
+  tokens: !!python/tuple
+  - may
+  - be
+  freq: 2
