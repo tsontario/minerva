@@ -113,8 +113,13 @@ def launch():
                 values=next_terms,
                 size=(30, 3),
                 font=("Arial", 14),
-                key="_next_"
+                key="_next_",
+                enable_events=True,
             ),
+            sg.Text(
+                "Click on a word to add it to your query.",
+                font=("Arial", 12, "italic"),
+            )
         ],
         [
             sg.Text("Topic:", font=("Arial", 14)),
@@ -323,11 +328,17 @@ def launch():
             )  # must be done in separate Update calls
 
         elif event in "_query_":
-            # TODO: call query next term suggestion module here
+            # TODO: call query completion module here to get next term suggestions
             # Temp to make sure I can update the UI with suggestions as the user types
-            curr = window["_query_"].Get()
-            next_terms = [curr + " suggestion 1", curr + " suggestion 2", curr + " suggestion 3"]
+            next_terms = ["suggestion_1", "suggestion_2", "suggestion_3"]
             window["_next_"].Update(values=next_terms)
+
+        elif event is "_next_":
+            next_term = values[event][0]
+            print("Adding term '" + next_term + "' to query")
+            new_query = window["_query_"].Get() + " " + next_term
+            window["_query_"].Update(value=new_query)
+            # TODO: call query completion module here to update UI 
 
         else:
             print(event)
