@@ -102,6 +102,9 @@ class Article(Queryable):
     def __str__(self):
         return f"ID: {self.id}, Topics: {self.topics}, Title: {self.title}, Body: {self.body}"
 
+    def read_queryable(self):
+        return f"{self.topics} {self.title} {self.body}"
+
     @staticmethod
     def next_id():
         Article.ArticleID += 1

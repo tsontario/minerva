@@ -8,6 +8,7 @@ except ImportError:
 from os import path
 from .invertedindex import IndexValue
 import pkg.index.ottawau as ottawau
+import pkg.index.reuters as reuters
 
 
 class BigramIndexAccessor:
@@ -18,9 +19,15 @@ class BigramIndexAccessor:
         def __init__(self, ctx):
             self.ctx = ctx
             if not path.exists(ctx.bigram_index_path()):
-                ottawau.OttawaUIndexBuilder(ctx).build_bigram_index()
+                self._build()
             with open(self.ctx.bigram_index_path(), "r") as bigram_index_handle:
                 self.index = load(bigram_index_handle, Loader=Loader)
+
+        def _build(self):
+            if self.ctx.corpus_type is "reuters":
+                reuters.ReutersIndexBuilder(self.ctx).build_bigram_index()
+            else:
+                ottawau.OttawaUIndexBuilder(self.ctx).build_bigram_index()
 
     def __init__(self, ctx):
         if ctx.bigram_index_path() not in self.index:
@@ -44,9 +51,15 @@ class WeightedIndexAccessor:
         def __init__(self, ctx):
             self.ctx = ctx
             if not path.exists(ctx.weighted_index_path()):
-                ottawau.OttawaUIndexBuilder(ctx).build_weighted_index()
+                self._build()
             with open(self.ctx.weighted_index_path(), "r") as weighted_index_handle:
                 self.index = load(weighted_index_handle, Loader=Loader)
+
+        def _build(self):
+            if self.ctx.corpus_type is "reuters":
+                reuters.ReutersIndexBuilder(self.ctx).build_weighted_index()
+            else:
+                ottawau.OttawaUIndexBuilder(self.ctx).build_weighted_index()
 
     def __init__(self, ctx):
         if ctx.weighted_index_path() not in self.index:
@@ -73,9 +86,15 @@ class IndexAccessor:
         def __init__(self, ctx):
             self.ctx = ctx
             if not path.exists(ctx.inverted_index_path()):
-                ottawau.OttawaUIndexBuilder(ctx).build()
+                self._build()
             with open(self.ctx.inverted_index_path(), "r") as index_handle:
                 self.index = load(index_handle, Loader=Loader)
+
+        def _build(self):
+            if self.ctx.corpus_type is "reuters":
+                reuters.ReutersIndexBuilder(self.ctx).build()
+            else:
+                ottawau.OttawaUIndexBuilder(self.ctx).build()
 
     def __init__(self, ctx):
         # if the index is not yet in accessor, then opportunistically load the index
