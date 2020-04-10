@@ -392,11 +392,9 @@ def construct_context(values):
         dictionary_path = path.abspath("data/dictionary/UofOCourses.txt")
         inverted_index_path = path.abspath("data/index/UofO_Courses.yaml")
     elif values["_reuters_"]:
-        # TODO: implement Reuters
-        print("*** Reuters not yet implemented; using uOttawa corpus for now! ***")
-        corpus_path = path.abspath("data/corpus/UofO_Courses.yaml")
-        dictionary_path = path.abspath("data/dictionary/UofOCourses.txt")
-        inverted_index_path = path.abspath("data/index/UofO_Courses.yaml")
+        corpus_path = path.abspath("data/corpus/reuters.yaml")
+        dictionary_path = path.abspath("data/dictionary/reuters.txt")
+        inverted_index_path = path.abspath("data/index/reuters.yaml")
 
     ctx = Context(
         corpus_path,
