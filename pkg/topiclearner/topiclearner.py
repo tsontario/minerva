@@ -55,13 +55,30 @@ class TopicLearner:
         print(f"loading VSM took {end - start} seconds")
         for article in self.unclassified_set:
             start = time.time()
-            results = vsm.search(self.ctx, self.unclassified_set[0].read_queryable())
+            results = vsm.search(self.ctx, article.read_queryable())
             documents = self.corpus_accessor.access(self.ctx, [r[0] for r in results])
             documents = [d for d in documents if len(d.topics) > 0]
+            documents = documents[: min(5, len(documents))]
+            if len(documents) == 0:
+                print(
+                    f"No possible topic neighbours for {article.title}, skipping assignment"
+                )
+                continue
             self._assign_topics(article, documents)
             print(f"New topics for {article.title}: {article.topics}")
             end = time.time()
             print(f"Time elapsed for {article.title}: {end - start} seconds")
+        full_set = self.unclassified_set + self.training_set
+        with open(self.ctx.corpus_path(), "w") as outfile:
+            dump_all(
+                full_set,
+                outfile,
+                explicit_start=True,
+                default_flow_style=False,
+                sort_keys=False,
+                indent=2,
+                Dumper=Dumper,
+            )
 
     def _write(self):
         print("STUB")
@@ -71,8 +88,16 @@ class TopicLearner:
     def _assign_topics(self, article, documents):
         topics = chain.from_iterable([list(d.topics) for d in documents])
         topics_with_occurrences = Counter(topics)
-        cur_max = 0
-        article.topics = [topics_with_occurrences.most_common(1)[0][0]]
+        article.topics = [
+            k for (k, val) in topics_with_occurrences.items() if val > self.k / 2
+        ]  # majority
+        if len(article.topics) == 0:
+            # If no clear majority topics, just take the most common topic(s)
+            print(f"No majority topics from {topics_with_occurrences}")
+            most_common = max(topics_with_occurrences.values())
+            article.topics = [
+                k for (k, val) in topics_with_occurrences.items() if val == most_common
+            ]
 
 
 def filter_empty(l):
