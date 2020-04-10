@@ -13,7 +13,7 @@ from pkg.booleanretrieval import Parser, Evaluator
 # code snippets taken from various demos at https://pysimplegui.readthedocs.io/
 def launch():
     # results table info
-    headings = ["DocID", "Title", "Excerpt", "Score"]
+    headings = ["DocID", "Title", "Excerpt", "Topic", "Score"]
     data = []
 
     # query data for edit distance and 'resending' query
@@ -22,31 +22,19 @@ def launch():
     updated_query = ""
     suggestions = []
     ctx = Context("", "", "")
+    
+    # for query suggestions
+    next_terms = [] 
 
     # Reuters topics
-    # TODO: get topics dynamically
-    # temp partial list of topics taken from "all-topics-strings.lc.txt"
-    topics = [
-        "[TEMP!!]",
-        "acq",
-        "alum",
-        "austdlr",
-        "austral",
-        "barley",
-        "bfr",
-        "bop",
-        "can",
-        "carcass",
-        "castor-meal",
-        "castor-oil",
-        "castorseed",
-        "citruspulp",
-        "cocoa",
-        "coconut",
-        "coconut-oil"
-    ]
+    # get topics from "all-topics-strings.lc.txt"
+    # topic_file = "/data/raw/reuters/all-topics-strings.lc.txt"
+    topic_file = path.abspath(path.join("data", "raw", "reuters", "all-topics-strings.lc.txt"))
+    topics = [] 
+    with open(topic_file) as f:
+        topics = ["ALL TOPICS"] + f.read().splitlines()
+        # topics.extend(f.read().splitlines())
 
-    next_terms = []
 
     # built in colour scheme
     sg.theme("Reddit")
@@ -168,7 +156,7 @@ def launch():
                 num_rows=8,
                 alternating_row_color="#d3d3d3",
                 auto_size_columns=False,
-                col_widths=[8, 12, 32, 8],
+                col_widths=[8, 12, 32, 8, 8],
                 justification="center",
                 key="_table_",
             )
@@ -187,7 +175,10 @@ def launch():
 
     # popup that shows full text of document
     def DocPopup(doc):
-        text = str(doc[0]) + ": " + str(doc[1]) + "\n" + str(doc[2])
+        text = ""
+        for i in doc:
+            text += str(i) + "\n"
+        # text = str(doc[0]) + ": " + str(doc[1]) + "\n" + str(doc[2])
         return sg.PopupScrolled(
             text, title=doc[1], font=("Arial", 12), size=(64, None), keep_on_top=True
         )
@@ -364,23 +355,37 @@ def search(model, query, ctx):
         documents = corpus_accessor.access(ctx, data)
         scores = [1] * len(data)
 
-    return format_results(documents, scores)
+    return format_results(documents, scores, ctx)
 
 
 # format documents for table UI element
-def format_results(documents, scores):
+def format_results(documents, scores, ctx):
     data = []
 
-    for i in range(len(documents)):
-        d = documents[i]
-        data.append(
-            [
-                d.id,
-                str(d.course.faculty) + " " + str(d.course.code),
-                d.course.contents,
-                scores[i],
-            ]
-        )
+    if ctx.corpus_type() is "reuters":
+        for i in range(len(documents)):
+            d = documents[i]
+            data.append(
+                [
+                    d.id,
+                    d.title,
+                    d.body,
+                    d.topics,
+                    scores[i],
+                ]
+            )
+    else:
+        for i in range(len(documents)):
+            d = documents[i]
+            data.append(
+                [
+                    d.id,
+                    str(d.course.faculty) + " " + str(d.course.code),
+                    d.course.contents,
+                    "N/A",
+                    scores[i],
+                ]
+            )
 
     return data
 

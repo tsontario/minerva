@@ -24,7 +24,7 @@ class BigramIndexAccessor:
                 self.index = load(bigram_index_handle, Loader=Loader)
 
         def _build(self):
-            if self.ctx.corpus_type is "reuters":
+            if self.ctx.corpus_type() is "reuters":
                 reuters.ReutersIndexBuilder(self.ctx).build_bigram_index()
             else:
                 ottawau.OttawaUIndexBuilder(self.ctx).build_bigram_index()
@@ -56,7 +56,7 @@ class WeightedIndexAccessor:
                 self.index = load(weighted_index_handle, Loader=Loader)
 
         def _build(self):
-            if self.ctx.corpus_type is "reuters":
+            if self.ctx.corpus_type() is "reuters":
                 reuters.ReutersIndexBuilder(self.ctx).build_weighted_index()
             else:
                 ottawau.OttawaUIndexBuilder(self.ctx).build_weighted_index()
@@ -91,7 +91,7 @@ class IndexAccessor:
                 self.index = load(index_handle, Loader=Loader)
 
         def _build(self):
-            if self.ctx.corpus_type is "reuters":
+            if self.ctx.corpus_type() is "reuters":
                 reuters.ReutersIndexBuilder(self.ctx).build()
             else:
                 ottawau.OttawaUIndexBuilder(self.ctx).build()
