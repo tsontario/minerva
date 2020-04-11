@@ -4,6 +4,7 @@ from os import path
 from pkg.context import Context
 from pkg.corpusaccess import CorpusAccessor
 from pkg.editdistance import EditDistance
+from pkg.queryexpansion import Expansion
 from pkg.dictionary import Dictionary
 from pkg.index import IndexAccessor, BigramIndexAccessor, WeightedIndexAccessor
 from pkg.vsm import VectorSpaceModel
@@ -13,7 +14,7 @@ from pkg.booleanretrieval import Parser, Evaluator
 # code snippets taken from various demos at https://pysimplegui.readthedocs.io/
 def launch():
     # results table info
-    headings = ["DocID", "Title", "Excerpt", "Topic", "Score"]
+    headings = ["DocID", "Title", "Topic", "Excerpt", "Score"]
     data = []
 
     # query data for edit distance and 'resending' query
@@ -22,19 +23,18 @@ def launch():
     updated_query = ""
     suggestions = []
     ctx = Context("", "", "")
-    
+
     # for query suggestions
-    next_terms = [] 
+    next_terms = []
 
     # Reuters topics
     # get topics from "all-topics-strings.lc.txt"
-    # topic_file = "/data/raw/reuters/all-topics-strings.lc.txt"
-    topic_file = path.abspath(path.join("data", "raw", "reuters", "all-topics-strings.lc.txt"))
-    topics = [] 
+    topic_file = path.abspath(
+        path.join("data", "raw", "reuters", "all-topics-strings.lc.txt")
+    )
+    topics = []
     with open(topic_file) as f:
         topics = ["ALL TOPICS"] + f.read().splitlines()
-        # topics.extend(f.read().splitlines())
-
 
     # built in colour scheme
     sg.theme("Reddit")
@@ -107,12 +107,17 @@ def launch():
             sg.Text(
                 "Click on a word to add it to your query.",
                 font=("Arial", 12, "italic"),
-            )
+            ),
         ],
         [
             sg.Text("Topic:", font=("Arial", 14)),
             sg.Combo(
-                topics, font=("Arial", 14), readonly=True, disabled=True, key="_topics_"
+                topics,
+                font=("Arial", 14),
+                readonly=True,
+                disabled=True,
+                default_value="ALL TOPICS",
+                key="_topics_",
             ),
         ],
         [sg.Text("")],
@@ -156,7 +161,7 @@ def launch():
                 num_rows=8,
                 alternating_row_color="#d3d3d3",
                 auto_size_columns=False,
-                col_widths=[8, 12, 32, 8, 8],
+                col_widths=[8, 12, 8, 32, 8],
                 justification="center",
                 key="_table_",
             )
@@ -176,11 +181,12 @@ def launch():
     # popup that shows full text of document
     def DocPopup(doc):
         text = ""
-        for i in doc:
-            text += str(i) + "\n"
-        # text = str(doc[0]) + ": " + str(doc[1]) + "\n" + str(doc[2])
+        sections = ["DocID", "Title", "Topics", "Full Text"]
+        for i in range(len(sections)):
+            text += sections[i] + ": " + str(doc[i]) + "\n"
+
         return sg.PopupScrolled(
-            text, title=doc[1], font=("Arial", 12), size=(64, None), keep_on_top=True
+            text, title=doc[1], font=("Arial", 12), size=(64, 15), keep_on_top=True
         )
 
     # popup that shows top N suggestions per query term
@@ -200,6 +206,24 @@ def launch():
             font=("Arial", 12),
             size=(64, None),
             keep_on_top=True,
+        )
+
+    def ExpansionPopup(expansions):
+        text = "Accept these expansions?\n"
+
+        for term in expansions.items():
+            text += term[0] + " -- "
+            for t in term[1]:
+                text += t + ", "
+            text += "\n"
+
+        sg.theme("BrownBlue")
+
+        return sg.PopupYesNo(
+            text,
+            title="Expansions",
+            font=("Arial", 12, "bold"),
+            keep_on_top=True
         )
 
     # turns edit distance UI elements on or off
@@ -247,6 +271,7 @@ def launch():
 
             topic = values["_topics_"]
             print("Chosen topic: " + topic)
+            print("Topic filtering not yet implemented!")  # TODO...
 
             # create context object
             ctx = construct_context(values)
@@ -271,11 +296,24 @@ def launch():
                 toggle_resend(True)
                 print("Corrected query: " + updated_query)
 
+            print("Getting expansions")
+            expanded_query = updated_query
+            expansions = Expansion(ctx).expand(expanded_query)
+            
+            do_expansion = "No"
+            if expansions != {}:
+                do_expansion = ExpansionPopup(expansions)
+                print(do_expansion)
+                sg.theme("Reddit")
+
+            if do_expansion == "Yes":
+                expanded_query = mix_in(expanded_query, expansions, values)
+
             # use chosen model to search corpus
             if values["_boolean_"]:
-                data = search("Boolean", updated_query, ctx)
+                data = search("Boolean", expanded_query, ctx)
             elif values["_vsm_"]:
-                data = search("VSM", updated_query, ctx)
+                data = search("VSM", expanded_query, ctx)
             else:
                 data = []
 
@@ -286,12 +324,25 @@ def launch():
 
             # don't display suggestion related UI elements
             toggle_resend(False)
+            
+            print("Getting expansions")
+            expanded_query = original_query
+            expansions = Expansion(ctx).expand(expanded_query)
+            
+            do_expansion = "No"
+            if expansions != {}:
+                do_expansion = ExpansionPopup(expansions)
+                print(do_expansion)
+                sg.theme("Reddit")
+
+            if do_expansion == "Yes":
+                expanded_query = mix_in(expanded_query, expansions, values)
 
             # redo search using chosen model to search corpus
             if original_values["_boolean_"]:
-                data = search("Boolean", original_query, ctx)
+                data = search("Boolean", expanded_query, ctx)
             elif original_values["_vsm_"]:
-                data = search("VSM", original_query, ctx)
+                data = search("VSM", expanded_query, ctx)
             else:
                 data = []
 
@@ -299,9 +350,12 @@ def launch():
 
         elif event is "_table_":
             print("Opening document")
-
-            doc = data[values[event][0]]
-            DocPopup(doc)
+            try:
+                doc = data[values[event][0]]
+                DocPopup(doc)
+            except IndexError:
+                # so that clicking a weird part of the table doesn't crash the application
+                pass
 
         elif event is "_suggestions_":
             print("Displaying edit distance suggestions")
@@ -329,7 +383,7 @@ def launch():
             print("Adding term '" + next_term + "' to query")
             new_query = window["_query_"].Get() + " " + next_term
             window["_query_"].Update(value=new_query)
-            # TODO: call query completion module here to update UI 
+            # TODO: call query completion module here to update UI
 
         else:
             print(event)
@@ -366,13 +420,7 @@ def format_results(documents, scores, ctx):
         for i in range(len(documents)):
             d = documents[i]
             data.append(
-                [
-                    d.id,
-                    d.title,
-                    d.body,
-                    d.topics,
-                    scores[i],
-                ]
+                [d.id, d.title, d.topics, d.body, scores[i],]
             )
     else:
         for i in range(len(documents)):
@@ -381,8 +429,8 @@ def format_results(documents, scores, ctx):
                 [
                     d.id,
                     str(d.course.faculty) + " " + str(d.course.code),
-                    d.course.contents,
                     "N/A",
+                    d.course.contents,
                     scores[i],
                 ]
             )
@@ -417,3 +465,25 @@ def construct_context(values):
     BigramIndexAccessor(ctx)
     WeightedIndexAccessor(ctx)
     return ctx
+
+
+def mix_in(query, expansions, values):
+    new_query = ""
+
+    if values["_vsm_"]:
+        new_query = query
+        for terms in expansions.values():
+            for term in terms:
+                new_query += " " + term
+    elif values["_boolean_"]:
+    	# definitely not fool-proof, trying to put synonyms in OR'd statements together
+        for q in query.split(" "): 
+            if q in ["(", ")", "AND", "OR", "AND_NOT"]:
+                new_query += q
+            elif q in expansions:
+                new_query += " (" + q 
+                for ex in expansions[q]:
+                    new_query += " OR " + ex
+                new_query += ")"
+
+    return new_query

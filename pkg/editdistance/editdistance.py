@@ -60,7 +60,6 @@ class EditDistance:
         try:
             query_terms = self.__clean_query(query)
         except IndexError:
-            print("Error for edit distance with query: " + query)
             return suggestions
 
         for term in query_terms.items():
