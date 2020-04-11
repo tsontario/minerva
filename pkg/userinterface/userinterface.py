@@ -220,10 +220,7 @@ def launch():
         sg.theme("BrownBlue")
 
         return sg.PopupYesNo(
-            text,
-            title="Expansions",
-            font=("Arial", 12, "bold"),
-            keep_on_top=True
+            text, title="Expansions", font=("Arial", 12, "bold"), keep_on_top=True
         )
 
     # turns edit distance UI elements on or off
@@ -299,7 +296,7 @@ def launch():
             print("Getting expansions")
             expanded_query = updated_query
             expansions = Expansion(ctx).expand(expanded_query)
-            
+
             do_expansion = "No"
             if expansions != {}:
                 do_expansion = ExpansionPopup(expansions)
@@ -324,11 +321,11 @@ def launch():
 
             # don't display suggestion related UI elements
             toggle_resend(False)
-            
+
             print("Getting expansions")
             expanded_query = original_query
             expansions = Expansion(ctx).expand(expanded_query)
-            
+
             do_expansion = "No"
             if expansions != {}:
                 do_expansion = ExpansionPopup(expansions)
@@ -476,12 +473,12 @@ def mix_in(query, expansions, values):
             for term in terms:
                 new_query += " " + term
     elif values["_boolean_"]:
-    	# definitely not fool-proof, trying to put synonyms in OR'd statements together
-        for q in query.split(" "): 
+        # definitely not fool-proof, trying to put synonyms in OR'd statements together
+        for q in query.split(" "):
             if q in ["(", ")", "AND", "OR", "AND_NOT"]:
                 new_query += q
             elif q in expansions:
-                new_query += " (" + q 
+                new_query += " (" + q
                 for ex in expansions[q]:
                     new_query += " OR " + ex
                 new_query += ")"
