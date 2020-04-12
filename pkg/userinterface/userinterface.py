@@ -332,7 +332,13 @@ def launch():
             if values["_boolean_"]:
                 data = search("Boolean", original_query, expanded_query, ctx)
             elif values["_vsm_"]:
-                data = search("VSM", original_query, expanded_query, ctx)
+                data = search(
+                    "VSM",
+                    original_query,
+                    expanded_query,
+                    ctx,
+                    relevance=relevance[original_query],
+                )
             else:
                 data = []
 
@@ -363,7 +369,13 @@ def launch():
             if original_values["_boolean_"]:
                 data = search("Boolean", original_query, expanded_query, ctx)
             elif original_values["_vsm_"]:
-                data = search("VSM", original_query, expanded_query, ctx)
+                data = search(
+                    "VSM",
+                    original_query,
+                    expanded_query,
+                    ctx,
+                    relevance=relevance[original_query],
+                )
             else:
                 data = []
 
@@ -434,13 +446,13 @@ def launch():
 
 
 # perform search with query / model selected by user
-def search(model, original_query, modified_query, ctx):
+def search(model, original_query, modified_query, ctx, relevance=None):
     corpus_accessor = CorpusAccessor(ctx)
     results = None
     if model == "VSM":
         print("Calling VSM with query: " + modified_query)
         vector_model = VectorSpaceModel(ctx)
-        results = vector_model.search(ctx, modified_query)
+        results = vector_model.search(ctx, modified_query, relevance)
         documents = corpus_accessor.access(ctx, [r[0] for r in results])
         scores = ["{:.4f}".format(r[1]) for r in results]
         results = format_results(documents, scores, ctx)
@@ -543,3 +555,7 @@ def mix_in(query, expansions, values):
                 new_query += ")"
 
     return new_query
+
+
+def rocchio(original_query, data):
+    print("STUB")
