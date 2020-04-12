@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 from os import path
+from collections import defaultdict
 
 from pkg.context import Context
 from pkg.corpusaccess import CorpusAccessor
@@ -17,7 +18,7 @@ def launch():
     # results table info
     headings = ["Relevance", "DocID", "Title", "Topic", "Excerpt", "Score"]
     data = []
-    relevance = []
+    relevance = defaultdict(lambda: [])
     # query data for edit distance and 'resending' query
     original_query = ""
     original_values = []
@@ -86,9 +87,6 @@ def launch():
         ],
     ]
 
-    relevance_layout = [
-        [sg.Button("remove"), sg.Text(relevant)] for relevant in relevance
-    ]
     # window layout
     layout = [
         [sg.Text("Minerva Search Engine", font=("Arial", 22, "bold"))],
@@ -154,9 +152,6 @@ def launch():
                 key="_suggestions_",
             )
         ],
-        [
-            sg.Frame("Relevance feedback", relevance_layout, font=("Arial", 16, "bold"), key="_relevance_")
-        ],
         [sg.Text("")],
         [
             sg.Table(
@@ -179,6 +174,22 @@ def launch():
                 font=("Arial", 12, "italic"),
             )
         ],
+        [sg.Text("Relevant docs for this query", font=("Arial", 12))],
+        [
+            sg.Table(
+                values=relevance,
+                headings=headings,
+                font=("Arial", 12),
+                header_font=("Arial", 14, "bold"),
+                bind_return_key=True,
+                num_rows=4,
+                alternating_row_color="#d3d3d3",
+                auto_size_columns=False,
+                col_widths=[8, 12, 8, 32, 8],
+                justification="center",
+                key="_relevance_",
+            )
+        ],
         [sg.Button("Exit", font=("Arial", 14), button_color=("white", "grey"))],
     ]
 
@@ -188,13 +199,14 @@ def launch():
     # popup that shows full text of document
     def DocPopup(query, doc):
         text = ""
-        doc[0] = "relevant"
-        RelevanceFeedback().set_relevant(query, doc[1])
+        if doc[0] == "not relevant":
+            doc[0] = "relevant"
+            RelevanceFeedback().set_relevant(query, doc)
 
         sections = ["DocID", "Title", "Topics", "Full Text"]
         for i in range(len(sections)):
-            text += sections[i] + ": " + str(doc[i+1]) + "\n"
-        
+            text += sections[i] + ": " + str(doc[i + 1]) + "\n"
+
         return sg.PopupScrolled(
             text, title=doc[1], font=("Arial", 12), size=(64, 15), keep_on_top=True
         )
@@ -325,6 +337,8 @@ def launch():
                 data = []
 
             window["_table_"].Update(values=data)
+            relevance[original_query] = RelevanceFeedback().access(original_query)
+            window["_relevance_"].Update(values=relevance[original_query])
 
         elif event is "_resend_":
             print("Resending query: " + original_query)
@@ -354,18 +368,34 @@ def launch():
                 data = []
 
             window["_table_"].Update(values=data)
+            window["_relevance_"].Update(values=relevance[original_query])
 
         elif event is "_table_":
             print("Opening document")
             try:
                 doc = data[values[event][0]]
                 DocPopup(original_query, doc)
-                if not doc in relevance:
-                    relevance.append(doc)
+                print(f"DOC: {doc}")
                 window["_table_"].Update(values=data)
+                window["_relevance_"].Update(values=relevance[original_query])
+
             except IndexError:
                 # so that clicking a weird part of the table doesn't crash the application
                 pass
+
+        elif event is "_relevance_":
+            print("Removing relevant doc")
+            try:
+                doc = relevance[original_query][values[event][0]]
+                doc[0] = "not relevant"
+                relevance[original_query].remove(doc)
+                RelevanceFeedback().unset_relevant(original_query, doc)
+                window["_table_"].Update(values=data)
+                window["_relevance_"].Update(values=relevance[original_query])
+            except IndexError:
+                # so that clicking a weird part of the table doesn't crash the application
+                pass
+
         elif event is "_suggestions_":
             print("Displaying edit distance suggestions")
             SuggestionPopup(suggestions)
@@ -431,14 +461,14 @@ def format_results(documents, scores, ctx):
         for i in range(len(documents)):
             d = documents[i]
             data.append(
-                ['', d.id, d.title, d.topics, d.body, scores[i],]
+                ["", d.id, d.title, d.topics, d.body, scores[i],]
             )
     else:
         for i in range(len(documents)):
             d = documents[i]
             data.append(
                 [
-                    '',
+                    "",
                     d.id,
                     str(d.course.faculty) + " " + str(d.course.code),
                     "N/A",
@@ -449,14 +479,16 @@ def format_results(documents, scores, ctx):
 
     return data
 
+
 def set_relevances(ctx, query, results):
     rf = RelevanceFeedback(ctx)
     for result in results:
         if result[1] in rf.access(query):
-            result[0] = "relevant"  
+            result[0] = "relevant"
         else:
-            result[0] = "not relevant"   
+            result[0] = "not relevant"
     return results
+
 
 # return a Context object with the user's selections
 def construct_context(values):
