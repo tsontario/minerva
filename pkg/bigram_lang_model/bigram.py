@@ -1,4 +1,4 @@
 class Bigram:
-    def __init__(self, tokens, freq):
-        self.tokens = tokens
-        self.freq = freq
+    def __init__(self, token, probability):
+        self.token = token
+        self.probability = probability
