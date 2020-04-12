@@ -388,7 +388,6 @@ def launch():
             try:
                 doc = data[values[event][0]]
                 DocPopup(original_query, doc)
-                print(f"DOC: {doc}")
                 window["_table_"].Update(values=data)
                 window["_relevance_"].Update(values=relevance[original_query])
 
@@ -478,7 +477,6 @@ def search(model, original_query, modified_query, ctx, relevance=None):
         documents = corpus_accessor.access(ctx, data)
         scores = [1] * len(data)
         results = format_results(documents, scores, ctx)
-        results = set_relevances(ctx, original_query, results)
     return results
 
 
