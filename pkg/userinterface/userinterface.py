@@ -5,6 +5,7 @@ from pkg.context import Context
 from pkg.corpusaccess import CorpusAccessor
 from pkg.editdistance import EditDistance
 from pkg.queryexpansion import Expansion
+from pkg.relevancefeedback import RelevanceFeedback
 from pkg.dictionary import Dictionary
 from pkg.index import IndexAccessor, BigramIndexAccessor, WeightedIndexAccessor
 from pkg.vsm import VectorSpaceModel
@@ -14,7 +15,7 @@ from pkg.booleanretrieval import Parser, Evaluator
 # code snippets taken from various demos at https://pysimplegui.readthedocs.io/
 def launch():
     # results table info
-    headings = ["DocID", "Title", "Topic", "Excerpt", "Score"]
+    headings = ["Relevance", "DocID", "Title", "Topic", "Excerpt", "Score"]
     data = []
 
     # query data for edit distance and 'resending' query
@@ -391,13 +392,15 @@ def launch():
 # perform search with query / model selected by user
 def search(model, query, ctx):
     corpus_accessor = CorpusAccessor(ctx)
+    results = None
     if model == "VSM":
         print("Calling VSM with query: " + query)
         vector_model = VectorSpaceModel(ctx)
         results = vector_model.search(ctx, query)
         documents = corpus_accessor.access(ctx, [r[0] for r in results])
         scores = ["{:.4f}".format(r[1]) for r in results]
-
+        results = format_results(documents, scores, ctx)
+        results = set_relevances(ctx, query, results)
     elif model == "Boolean":
         print("Calling Boolean with query: " + query)
         parser = Parser(ctx)
@@ -405,8 +408,8 @@ def search(model, query, ctx):
         data = Evaluator(ctx, parsed).evaluate()
         documents = corpus_accessor.access(ctx, data)
         scores = [1] * len(data)
-
-    return format_results(documents, scores, ctx)
+        results = format_results(documents, scores, ctx)
+    return results
 
 
 # format documents for table UI element
@@ -417,13 +420,14 @@ def format_results(documents, scores, ctx):
         for i in range(len(documents)):
             d = documents[i]
             data.append(
-                [d.id, d.title, d.topics, d.body, scores[i],]
+                ['', d.id, d.title, d.topics, d.body, scores[i],]
             )
     else:
         for i in range(len(documents)):
             d = documents[i]
             data.append(
                 [
+                    '',
                     d.id,
                     str(d.course.faculty) + " " + str(d.course.code),
                     "N/A",
@@ -434,6 +438,14 @@ def format_results(documents, scores, ctx):
 
     return data
 
+def set_relevances(ctx, query, results):
+    rf = RelevanceFeedback(ctx)
+    for result in results:
+        if result[1] in rf.access(query):
+            result[0] = "relevant"  
+        else:
+            result[0] = "not relevant"   
+    return results
 
 # return a Context object with the user's selections
 def construct_context(values):
