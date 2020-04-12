@@ -6,6 +6,7 @@ from pkg.context import Context
 from pkg.corpusaccess import CorpusAccessor
 from pkg.editdistance import EditDistance
 from pkg.queryexpansion import Expansion
+from pkg.querycompletion import Completion
 from pkg.relevancefeedback import RelevanceFeedback
 from pkg.dictionary import Dictionary
 from pkg.index import IndexAccessor, BigramIndexAccessor, WeightedIndexAccessor
@@ -163,7 +164,7 @@ def launch():
                 num_rows=8,
                 alternating_row_color="#d3d3d3",
                 auto_size_columns=False,
-                col_widths=[8, 12, 8, 32, 8],
+                col_widths=[8, 8, 12, 8, 32, 8],
                 justification="center",
                 key="_table_",
             )
@@ -185,7 +186,7 @@ def launch():
                 num_rows=4,
                 alternating_row_color="#d3d3d3",
                 auto_size_columns=False,
-                col_widths=[8, 12, 8, 32, 8],
+                col_widths=[8, 8, 12, 8, 32, 8],
                 justification="center",
                 key="_relevance_",
             )
@@ -205,7 +206,7 @@ def launch():
 
         sections = ["DocID", "Title", "Topics", "Full Text"]
         for i in range(len(sections)):
-            text += sections[i] + ": " + str(doc[i + 1]) + "\n"
+            text += sections[i] + ": " + str(doc[i+1]) + "\n"
 
         return sg.PopupScrolled(
             text, title=doc[1], font=("Arial", 12), size=(64, 15), keep_on_top=True
@@ -241,8 +242,8 @@ def launch():
 
         sg.theme("BrownBlue")
 
-        return sg.PopupYesNo(
-            text, title="Expansions", font=("Arial", 12, "bold"), keep_on_top=True
+        return sg.popup_scrolled(
+            text, title="Expansions", font=("Arial", 12, "bold"), size=(64, 5), keep_on_top=True, yes_no=True
         )
 
     # turns edit distance UI elements on or off
@@ -387,7 +388,6 @@ def launch():
             try:
                 doc = data[values[event][0]]
                 DocPopup(original_query, doc)
-                print(f"DOC: {doc}")
                 window["_table_"].Update(values=data)
                 window["_relevance_"].Update(values=relevance[original_query])
 
@@ -427,17 +427,29 @@ def launch():
             )  # must be done in separate Update calls
 
         elif event in "_query_":
-            # TODO: call query completion module here to get next term suggestions
-            # Temp to make sure I can update the UI with suggestions as the user types
-            next_terms = ["suggestion_1", "suggestion_2", "suggestion_3"]
-            window["_next_"].Update(values=next_terms)
+            query = values["_query_"]
+            if query == "" or query[-1] == " ":
+                ctx = construct_context(values)
+                try:
+                    next_terms = Completion(ctx).complete(query.split()[-1])
+                    window["_next_"].Update(values=next_terms)
+                except IndexError:
+                    pass
+            else:
+                window["_next_"].Update(values=[])
 
         elif event is "_next_":
             next_term = values[event][0]
             print("Adding term '" + next_term + "' to query")
-            new_query = window["_query_"].Get() + " " + next_term
+            new_query = window["_query_"].Get() + next_term + " "
             window["_query_"].Update(value=new_query)
-            # TODO: call query completion module here to update UI
+            
+            ctx = construct_context(values)
+            try:
+                next_terms = Completion(ctx).complete(next_term)
+                window["_next_"].Update(values=next_terms)
+            except IndexError:
+                pass
 
         else:
             print(event)
@@ -476,7 +488,7 @@ def format_results(documents, scores, ctx):
         for i in range(len(documents)):
             d = documents[i]
             data.append(
-                ["", d.id, d.title, d.topics, d.body, scores[i],]
+                ["", d.id, d.title, d.topics, d.body.replace("\n", " "), scores[i],]
             )
     else:
         for i in range(len(documents)):
@@ -485,7 +497,7 @@ def format_results(documents, scores, ctx):
                 [
                     "",
                     d.id,
-                    str(d.course.faculty) + " " + str(d.course.code),
+                    str(d.course.faculty) + str(d.course.code) + ": " + str(d.course.title),
                     "N/A",
                     d.course.contents,
                     scores[i],
@@ -546,8 +558,8 @@ def mix_in(query, expansions, values):
     elif values["_boolean_"]:
         # definitely not fool-proof, trying to put synonyms in OR'd statements together
         for q in query.split(" "):
-            if q in ["(", ")", "AND", "OR", "AND_NOT"]:
-                new_query += q
+            if q in ["(", ")", "AND", "OR", "AND_NOT"] or q not in expansions:
+                new_query += " " + q
             elif q in expansions:
                 new_query += " (" + q
                 for ex in expansions[q]:
