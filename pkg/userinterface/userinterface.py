@@ -164,7 +164,7 @@ def launch():
                 num_rows=8,
                 alternating_row_color="#d3d3d3",
                 auto_size_columns=False,
-                col_widths=[8, 12, 8, 32, 8],
+                col_widths=[8, 8, 12, 8, 32, 8],
                 justification="center",
                 key="_table_",
             )
@@ -186,7 +186,7 @@ def launch():
                 num_rows=4,
                 alternating_row_color="#d3d3d3",
                 auto_size_columns=False,
-                col_widths=[8, 12, 8, 32, 8],
+                col_widths=[8, 8, 12, 8, 32, 8],
                 justification="center",
                 key="_relevance_",
             )
@@ -206,7 +206,7 @@ def launch():
 
         sections = ["DocID", "Title", "Topics", "Full Text"]
         for i in range(len(sections)):
-            text += sections[i] + ": " + str(doc[i + 1]) + "\n"
+            text += sections[i] + ": " + str(doc[i+1]) + "\n"
 
         return sg.PopupScrolled(
             text, title=doc[1], font=("Arial", 12), size=(64, 15), keep_on_top=True
@@ -478,6 +478,7 @@ def search(model, original_query, modified_query, ctx, relevance=None):
         documents = corpus_accessor.access(ctx, data)
         scores = [1] * len(data)
         results = format_results(documents, scores, ctx)
+        results = set_relevances(ctx, original_query, results)
     return results
 
 
