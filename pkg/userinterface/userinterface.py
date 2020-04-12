@@ -17,7 +17,7 @@ def launch():
     # results table info
     headings = ["Relevance", "DocID", "Title", "Topic", "Excerpt", "Score"]
     data = []
-
+    relevance = []
     # query data for edit distance and 'resending' query
     original_query = ""
     original_values = []
@@ -86,6 +86,9 @@ def launch():
         ],
     ]
 
+    relevance_layout = [
+        [sg.Button("remove"), sg.Text(relevant)] for relevant in relevance
+    ]
     # window layout
     layout = [
         [sg.Text("Minerva Search Engine", font=("Arial", 22, "bold"))],
@@ -151,7 +154,10 @@ def launch():
                 key="_suggestions_",
             )
         ],
-        [sg.Text("", font=("Arial", 5))],
+        [
+            sg.Frame("Relevance feedback", relevance_layout, font=("Arial", 16, "bold"), key="_relevance_")
+        ],
+        [sg.Text("")],
         [
             sg.Table(
                 values=data,
@@ -180,12 +186,15 @@ def launch():
     window = sg.Window("Minerva Search Engine", layout)
 
     # popup that shows full text of document
-    def DocPopup(doc):
+    def DocPopup(query, doc):
         text = ""
+        doc[0] = "relevant"
+        RelevanceFeedback().set_relevant(query, doc[1])
+
         sections = ["DocID", "Title", "Topics", "Full Text"]
         for i in range(len(sections)):
-            text += sections[i] + ": " + str(doc[i]) + "\n"
-
+            text += sections[i] + ": " + str(doc[i+1]) + "\n"
+        
         return sg.PopupScrolled(
             text, title=doc[1], font=("Arial", 12), size=(64, 15), keep_on_top=True
         )
@@ -309,9 +318,9 @@ def launch():
 
             # use chosen model to search corpus
             if values["_boolean_"]:
-                data = search("Boolean", expanded_query, ctx)
+                data = search("Boolean", original_query, expanded_query, ctx)
             elif values["_vsm_"]:
-                data = search("VSM", expanded_query, ctx)
+                data = search("VSM", original_query, expanded_query, ctx)
             else:
                 data = []
 
@@ -338,9 +347,9 @@ def launch():
 
             # redo search using chosen model to search corpus
             if original_values["_boolean_"]:
-                data = search("Boolean", expanded_query, ctx)
+                data = search("Boolean", original_query, expanded_query, ctx)
             elif original_values["_vsm_"]:
-                data = search("VSM", expanded_query, ctx)
+                data = search("VSM", original_query, expanded_query, ctx)
             else:
                 data = []
 
@@ -350,11 +359,13 @@ def launch():
             print("Opening document")
             try:
                 doc = data[values[event][0]]
-                DocPopup(doc)
+                DocPopup(original_query, doc)
+                if not doc in relevance:
+                    relevance.append(doc)
+                window["_table_"].Update(values=data)
             except IndexError:
                 # so that clicking a weird part of the table doesn't crash the application
                 pass
-
         elif event is "_suggestions_":
             print("Displaying edit distance suggestions")
             SuggestionPopup(suggestions)
@@ -390,21 +401,21 @@ def launch():
 
 
 # perform search with query / model selected by user
-def search(model, query, ctx):
+def search(model, original_query, modified_query, ctx):
     corpus_accessor = CorpusAccessor(ctx)
     results = None
     if model == "VSM":
-        print("Calling VSM with query: " + query)
+        print("Calling VSM with query: " + modified_query)
         vector_model = VectorSpaceModel(ctx)
-        results = vector_model.search(ctx, query)
+        results = vector_model.search(ctx, modified_query)
         documents = corpus_accessor.access(ctx, [r[0] for r in results])
         scores = ["{:.4f}".format(r[1]) for r in results]
         results = format_results(documents, scores, ctx)
-        results = set_relevances(ctx, query, results)
+        results = set_relevances(ctx, original_query, results)
     elif model == "Boolean":
-        print("Calling Boolean with query: " + query)
+        print("Calling Boolean with query: " + modified_query)
         parser = Parser(ctx)
-        parsed = parser.parse(query)
+        parsed = parser.parse(modified_query)
         data = Evaluator(ctx, parsed).evaluate()
         documents = corpus_accessor.access(ctx, data)
         scores = [1] * len(data)
