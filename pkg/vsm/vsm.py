@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from pkg.index import (
     OttawaUIndexBuilder,
     ReutersIndexBuilder,
@@ -51,11 +53,13 @@ class VectorSpaceModel:
             ]
 
             beta_coefficient = 1.0 / (len(relevance))
-            betas = list(filter(lambda k: k[0] in query_terms, raw_relevant))
-            beta_result = {k: 0 for k in query_terms}
-            for (k, v) in betas:
-                beta_result[k] += v
-            beta_result = {k: beta_coefficient * v for (k, v) in beta_result.items()}
+            betas = defaultdict(lambda: 0)
+            for raw in raw_relevant:
+                betas[raw[0]] += raw[1]
+            for query_term in query_terms:
+                betas[query_term] += 1
+
+            beta_result = {k: beta_coefficient * v for (k, v) in betas.items()}
             print(f"betas: {beta_result}")
 
             gamma_coefficient = 1.0 / (len(matched_doc_ids) - len(relevant_doc_ids))
@@ -67,11 +71,10 @@ class VectorSpaceModel:
                 for k in docs
                 for r in k.read_queryable().split(" ")
             ]
-            gammas = list(filter(lambda k: k[0] in query_terms, raw_not_relevant))
-            gamma_result = {k: 0 for k in query_terms}
-            for (k, v) in gammas:
-                gamma_result[k] += v
-            gamma_result = {k: gamma_coefficient * v for (k, v) in gamma_result.items()}
+            gammas = defaultdict(lambda: 0)
+            for raw in raw_not_relevant:
+                gammas[raw[0]] += raw[1]
+            gamma_result = {k: gamma_coefficient * v for (k, v) in gammas.items()}
             print(f"gammas: {gamma_result}")
 
             query_vector = {k: 1 for k in query_terms}
