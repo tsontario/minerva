@@ -1,10 +1,12 @@
 import PySimpleGUI as sg
 from os import path
+from collections import defaultdict
 
 from pkg.context import Context
 from pkg.corpusaccess import CorpusAccessor
 from pkg.editdistance import EditDistance
 from pkg.queryexpansion import Expansion
+from pkg.relevancefeedback import RelevanceFeedback
 from pkg.dictionary import Dictionary
 from pkg.index import IndexAccessor, BigramIndexAccessor, WeightedIndexAccessor
 from pkg.vsm import VectorSpaceModel
@@ -14,9 +16,9 @@ from pkg.booleanretrieval import Parser, Evaluator
 # code snippets taken from various demos at https://pysimplegui.readthedocs.io/
 def launch():
     # results table info
-    headings = ["DocID", "Title", "Topic", "Excerpt", "Score"]
+    headings = ["Relevance", "DocID", "Title", "Topic", "Excerpt", "Score"]
     data = []
-
+    relevance = defaultdict(lambda: [])
     # query data for edit distance and 'resending' query
     original_query = ""
     original_values = []
@@ -150,7 +152,7 @@ def launch():
                 key="_suggestions_",
             )
         ],
-        [sg.Text("", font=("Arial", 5))],
+        [sg.Text("")],
         [
             sg.Table(
                 values=data,
@@ -172,6 +174,22 @@ def launch():
                 font=("Arial", 12, "italic"),
             )
         ],
+        [sg.Text("Relevant docs for this query", font=("Arial", 12))],
+        [
+            sg.Table(
+                values=relevance,
+                headings=headings,
+                font=("Arial", 12),
+                header_font=("Arial", 14, "bold"),
+                bind_return_key=True,
+                num_rows=4,
+                alternating_row_color="#d3d3d3",
+                auto_size_columns=False,
+                col_widths=[8, 12, 8, 32, 8],
+                justification="center",
+                key="_relevance_",
+            )
+        ],
         [sg.Button("Exit", font=("Arial", 14), button_color=("white", "grey"))],
     ]
 
@@ -179,11 +197,15 @@ def launch():
     window = sg.Window("Minerva Search Engine", layout)
 
     # popup that shows full text of document
-    def DocPopup(doc):
+    def DocPopup(query, doc):
         text = ""
+        if doc[0] == "not relevant":
+            doc[0] = "relevant"
+            RelevanceFeedback().set_relevant(query, doc)
+
         sections = ["DocID", "Title", "Topics", "Full Text"]
         for i in range(len(sections)):
-            text += sections[i] + ": " + str(doc[i]) + "\n"
+            text += sections[i] + ": " + str(doc[i + 1]) + "\n"
 
         return sg.PopupScrolled(
             text, title=doc[1], font=("Arial", 12), size=(64, 15), keep_on_top=True
@@ -308,13 +330,21 @@ def launch():
 
             # use chosen model to search corpus
             if values["_boolean_"]:
-                data = search("Boolean", expanded_query, ctx)
+                data = search("Boolean", original_query, expanded_query, ctx)
             elif values["_vsm_"]:
-                data = search("VSM", expanded_query, ctx)
+                data = search(
+                    "VSM",
+                    original_query,
+                    expanded_query,
+                    ctx,
+                    relevance=relevance[original_query],
+                )
             else:
                 data = []
 
             window["_table_"].Update(values=data)
+            relevance[original_query] = RelevanceFeedback().access(original_query)
+            window["_relevance_"].Update(values=relevance[original_query])
 
         elif event is "_resend_":
             print("Resending query: " + original_query)
@@ -337,19 +367,46 @@ def launch():
 
             # redo search using chosen model to search corpus
             if original_values["_boolean_"]:
-                data = search("Boolean", expanded_query, ctx)
+                data = search("Boolean", original_query, expanded_query, ctx)
             elif original_values["_vsm_"]:
-                data = search("VSM", expanded_query, ctx)
+                data = search(
+                    "VSM",
+                    original_query,
+                    expanded_query,
+                    ctx,
+                    relevance=relevance[original_query],
+                )
             else:
                 data = []
 
             window["_table_"].Update(values=data)
+            window["_relevance_"].Update(values=relevance[original_query])
 
         elif event is "_table_":
             print("Opening document")
             try:
                 doc = data[values[event][0]]
-                DocPopup(doc)
+                DocPopup(original_query, doc)
+                print(f"DOC: {doc}")
+                window["_table_"].Update(values=data)
+                window["_relevance_"].Update(values=relevance[original_query])
+
+            except IndexError:
+                # so that clicking a weird part of the table doesn't crash the application
+                pass
+
+        elif event is "_relevance_":
+            print("Removing relevant doc")
+            try:
+                doc = relevance[original_query][values[event][0]]
+                for da in data:
+                    if da[1] == doc[1]:
+                        da[0] = "not relevant"
+                doc[0] = "not relevant"
+                relevance[original_query].remove(doc)
+                RelevanceFeedback().unset_relevant(original_query, doc)
+                window["_table_"].Update(values=data)
+                window["_relevance_"].Update(values=relevance[original_query])
             except IndexError:
                 # so that clicking a weird part of the table doesn't crash the application
                 pass
@@ -389,24 +446,26 @@ def launch():
 
 
 # perform search with query / model selected by user
-def search(model, query, ctx):
+def search(model, original_query, modified_query, ctx, relevance=None):
     corpus_accessor = CorpusAccessor(ctx)
+    results = None
     if model == "VSM":
-        print("Calling VSM with query: " + query)
+        print("Calling VSM with query: " + modified_query)
         vector_model = VectorSpaceModel(ctx)
-        results = vector_model.search(ctx, query)
+        results = vector_model.search(ctx, modified_query, relevance)
         documents = corpus_accessor.access(ctx, [r[0] for r in results])
         scores = ["{:.4f}".format(r[1]) for r in results]
-
+        results = format_results(documents, scores, ctx)
+        results = set_relevances(ctx, original_query, results)
     elif model == "Boolean":
-        print("Calling Boolean with query: " + query)
+        print("Calling Boolean with query: " + modified_query)
         parser = Parser(ctx)
-        parsed = parser.parse(query)
+        parsed = parser.parse(modified_query)
         data = Evaluator(ctx, parsed).evaluate()
         documents = corpus_accessor.access(ctx, data)
         scores = [1] * len(data)
-
-    return format_results(documents, scores, ctx)
+        results = format_results(documents, scores, ctx)
+    return results
 
 
 # format documents for table UI element
@@ -417,13 +476,14 @@ def format_results(documents, scores, ctx):
         for i in range(len(documents)):
             d = documents[i]
             data.append(
-                [d.id, d.title, d.topics, d.body, scores[i],]
+                ["", d.id, d.title, d.topics, d.body, scores[i],]
             )
     else:
         for i in range(len(documents)):
             d = documents[i]
             data.append(
                 [
+                    "",
                     d.id,
                     str(d.course.faculty) + " " + str(d.course.code),
                     "N/A",
@@ -433,6 +493,17 @@ def format_results(documents, scores, ctx):
             )
 
     return data
+
+
+def set_relevances(ctx, query, results):
+    rf = RelevanceFeedback(ctx)
+    for result in results:
+        for relevances in rf.access(query):
+            if result[1] == relevances[1]:
+                result[0] = "relevant"
+        if not result[0] == "relevant":
+            result[0] = "not relevant"
+    return results
 
 
 # return a Context object with the user's selections
@@ -484,3 +555,7 @@ def mix_in(query, expansions, values):
                 new_query += ")"
 
     return new_query
+
+
+def rocchio(original_query, data):
+    print("STUB")

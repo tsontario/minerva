@@ -2,6 +2,7 @@ from os import path
 import nltk
 print("Ensuring nltk libraries exist...")
 nltk.download("stopwords")
+nltk.download('wordnet')
 from pkg.userinterface import userinterface as ui
 from pkg.context import Context
 from pkg.corpusaccess import CorpusAccessor
