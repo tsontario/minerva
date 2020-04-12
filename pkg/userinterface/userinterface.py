@@ -387,6 +387,9 @@ def launch():
             print("Removing relevant doc")
             try:
                 doc = relevance[original_query][values[event][0]]
+                for da in data:
+                    if da[1] == doc[1]:
+                        da[0] = "not relevant"
                 doc[0] = "not relevant"
                 relevance[original_query].remove(doc)
                 RelevanceFeedback().unset_relevant(original_query, doc)
@@ -483,9 +486,10 @@ def format_results(documents, scores, ctx):
 def set_relevances(ctx, query, results):
     rf = RelevanceFeedback(ctx)
     for result in results:
-        if result[1] in rf.access(query):
-            result[0] = "relevant"
-        else:
+        for relevances in rf.access(query):
+            if result[1] == relevances[1]:
+                result[0] = "relevant"
+        if not result[0] == "relevant":
             result[0] = "not relevant"
     return results
 
