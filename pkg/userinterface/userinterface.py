@@ -291,7 +291,6 @@ def launch():
 
             topic = values["_topics_"]
             print("Chosen topic: " + topic)
-            print("Topic filtering not yet implemented!")  # TODO...
 
             # create context object
             ctx = construct_context(values)
@@ -331,13 +330,14 @@ def launch():
 
             # use chosen model to search corpus
             if values["_boolean_"]:
-                data = search("Boolean", original_query, expanded_query, ctx)
+                data = search("Boolean", original_query, expanded_query, ctx, topic)
             elif values["_vsm_"]:
                 data = search(
                     "VSM",
                     original_query,
                     expanded_query,
                     ctx,
+                    topic,
                     relevance=relevance[original_query],
                 )
             else:
@@ -368,13 +368,14 @@ def launch():
 
             # redo search using chosen model to search corpus
             if original_values["_boolean_"]:
-                data = search("Boolean", original_query, expanded_query, ctx)
+                data = search("Boolean", original_query, expanded_query, ctx, topic)
             elif original_values["_vsm_"]:
                 data = search(
                     "VSM",
                     original_query,
                     expanded_query,
                     ctx,
+                    topic,
                     relevance=relevance[original_query],
                 )
             else:
@@ -458,13 +459,13 @@ def launch():
 
 
 # perform search with query / model selected by user
-def search(model, original_query, modified_query, ctx, relevance=None):
+def search(model, original_query, modified_query, ctx, topic, relevance=None):
     corpus_accessor = CorpusAccessor(ctx)
     results = None
     if model == "VSM":
         print("Calling VSM with query: " + modified_query)
         vector_model = VectorSpaceModel(ctx)
-        results = vector_model.search(ctx, modified_query, relevance)
+        results = vector_model.search(ctx, modified_query, topic, relevance)
         documents = corpus_accessor.access(ctx, [r[0] for r in results])
         scores = ["{:.4f}".format(r[1]) for r in results]
         results = format_results(documents, scores, ctx)
@@ -475,7 +476,13 @@ def search(model, original_query, modified_query, ctx, relevance=None):
         parsed = parser.parse(modified_query)
         data = Evaluator(ctx, parsed).evaluate()
         documents = corpus_accessor.access(ctx, data)
-        scores = [1] * len(data)
+        if topic != "ALL TOPICS":
+            filtered_documents = []
+            for d in documents:
+                if topic in d.topics:
+                    filtered_documents.append(d)
+            documents = filtered_documents
+        scores = [1] * len(documents)
         results = format_results(documents, scores, ctx)
     return results
 
