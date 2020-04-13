@@ -50,7 +50,6 @@ class VectorSpaceModel:
         if len(filtered_doc_ids) == 0:
             return []
 
-
         weights = {}
 
         # do rocchio if relevance is present
@@ -124,11 +123,11 @@ class VectorSpaceModel:
     # performs preprocessing on query
     def __clean_query(self, query):
         # split query on space
-        query_terms = query.split()
+        terms = query.split()
 
         # apply normalizations/filters as specified in ctx
         results = []
-        for term in query_terms:
+        for term in terms:
             for normalize_func in self.normalize_funcs:
                 term = normalize_func(term)
             term = set([term])
