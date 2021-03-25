@@ -18,7 +18,7 @@ py==1.8.1
 pylint==2.4.4
 pyparsing==2.4.6
 PySimpleGUI==4.15.2
-PyYAML==5.3
+PyYAML==5.4
 regex==2020.1.8
 six==1.14.0
 soupsieve==1.9.5
